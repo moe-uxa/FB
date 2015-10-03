@@ -1,5 +1,3 @@
-﻿CREATE SCHEMA [idt]
+﻿CREATE SCHEMA [admin]
     AUTHORIZATION [dbo];
-
-
 

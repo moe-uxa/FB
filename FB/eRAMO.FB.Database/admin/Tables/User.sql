@@ -1,5 +1,10 @@
-﻿CREATE TABLE [idt].[User] (
+﻿CREATE TABLE [admin].[User] (
     [UserID]               INT            IDENTITY (1, 1) NOT NULL,
+    [CountryID]            INT            NULL,
+    [FirstName]            NVARCHAR (MAX) NULL,
+    [LastName]             NVARCHAR (MAX) NULL,
+    [MobileNumber]         NVARCHAR (MAX) NULL,
+    [UniqueName]           NVARCHAR (MAX) NULL,
     [Email]                NVARCHAR (256) NULL,
     [EmailConfirmed]       BIT            NOT NULL,
     [PasswordHash]         NVARCHAR (MAX) NULL,
@@ -10,14 +15,9 @@
     [LockoutEndDateUtc]    DATETIME       NULL,
     [LockoutEnabled]       BIT            NOT NULL,
     [AccessFailedCount]    INT            NOT NULL,
+    [IsMobileVerified]     BIT            CONSTRAINT [DF_User_IsMobileVerified] DEFAULT ((0)) NOT NULL,
+    [UserImageURL]         NVARCHAR (250) NULL,
     [UserName]             NVARCHAR (256) NOT NULL,
-    CONSTRAINT [PK_idt.User] PRIMARY KEY CLUSTERED ([UserID] ASC)
+    CONSTRAINT [PK_dbo.User] PRIMARY KEY CLUSTERED ([UserID] ASC)
 );
-
-
-
-
-GO
-CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex]
-    ON [idt].[User]([UserName] ASC);
 
