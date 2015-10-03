@@ -13,9 +13,4 @@ namespace eRAMO.FB.Business
         SubCategory = 3
 
     }
-
-    public enum test
-    {
-        
-    }
 }
