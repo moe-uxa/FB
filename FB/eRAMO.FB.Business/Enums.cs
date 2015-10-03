@@ -11,6 +11,5 @@ namespace eRAMO.FB.Business
         StudySession = 1,
         Reading = 2,
         SubCategory = 3
-
     }
 }
