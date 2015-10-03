@@ -1,0 +1,63 @@
+﻿@model List<eRAMO.FB.Model.AirConditionerOrder>
+
+<style>
+    .input-validation-error {
+        background-color: #FFF5EE !important;
+        border-color: #a94442 !important;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Order Items</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Item Name</th>
+                        <th>Quanitity</th>
+                        <th>Price</th>
+                        <th>Supplier</th>
+                        <th>Fan SN</th>
+                        <th>Compressor SN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Model[i].ItemID
+                                    @Html.HiddenFor(model => Model[i].ItemID)
+                                </td>
+                                <td>@Model[i].ItemName</td>
+                                <td>@Model[i].ItemQuantity</td>
+                                <td>@Model[i].ItemPrice</td>
+                                <td>
+                                    @Html.EditorFor(model => Model[i].Supplier, new { htmlAttributes = new { @class = "form-control" } })
+                                    @*@Html.ValidationMessageFor(model => Model[i].Supplier, "", new { @class = "text-danger" })*@
+
+
+                                </td>
+                                <td>
+                                    @Html.EditorFor(model => Model[i].FanSN, new { htmlAttributes = new { @class = "form-control" } })
+                                    @*@Html.ValidationMessageFor(model => Model[i].FanSN, "", new { @class = "text-danger" })*@
+                                </td>
+                                <td>
+                                    @Html.EditorFor(model => Model[i].CompressorSN, new { htmlAttributes = new { @class = "form-control" } })
+                                    @*@Html.ValidationMessageFor(model => Model[i].CompressorSN, "", new { @class = "text-danger" })*@
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

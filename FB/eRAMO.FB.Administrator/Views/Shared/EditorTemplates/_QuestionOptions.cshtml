@@ -1,0 +1,2 @@
+﻿@model List<string>
+@Html.Raw(HttpUtility.HtmlDecode((Model == null ? string.Empty : string.Join(", ", Model.Select(x => "'" + x + "'")))))

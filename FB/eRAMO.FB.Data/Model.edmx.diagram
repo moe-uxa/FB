@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa386deafaf14ad58e12cc9f740edef3" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="FBModel.Certificate" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="FBModel.Level" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="FBModel.ParentType" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="FBModel.Question" Width="1.5" PointX="5.25" PointY="5.25" />
+        <EntityTypeShape EntityType="FBModel.QuestionInforamtion" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="FBModel.QuestionOption" Width="1.5" PointX="7.5" PointY="6" />
+        <EntityTypeShape EntityType="FBModel.QuestionPool" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="FBModel.Reading" Width="1.5" PointX="9.75" PointY="2" />
+        <EntityTypeShape EntityType="FBModel.StudySession" Width="1.5" PointX="7.5" PointY="2" />
+        <EntityTypeShape EntityType="FBModel.SubCategory" Width="1.5" PointX="12" PointY="2.125" />
+        <EntityTypeShape EntityType="FBModel.Subject" Width="1.5" PointX="5.25" PointY="2" />
+        <AssociationConnector Association="FBModel.FK_Level_Certificate" />
+        <AssociationConnector Association="FBModel.FK_QuestionInforamtion_Certificate" />
+        <AssociationConnector Association="FBModel.FK_Subject_Level" />
+        <AssociationConnector Association="FBModel.FK_Question_ParentType" />
+        <AssociationConnector Association="FBModel.FK_Question_QuestionInforamtion" />
+        <AssociationConnector Association="FBModel.FK_Question_QuestionPool" />
+        <AssociationConnector Association="FBModel.FK_QuestionOption_Question" />
+        <AssociationConnector Association="FBModel.FK_Reading_StudySession" />
+        <AssociationConnector Association="FBModel.FK_SubCategory_Reading" />
+        <AssociationConnector Association="FBModel.FK_StudySession_Subject" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

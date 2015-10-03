@@ -1,0 +1,494 @@
+﻿@model eRAMO.FB.Model.QuestionsModel
+@using eRAMO.FB.Business;
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<script src="~/scripts/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: "image,imagetools,table",
+        image_advtab: true,
+        file_browser_callback: function (field_name, url, type, win) {
+            $('#imageUploader').click();
+
+            $("#imageUploader").change(function () {
+                var data = new FormData();
+
+                var files = $("#imageUploader").get(0).files;
+
+                if (files.length > 0) {
+                    data.append("UploadedImage", files[0]);
+                }
+
+                var ajaxRequest = $.ajax({
+                    type: "POST",
+                    url: "/Questions/UploadImage",
+                    contentType: false,
+                    processData: false,
+                    data: data
+                });
+
+                ajaxRequest.done(function (xhr, textStatus) {
+                    win.document.getElementById(field_name).value = '/ImagesTemp/' + xhr.FileName;
+                });
+            });
+
+            
+        },
+
+    });
+
+</script>
+
+<input type="file" id="imageUploader" style="display:none" />
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Questions</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Add New Question
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CertificateID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownListFor(model => model.CertificateID, Lists.GetCertificates(), new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CertificateID, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div id="divLoadLevels" style="display:none" class="col-md-4">
+                                        <span><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                    </div>
+                                </div>
+
+                                <div id="divLevels" style="display:none">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.LevelID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.LevelID, Lists.GetLevels(), new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.LevelID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div id="divLoadSubjects" style="display:none" class="col-md-4">
+                                            <span><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="divSubjects" style="display:none">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SubjectID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.SubjectID, Lists.GetSubjects(), new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.SubjectID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div id="divLoadStudySessions" style="display:none" class="col-md-4">
+                                        <span><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                    </div>
+                                </div>
+
+                                <div id="divStudySessions" style="display:none">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StudySessionID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.StudySessionID, Lists.GetStudySessions(), new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.StudySessionID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div id="divLoadReadings" style="display:none" class="col-md-4">
+                                        <span><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                    </div>
+                                </div>
+
+                                <div id="divReadings" style="display:none">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ReadingID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.ReadingID, Lists.GetReadings(), new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div id="divLoadSubCategories" style="display:none" class="col-md-4">
+                                        <span><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                    </div>
+                                </div>
+
+                                <div id="divSubCategories" style="display:none">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SubCategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-4">
+                                            @Html.DropDownListFor(model => model.SubCategoryID, Lists.GetSubCategories(), new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    @Html.LabelFor(model => model.QuestionInformation, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <div class="radio-inline">
+                                            <label>
+                                                <input type="radio" name="QuestionInformationStatus" value="new" checked="">New
+                                            </label>
+                                        </div>
+                                        <div class="radio-inline">
+                                            <label>
+                                                <input type="radio" name="QuestionInformationStatus" value="existing">Existing
+                                            </label>
+                                        </div>
+
+
+                                        @Html.DropDownListFor(model => model.QuestionInformationID, Lists.GetQuestionInformations(), new { @class = "form-control", style = "display:none" })
+                                        <br />
+
+                                        @Html.TextAreaFor(model => model.QuestionInformation, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.QuestionInformation, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.QuestionOptionID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <div ng-app="myApp" ng-controller="myCtrl">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <input type="text" id="questionOption" class="form-control" ng-model="newQuestionOption" />
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-default" data-ng-click="AddItem()" onclick="return false;">Add Option</button>
+                                                </div>
+                                            </div>
+                                            <div class="radio" data-ng-repeat="option in options">
+                                                <label>
+                                                    <input type="radio" name="QuestionAnswer" value="{{option}}" />{{option}}
+                                                    <input type="hidden" name="QuestionOptions" value="{{option}}" />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Justification, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Justification, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Justification, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ExpectedDuration, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ExpectedDuration, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ExpectedDuration, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.QuestionPoolID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownListFor(model => model.QuestionPoolID, Lists.GetQuestionPools(), new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.QuestionPoolID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.ParentID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.ParentID, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.ParentID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>*@
+
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.ParentTypreID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.ParentTypreID, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.ParentTypreID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>*@
+
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" class="btn btn-primary pull-right" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope) {
+        $scope.options = [@Html.EditorFor(model => model.QuestionOptions, "_QuestionOptions")];
+
+        $scope.AddItem = function () {
+            $scope.options.push($scope.newQuestionOption);
+            $('#questionOption').val('');
+        };
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+
+
+
+        $('input[type=radio][name=QuestionInformationStatus]').change(function () {
+            if (this.value == 'new') {
+                $('#QuestionInformationID').hide();
+            }
+            else if (this.value == 'existing') {
+                $('#QuestionInformationID').show();
+                tinyMCE.removeMCEControl(tinyMCE.getEditorId('QuestionInformation'));
+            }
+        });
+
+
+        $('#QuestionInformationID').change(function () {
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetQuestionInformationPiece"))",
+                data: { "QuestionInformationID": this.value },
+                success: function (data) {
+                    tinyMCE.get('QuestionInformation').setContent(data);
+                },
+            });
+        });
+
+
+        $("#CertificateID").change(function () {
+            var selectedItem = $(this).val();
+            var ddlLevels = $("#LevelID");
+            var divLevels = $("#divLevels");
+            divLevels.hide();
+            var divLoadLevels = $("#divLoadLevels");
+            divLoadLevels.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetLevelsByCertificateID"))",
+                data: { "CertificateID": selectedItem },
+                success: function (data) {
+                    ddlLevels.html('');
+                    $.each(data, function (id, option) {
+                        ddlLevels.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    divLoadLevels.hide();
+                    if (data.length > 1) {
+                        divLevels.show();
+                        addRequiredValidation('#LevelID', 'Level');
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    divLoadLevels.hide();
+
+                    $("#divSubjects").hide();
+                    $("#divStudySessions").hide();
+                    $("#divReadings").hide();
+                    $("#divSubCategories").hide();
+                }
+            });
+        });
+
+
+        $("#LevelID").change(function () {
+            var selectedItem = $(this).val();
+            var ddlSubjects = $("#SubjectID");
+            var divSubjects = $("#divSubjects");
+            divSubjects.hide();
+            var divLoadSubjects = $("#divLoadSubjects");
+            divLoadSubjects.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetSubjectsByLevelID"))",
+                data: { "LevelID": selectedItem },
+                success: function (data) {
+                    ddlSubjects.html('');
+                    $.each(data, function (id, option) {
+                        ddlSubjects.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    divLoadSubjects.hide();
+                    if (data.length > 1) {
+                        divSubjects.show();
+                        addRequiredValidation('#SubjectID', 'Subject');
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    divLoadSubjects.hide();
+
+                    $("#divStudySessions").hide();
+                    $("#divReadings").hide();
+                    $("#divSubCategories").hide();
+                }
+            });
+        });
+
+
+        $("#SubjectID").change(function () {
+            var selectedItem = $(this).val();
+            var ddlStudySessions = $("#StudySessionID");
+            var divStudySessions = $("#divStudySessions");
+            divStudySessions.hide();
+            var divLoadStudySessions = $("#divLoadStudySessions");
+            divLoadStudySessions.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetStudySessionsBySubjectID"))",
+                data: { "SubjectID": selectedItem },
+                success: function (data) {
+                    ddlStudySessions.html('');
+                    $.each(data, function (id, option) {
+                        ddlStudySessions.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    divLoadStudySessions.hide();
+                    if (data.length > 1) {
+                        divStudySessions.show();
+                        addRequiredValidation('#StudySessionID', 'Study Session');
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    divLoadStudySessions.hide();
+
+                    $("#divReadings").hide();
+                    $("#divSubCategories").hide();
+                }
+            });
+        });
+
+
+        $("#StudySessionID").change(function () {
+            var selectedItem = $(this).val();
+            var ddlReadings = $("#ReadingID");
+            var divReadings = $("#divReadings");
+            divReadings.hide();
+            var divLoadReadings = $("#divLoadReadings");
+            divLoadReadings.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetReadingsByStudySessionID"))",
+                data: { "StudySessionID": selectedItem },
+                success: function (data) {
+                    ddlReadings.html('');
+                    $.each(data, function (id, option) {
+                        ddlReadings.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    divLoadReadings.hide();
+                    if (data.length > 1) {
+                        divReadings.show();
+                        addRequiredValidation('#ReadingID', 'Reading');
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    divLoadReadings.hide();
+
+                    $("#divSubCategories").hide();
+                }
+            });
+        });
+
+        $("#ReadingID").change(function () {
+            var selectedItem = $(this).val();
+            var ddlSubCategories = $("#SubCategoryID");
+            var divSubCategories = $("#divSubCategories");
+            divSubCategories.hide();
+            var divLoadSubCategories = $("#divLoadSubCategories");
+            divLoadSubCategories.show();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "@(Url.Action("GetSubCategoriesByReadingID"))",
+                data: { "ReadingID": selectedItem },
+                success: function (data) {
+                    ddlSubCategories.html('');
+                    $.each(data, function (id, option) {
+                        ddlSubCategories.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                    divLoadSubCategories.hide();
+                    if (data.length > 1) {
+                        divSubCategories.show();
+                        addRequiredValidation('#SubCategoryID', 'Sub Category');
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    divLoadSubCategories.hide();
+                    statesProgress.hide();
+                }
+            });
+        });
+    });
+
+
+    function addRequiredValidation(selector, name) {
+        $(selector).attr("data-val", "true");
+        $(selector).attr("data-val-required", "The " + name + " field is required.");
+
+        $("form").removeData("validator");
+        $("form").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse("form");
+
+    }
+</script>

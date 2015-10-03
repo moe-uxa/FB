@@ -1,0 +1,130 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension="cs" #>
+<#@ import namespace="System" #>
+<#@ parameter type="System.String" name="ControllerName" #>
+<#@ parameter type="System.String" name="ControllerRootName" #>
+<#@ parameter type="System.String" name="Namespace" #>
+<#@ parameter type="System.String" name="AreaName" #>
+<#
+string routePrefix;
+if (String.IsNullOrEmpty(AreaName)) 
+{
+    routePrefix = ControllerRootName;
+}
+else
+{
+    routePrefix = AreaName + "/" + ControllerRootName;
+}
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using eRAMO.FB.Model;
+using eRAMO.FB.Business;
+
+namespace <#= Namespace #>
+{
+    public class <#= ControllerName #> : Controller
+    {
+        UnitOfWork ctx = new UnitOfWork();
+
+        // GET: <#= routePrefix #>
+        public ActionResult Index()
+        {
+            var list = ctx.<#= routePrefix #>.GetAll<<#= routePrefix #>Model>();
+            return View(list);
+        }
+
+        // GET: <#= routePrefix #>/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: <#= routePrefix #>/Create
+        [HttpPost]
+        public ActionResult Create(<#= routePrefix #>Model model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    ctx.<#= routePrefix #>.Add(model);
+                    ctx.Save();
+
+                    return RedirectToAction("Index");
+                }
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: <#= routePrefix #>/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var model = ctx.<#= routePrefix #>.GetById<<#= routePrefix #>Model>(id.Value);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+
+        // POST: <#= routePrefix #>/Edit/5
+        [HttpPost]
+        public ActionResult Edit(<#= routePrefix #>Model model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    ctx.<#= routePrefix #>.Update(model);
+                    ctx.Save();
+                    return RedirectToAction("Index");
+                }
+                return View(model);
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // POST: <#= routePrefix #>/Delete/5
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var model = ctx.<#= routePrefix #>.GetById<<#= routePrefix #>Model>(id.Value);
+                if (model == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ctx.<#= routePrefix #>.Delete(id.Value);
+                ctx.Save();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+        }
+    }
+}

@@ -1,0 +1,271 @@
+<#@ template language="C#" debug="false" hostspecific="true" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data.Entity" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="EnvDTE" #>
+<#@ include file="T4Helper.ttinclude" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Reflection" #>
+<#  //Set these options
+    string targetNamespace = "eRAMO.FB.Data";
+    string efContext = "FBEntities"; //If Context is not in the same namespace rename this to the name of the context
+	string businessNamespace = "eRAMO.FB.Manager";
+
+    IServiceProvider serviceProvider = (IServiceProvider)this.Host;
+    DTE dte = serviceProvider.GetService(typeof(DTE)) as DTE; 
+    var project = GetActiveProject(dte);
+
+    var classes = FindClasses(project, targetNamespace, "");
+    var classWithDbContext = classes.FirstOrDefault(currentClass => currentClass.Bases.OfType<CodeElement>().Any(currentBase => currentBase.Name == "DbContext"));
+
+    var classNames = classes
+                    .Select(currentClass => currentClass.Name)
+                    .ToList();
+
+    if(classWithDbContext != null)
+    {
+        efContext = classWithDbContext.Name;
+        classNames.Remove(efContext);
+    }
+
+    GenerateRepositoryFromPoco(project, targetNamespace, classNames, efContext);
+#>
+using System;
+
+public interface IUnitOfWork : IDisposable
+{
+    <#
+    foreach(string className in classNames)
+    {
+        var properClassName = GetProperClassName(className);
+        var repositoryInterfaceName = "I" + properClassName + "Repository";
+    #>
+<#= repositoryInterfaceName + " " + className+"s" #> { get; }
+    <#
+    }
+    #>
+void Save();
+}
+<# CreateFile("IUnitofWork.cs"); #>
+using System;
+using <#= targetNamespace #>;
+
+namespace <#= businessNamespace #>
+{
+	public class UnitOfWork : IUnitOfWork
+	{
+		private <#= efContext #> _context;
+
+		public UnitOfWork(<#= efContext #> context)
+		{
+			_context = context;
+		}
+
+		//Delete this default constructor if using an IoC container
+		public UnitOfWork()
+		{
+			_context = new <#= efContext #>();
+		}
+	
+		<#foreach(string className in classNames)
+		{
+			var properClassName = GetProperClassName(className);
+			var repositoryInterfaceName =  "I" + properClassName + "Repository";
+		#>
+	public <#= repositoryInterfaceName + " " + className+"s"#>
+		{
+			get { return new <#= properClassName + "Repository" #>(_context); }
+		}
+
+		<#}#>
+
+		public void Save()
+		{
+			_context.SaveChanges();
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				if (_context != null)
+				{
+					_context.Dispose();
+					_context = null;
+				}
+			}
+		}
+	}
+}
+<# CreateFile("UnitofWork.cs"); #>
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using AutoMapper;
+using <#= targetNamespace #>;
+
+public abstract class Repository<TModel,TEntity> : IRepository<TModel, TEntity> where TModel : class
+{
+    private readonly DbSet<TModel> _entities;
+	private <#= efContext #> _context;
+
+    protected Repository(FBEntities context)
+    {
+        _entities = context.Set<TModel>();
+        _context = context;
+    }
+
+    public IEnumerable<TModel> GetAll()
+    {
+        IEnumerable<TModel> entites = _entities;
+        return entites;
+    }
+
+    public IEnumerable<T> GetAll<T>()
+    {
+        IEnumerable<TModel> entites = _entities;
+        IEnumerable<T> mappedList = Map<T, TModel>(entites);
+
+        return mappedList;
+    }
+
+    public TModel GetById(int id)
+    {
+        TModel foundEntity = _entities.Find(id);
+        return foundEntity;
+    }
+
+
+
+    public T GetById<T>(int id)
+    {
+        TModel foundEntity = _entities.Find(id);
+        T mappedEntity = Map<T, TModel>(foundEntity);
+
+        return mappedEntity;
+    }
+
+    public TModel Add(TEntity entity)
+    {
+        TModel mappedEntity = Map<TModel, TEntity>(entity);
+        return _entities.Add(mappedEntity);
+    }
+
+    public T Add<T>(TEntity entity)
+    {
+        TModel mappedEntity = Map<TModel, TEntity>(entity);
+        TModel addedEntity = _entities.Add(mappedEntity);
+        return Map<T, TModel>(addedEntity);
+    }
+
+    public void Delete(TEntity entity)
+    {
+        TModel mappedEntity = Map<TModel, TEntity>(entity);
+        _entities.Remove(mappedEntity);
+    }
+
+    public void Delete(TModel model)
+    {
+        _entities.Remove(model);
+    }
+
+    public void Delete(int id)
+    {
+        var entity = _entities.Find(id);
+        _entities.Remove(entity);
+    }
+
+    public void Update(TEntity entity)
+    {
+        TModel mappedEntity = Map<TModel, TEntity>(entity);
+        _context.Entry(mappedEntity).State = EntityState.Added;
+        _context.Entry(mappedEntity).State = EntityState.Modified;
+    }
+
+    public void Update(TModel model)
+    {
+        _context.Entry(model).State = EntityState.Modified;
+    }
+
+    private Result Map<Result, Source>(Source model)
+    {
+        Mapper.CreateMap<Source, Result>();
+        Result mappedEntity = Mapper.Map<Source, Result>(model);
+        Mapper.Reset();
+        return mappedEntity;
+    }
+
+    private IEnumerable<Result> Map<Result, Source>(IEnumerable<Source> sourceList)
+    {
+        Mapper.CreateMap<Source, Result>();
+        IEnumerable<Result> mappedList = Mapper.Map<IEnumerable<Source>, IEnumerable<Result>>(sourceList);
+        Mapper.Reset();
+        return mappedList;
+    }
+}
+
+<# CreateFile("Repository.cs"); #>
+using System.Collections.Generic;
+
+public interface IRepository<M, T>
+{
+    IEnumerable<M> GetAll();
+    IEnumerable<X> GetAll<X>();
+    M GetById(int id);
+    X GetById<X>(int id);
+    M Add(T entity);
+    X Add<X>(T entity);
+    void Delete(T entity);
+    void Delete(M model);
+    void Delete(int id);
+    void Update(T entity);
+    void Update(M model);
+}
+<# CreateFile("IRepository.cs"); #>
+<#+
+    public void GenerateRepositoryFromPoco(Project project, string targetNamespace, List<string> classNames, string efContext)
+    {
+        foreach(string className in classNames)
+        {
+            var properClassName = GetProperClassName(className);
+            var repositoryName = properClassName + "Repository";
+            #>    
+using <#= targetNamespace #>;
+using System.Collections.Generic;
+using System.Linq;
+        
+public class <#= repositoryName #> : Repository<<#= targetNamespace #>.<#= className #>, <#= targetNamespace #>.I<#= className #>>, I<#= properClassName #>Repository
+{
+    private <#= efContext #> _context;
+
+    public <#= repositoryName #>(<#= efContext #> context) : base(context)
+    {
+        _context = context;
+    }
+
+    //Override any generic method for your own custom implemention, add new repository methods to the I<#= repositoryName #>.cs file
+}
+<#+  CreateFile(repositoryName + ".cs"); #>
+using <#= targetNamespace #>;
+
+public interface I<#= properClassName #>Repository : IRepository<<#= targetNamespace #>.<#= className #>, <#= targetNamespace #>.I<#= className #>>
+{
+    //Add any additional repository methods other than the generic ones (GetAll, GetById, Delete, Add)
+}
+<#+ CreateFile(@"I" + repositoryName + ".cs"); #>
+            <#+
+        }
+    }
+#>

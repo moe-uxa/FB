@@ -1,0 +1,748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Certificate">
+          <Key>
+            <PropertyRef Name="CertificateID" />
+          </Key>
+          <Property Name="CertificateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsFeatured" Type="bit" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CertificateID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ParentType">
+          <Key>
+            <PropertyRef Name="ParentTypeID" />
+          </Key>
+          <Property Name="ParentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionInformationID" Type="int" />
+          <Property Name="Text" Type="nvarchar" MaxLength="500" />
+          <Property Name="Justification" Type="nvarchar(max)" />
+          <Property Name="ExpectedDuration" Type="float" />
+          <Property Name="Weight" Type="int" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="ParentTypeID" Type="int" />
+          <Property Name="QuestionPoolID" Type="int" />
+        </EntityType>
+        <EntityType Name="QuestionInforamtion">
+          <Key>
+            <PropertyRef Name="QuestionInformationID" />
+          </Key>
+          <Property Name="QuestionInformationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CertificateID" Type="int" />
+          <Property Name="Text" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="QuestionOption">
+          <Key>
+            <PropertyRef Name="QuestionOptionID" />
+          </Key>
+          <Property Name="QuestionOptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="int" />
+          <Property Name="Text" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="IsAnswer" Type="bit" />
+        </EntityType>
+        <EntityType Name="QuestionPool">
+          <Key>
+            <PropertyRef Name="QuestionPoolID" />
+          </Key>
+          <Property Name="QuestionPoolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Reading">
+          <Key>
+            <PropertyRef Name="ReadingID" />
+          </Key>
+          <Property Name="ReadingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudySessionID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StudySession">
+          <Key>
+            <PropertyRef Name="StudySessionID" />
+          </Key>
+          <Property Name="StudySessionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReadingID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelID" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Level_Certificate">
+          <End Role="Certificate" Type="Self.Certificate" Multiplicity="0..1" />
+          <End Role="Level" Type="Self.Level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateID" />
+            </Principal>
+            <Dependent Role="Level">
+              <PropertyRef Name="CertificateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_ParentType">
+          <End Role="ParentType" Type="Self.ParentType" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentType">
+              <PropertyRef Name="ParentTypeID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ParentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_QuestionInforamtion">
+          <End Role="QuestionInforamtion" Type="Self.QuestionInforamtion" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionInforamtion">
+              <PropertyRef Name="QuestionInformationID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QuestionInformationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_QuestionPool">
+          <End Role="QuestionPool" Type="Self.QuestionPool" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionPool">
+              <PropertyRef Name="QuestionPoolID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QuestionPoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionInforamtion_Certificate">
+          <End Role="Certificate" Type="Self.Certificate" Multiplicity="0..1" />
+          <End Role="QuestionInforamtion" Type="Self.QuestionInforamtion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateID" />
+            </Principal>
+            <Dependent Role="QuestionInforamtion">
+              <PropertyRef Name="CertificateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionOption_Question">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="QuestionOption" Type="Self.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reading_StudySession">
+          <End Role="StudySession" Type="Self.StudySession" Multiplicity="0..1" />
+          <End Role="Reading" Type="Self.Reading" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudySession">
+              <PropertyRef Name="StudySessionID" />
+            </Principal>
+            <Dependent Role="Reading">
+              <PropertyRef Name="StudySessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudySession_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="StudySession" Type="Self.StudySession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="StudySession">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategory_Reading">
+          <End Role="Reading" Type="Self.Reading" Multiplicity="0..1" />
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reading">
+              <PropertyRef Name="ReadingID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="ReadingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Level">
+          <End Role="Level" Type="Self.Level" Multiplicity="0..1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="LevelID" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FBModelStoreContainer">
+          <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParentType" EntityType="Self.ParentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionInforamtion" EntityType="Self.QuestionInforamtion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionOption" EntityType="Self.QuestionOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionPool" EntityType="Self.QuestionPool" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reading" EntityType="Self.Reading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudySession" EntityType="Self.StudySession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Level_Certificate" Association="Self.FK_Level_Certificate">
+            <End Role="Certificate" EntitySet="Certificate" />
+            <End Role="Level" EntitySet="Level" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_ParentType" Association="Self.FK_Question_ParentType">
+            <End Role="ParentType" EntitySet="ParentType" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_QuestionInforamtion" Association="Self.FK_Question_QuestionInforamtion">
+            <End Role="QuestionInforamtion" EntitySet="QuestionInforamtion" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_QuestionPool" Association="Self.FK_Question_QuestionPool">
+            <End Role="QuestionPool" EntitySet="QuestionPool" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionInforamtion_Certificate" Association="Self.FK_QuestionInforamtion_Certificate">
+            <End Role="Certificate" EntitySet="Certificate" />
+            <End Role="QuestionInforamtion" EntitySet="QuestionInforamtion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionOption_Question" Association="Self.FK_QuestionOption_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionOption" EntitySet="QuestionOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reading_StudySession" Association="Self.FK_Reading_StudySession">
+            <End Role="StudySession" EntitySet="StudySession" />
+            <End Role="Reading" EntitySet="Reading" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudySession_Subject" Association="Self.FK_StudySession_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="StudySession" EntitySet="StudySession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategory_Reading" Association="Self.FK_SubCategory_Reading">
+            <End Role="Reading" EntitySet="Reading" />
+            <End Role="SubCategory" EntitySet="SubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Level" Association="Self.FK_Subject_Level">
+            <End Role="Level" EntitySet="Level" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Certificates" EntityType="FBModel.Certificate" />
+          <EntitySet Name="Levels" EntityType="FBModel.Level" />
+          <EntitySet Name="ParentTypes" EntityType="FBModel.ParentType" />
+          <EntitySet Name="Questions" EntityType="FBModel.Question" />
+          <EntitySet Name="QuestionInforamtions" EntityType="FBModel.QuestionInforamtion" />
+          <EntitySet Name="QuestionOptions" EntityType="FBModel.QuestionOption" />
+          <EntitySet Name="QuestionPools" EntityType="FBModel.QuestionPool" />
+          <EntitySet Name="Readings" EntityType="FBModel.Reading" />
+          <EntitySet Name="StudySessions" EntityType="FBModel.StudySession" />
+          <EntitySet Name="SubCategories" EntityType="FBModel.SubCategory" />
+          <EntitySet Name="Subjects" EntityType="FBModel.Subject" />
+          <AssociationSet Name="FK_Level_Certificate" Association="FBModel.FK_Level_Certificate">
+            <End Role="Certificate" EntitySet="Certificates" />
+            <End Role="Level" EntitySet="Levels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionInforamtion_Certificate" Association="FBModel.FK_QuestionInforamtion_Certificate">
+            <End Role="Certificate" EntitySet="Certificates" />
+            <End Role="QuestionInforamtion" EntitySet="QuestionInforamtions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Level" Association="FBModel.FK_Subject_Level">
+            <End Role="Level" EntitySet="Levels" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_ParentType" Association="FBModel.FK_Question_ParentType">
+            <End Role="ParentType" EntitySet="ParentTypes" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_QuestionInforamtion" Association="FBModel.FK_Question_QuestionInforamtion">
+            <End Role="QuestionInforamtion" EntitySet="QuestionInforamtions" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_QuestionPool" Association="FBModel.FK_Question_QuestionPool">
+            <End Role="QuestionPool" EntitySet="QuestionPools" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionOption_Question" Association="FBModel.FK_QuestionOption_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionOption" EntitySet="QuestionOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reading_StudySession" Association="FBModel.FK_Reading_StudySession">
+            <End Role="StudySession" EntitySet="StudySessions" />
+            <End Role="Reading" EntitySet="Readings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategory_Reading" Association="FBModel.FK_SubCategory_Reading">
+            <End Role="Reading" EntitySet="Readings" />
+            <End Role="SubCategory" EntitySet="SubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudySession_Subject" Association="FBModel.FK_StudySession_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="StudySession" EntitySet="StudySessions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Certificate">
+          <Key>
+            <PropertyRef Name="CertificateID" />
+          </Key>
+          <Property Name="CertificateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsFeatured" Type="Boolean" />
+          <NavigationProperty Name="Levels" Relationship="FBModel.FK_Level_Certificate" FromRole="Certificate" ToRole="Level" />
+          <NavigationProperty Name="QuestionInforamtions" Relationship="FBModel.FK_QuestionInforamtion_Certificate" FromRole="Certificate" ToRole="QuestionInforamtion" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="LevelID" />
+          </Key>
+          <Property Name="LevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CertificateID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Certificate" Relationship="FBModel.FK_Level_Certificate" FromRole="Level" ToRole="Certificate" />
+          <NavigationProperty Name="Subjects" Relationship="FBModel.FK_Subject_Level" FromRole="Level" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="ParentType">
+          <Key>
+            <PropertyRef Name="ParentTypeID" />
+          </Key>
+          <Property Name="ParentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="FBModel.FK_Question_ParentType" FromRole="ParentType" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionInformationID" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectedDuration" Type="Double" />
+          <Property Name="Weight" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="ParentTypeID" Type="Int32" />
+          <Property Name="QuestionPoolID" Type="Int32" />
+          <NavigationProperty Name="ParentType" Relationship="FBModel.FK_Question_ParentType" FromRole="Question" ToRole="ParentType" />
+          <NavigationProperty Name="QuestionInforamtion" Relationship="FBModel.FK_Question_QuestionInforamtion" FromRole="Question" ToRole="QuestionInforamtion" />
+          <NavigationProperty Name="QuestionPool" Relationship="FBModel.FK_Question_QuestionPool" FromRole="Question" ToRole="QuestionPool" />
+          <NavigationProperty Name="QuestionOptions" Relationship="FBModel.FK_QuestionOption_Question" FromRole="Question" ToRole="QuestionOption" />
+        </EntityType>
+        <EntityType Name="QuestionInforamtion">
+          <Key>
+            <PropertyRef Name="QuestionInformationID" />
+          </Key>
+          <Property Name="QuestionInformationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CertificateID" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Certificate" Relationship="FBModel.FK_QuestionInforamtion_Certificate" FromRole="QuestionInforamtion" ToRole="Certificate" />
+          <NavigationProperty Name="Questions" Relationship="FBModel.FK_Question_QuestionInforamtion" FromRole="QuestionInforamtion" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="QuestionOption">
+          <Key>
+            <PropertyRef Name="QuestionOptionID" />
+          </Key>
+          <Property Name="QuestionOptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsAnswer" Type="Boolean" />
+          <NavigationProperty Name="Question" Relationship="FBModel.FK_QuestionOption_Question" FromRole="QuestionOption" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="QuestionPool">
+          <Key>
+            <PropertyRef Name="QuestionPoolID" />
+          </Key>
+          <Property Name="QuestionPoolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="FBModel.FK_Question_QuestionPool" FromRole="QuestionPool" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Reading">
+          <Key>
+            <PropertyRef Name="ReadingID" />
+          </Key>
+          <Property Name="ReadingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudySessionID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StudySession" Relationship="FBModel.FK_Reading_StudySession" FromRole="Reading" ToRole="StudySession" />
+          <NavigationProperty Name="SubCategories" Relationship="FBModel.FK_SubCategory_Reading" FromRole="Reading" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="StudySession">
+          <Key>
+            <PropertyRef Name="StudySessionID" />
+          </Key>
+          <Property Name="StudySessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Readings" Relationship="FBModel.FK_Reading_StudySession" FromRole="StudySession" ToRole="Reading" />
+          <NavigationProperty Name="Subject" Relationship="FBModel.FK_StudySession_Subject" FromRole="StudySession" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReadingID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reading" Relationship="FBModel.FK_SubCategory_Reading" FromRole="SubCategory" ToRole="Reading" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectID" />
+          </Key>
+          <Property Name="SubjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Level" Relationship="FBModel.FK_Subject_Level" FromRole="Subject" ToRole="Level" />
+          <NavigationProperty Name="StudySessions" Relationship="FBModel.FK_StudySession_Subject" FromRole="Subject" ToRole="StudySession" />
+        </EntityType>
+        <Association Name="FK_Level_Certificate">
+          <End Type="FBModel.Certificate" Role="Certificate" Multiplicity="0..1" />
+          <End Type="FBModel.Level" Role="Level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateID" />
+            </Principal>
+            <Dependent Role="Level">
+              <PropertyRef Name="CertificateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionInforamtion_Certificate">
+          <End Type="FBModel.Certificate" Role="Certificate" Multiplicity="0..1" />
+          <End Type="FBModel.QuestionInforamtion" Role="QuestionInforamtion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateID" />
+            </Principal>
+            <Dependent Role="QuestionInforamtion">
+              <PropertyRef Name="CertificateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Level">
+          <End Type="FBModel.Level" Role="Level" Multiplicity="0..1" />
+          <End Type="FBModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="LevelID" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_ParentType">
+          <End Type="FBModel.ParentType" Role="ParentType" Multiplicity="0..1" />
+          <End Type="FBModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParentType">
+              <PropertyRef Name="ParentTypeID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ParentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_QuestionInforamtion">
+          <End Type="FBModel.QuestionInforamtion" Role="QuestionInforamtion" Multiplicity="0..1" />
+          <End Type="FBModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionInforamtion">
+              <PropertyRef Name="QuestionInformationID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QuestionInformationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_QuestionPool">
+          <End Type="FBModel.QuestionPool" Role="QuestionPool" Multiplicity="0..1" />
+          <End Type="FBModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionPool">
+              <PropertyRef Name="QuestionPoolID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="QuestionPoolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionOption_Question">
+          <End Type="FBModel.Question" Role="Question" Multiplicity="0..1" />
+          <End Type="FBModel.QuestionOption" Role="QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reading_StudySession">
+          <End Type="FBModel.StudySession" Role="StudySession" Multiplicity="0..1" />
+          <End Type="FBModel.Reading" Role="Reading" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudySession">
+              <PropertyRef Name="StudySessionID" />
+            </Principal>
+            <Dependent Role="Reading">
+              <PropertyRef Name="StudySessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategory_Reading">
+          <End Type="FBModel.Reading" Role="Reading" Multiplicity="0..1" />
+          <End Type="FBModel.SubCategory" Role="SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reading">
+              <PropertyRef Name="ReadingID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="ReadingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudySession_Subject">
+          <End Type="FBModel.Subject" Role="Subject" Multiplicity="0..1" />
+          <End Type="FBModel.StudySession" Role="StudySession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectID" />
+            </Principal>
+            <Dependent Role="StudySession">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FBModelStoreContainer" CdmEntityContainer="FBEntities">
+          <EntitySetMapping Name="Certificates">
+            <EntityTypeMapping TypeName="FBModel.Certificate">
+              <MappingFragment StoreEntitySet="Certificate">
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Levels">
+            <EntityTypeMapping TypeName="FBModel.Level">
+              <MappingFragment StoreEntitySet="Level">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParentTypes">
+            <EntityTypeMapping TypeName="FBModel.ParentType">
+              <MappingFragment StoreEntitySet="ParentType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentTypeID" ColumnName="ParentTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="FBModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="QuestionPoolID" ColumnName="QuestionPoolID" />
+                <ScalarProperty Name="ParentTypeID" ColumnName="ParentTypeID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="ExpectedDuration" ColumnName="ExpectedDuration" />
+                <ScalarProperty Name="Justification" ColumnName="Justification" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="QuestionInformationID" ColumnName="QuestionInformationID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionInforamtions">
+            <EntityTypeMapping TypeName="FBModel.QuestionInforamtion">
+              <MappingFragment StoreEntitySet="QuestionInforamtion">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+                <ScalarProperty Name="QuestionInformationID" ColumnName="QuestionInformationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionOptions">
+            <EntityTypeMapping TypeName="FBModel.QuestionOption">
+              <MappingFragment StoreEntitySet="QuestionOption">
+                <ScalarProperty Name="IsAnswer" ColumnName="IsAnswer" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionOptionID" ColumnName="QuestionOptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionPools">
+            <EntityTypeMapping TypeName="FBModel.QuestionPool">
+              <MappingFragment StoreEntitySet="QuestionPool">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="QuestionPoolID" ColumnName="QuestionPoolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Readings">
+            <EntityTypeMapping TypeName="FBModel.Reading">
+              <MappingFragment StoreEntitySet="Reading">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StudySessionID" ColumnName="StudySessionID" />
+                <ScalarProperty Name="ReadingID" ColumnName="ReadingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudySessions">
+            <EntityTypeMapping TypeName="FBModel.StudySession">
+              <MappingFragment StoreEntitySet="StudySession">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="StudySessionID" ColumnName="StudySessionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubCategories">
+            <EntityTypeMapping TypeName="FBModel.SubCategory">
+              <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ReadingID" ColumnName="ReadingID" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="FBModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

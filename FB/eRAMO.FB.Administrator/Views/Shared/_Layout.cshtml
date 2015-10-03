@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>FB Administration Panel</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/content/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="/content/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="/content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="/content/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <!-- Timeline CSS -->
+    <link href="/content/dist/css/timeline.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/content/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="/content/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="/content/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @*<link href="/content/html5imageupload_assets/css/demo.html5imageupload.css?v1.3" rel="stylesheet">*@
+
+    <!-- jQuery -->
+    <script src="/content/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/Scripts/eRAMO-JS-Helper.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">FB Administration Panel</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                @Html.Partial("_TopRightLinks")
+            </ul>
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    @Html.Partial("_SideMenu")
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div id="page-wrapper">
+            @if (TempData["NotificationType"] != null && TempData["NotificationMessage"] != null)
+            {
+                <div class="panel-body">
+                    <div class="alert @TempData["NotificationType"].ToString() alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @TempData["NotificationMessage"].ToString()
+                    </div>
+                </div>
+            <!-- .panel-body -->
+            }
+            @RenderBody()
+        </div>
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/content/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- Morris Charts JavaScript -->
+    @*<script src="/content/bower_components/raphael/raphael-min.js"></script>
+        <script src="/content/bower_components/morrisjs/morris.min.js"></script>
+        <script src="/content/js/morris-data.js"></script>*@
+
+    <!-- DataTables JavaScript -->
+    <script src="/content/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="/content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/content/dist/js/sb-admin-2.js"></script>
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function () {
+            $('.data-table').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+
+    @*<script src="/content/html5imageupload_assets/js/html5imageupload.js?v1.4.3"></script>*@
+
+    @*<script>
+            $('.dropzone').html5imageupload();
+        </script>*@
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+
+
+
+</body>
+</html>
