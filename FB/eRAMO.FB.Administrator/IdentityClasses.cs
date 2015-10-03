@@ -13,7 +13,7 @@ namespace eRAMO.Administrator
     public partial class User : IdentityUser<int, User_Login, User_UserRole, User_Claim>
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User, int> manager)
-        {
+        { 
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
