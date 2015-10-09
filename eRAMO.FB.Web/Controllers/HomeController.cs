@@ -18,9 +18,10 @@ namespace eRAMO.FB.Web.Controllers
             HomeModel model = new HomeModel();
 
             HeaderModel headerModel = new HeaderModel();
-
+            var TestimonialModel = new TestimonialModel();
+            TestimonialModel.GetClientReviews();
             headerModel.Certificates = headerModel.GetFeaturedCertificates();
-
+            model.Testimonial = TestimonialModel;
             model.Header = headerModel;
 
             return View(model);

@@ -1,3 +1,5 @@
+@using eRAMO.FB.Model
+@model eRAMO.FB.Web.Models.Home.TestimonialModel
 @{
     <section class="testimonials" id="testimonials">
         <a class="striped-icon divider scroll" href="#testimonials">
@@ -16,64 +18,38 @@
 
             <div id="testimonials-carousel">
                 <div class="reviews">
-                    <div class="client left">
-                        <p class="large comment">Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam . </p>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#fakelink">
-                                    <img class="avatar media-object " src="/assets/images/placehold/60x60.gif" alt="avatar" />
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">Mohamed Ragab</h5>
-                                <p>Web designer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="client right">
-                        <p class="large comment">Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam  </p>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#fakelink">
-                                    <img class="avatar media-object " src="/assets/images/placehold/60x60.gif" alt="avatar" />
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">Mohamed Usama</h5>
-                                <p>WebDesigner</p>
+                    @for (int index = 0; index < Model.ClientReviews.Count; index += 2)
+                    {
+                        <div class="client left">
+                            <p class="large comment">@Model.ClientReviews[index].Review</p>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#fakelink">
+                                        <img class="avatar media-object " src="/assets/images/placehold/60x60.gif" alt="avatar" />
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">@Model.ClientReviews[index].ClientName</h5>
+                                    <p>@Model.ClientReviews[index].ClientTitle</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div><!--reviews-->
-                <div class="reviews">
-                    <div class="client left">
-                        <p class="large comment">Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam </p>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#fakelink">
-                                    <img class="avatar media-object " src="/assets/images/placehold/60x60.gif" alt="avatar" />
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">Remond</h5>
-                                <p>Web designer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="client right">
-                        <p class="large comment">Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam </p>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#fakelink">
-                                    <img class="avatar media-object " src="/assets/images/placehold/60x60.gif" alt="avatar" />
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h5 class="media-heading">Samer</h5>
-                                <p>Developer</p>
+
+                        <div class="client right">
+                            <p class="large comment">@Model.ClientReviews[index+1].Review</p>
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#fakelink">
+                                        <img class="avatar media-object " src="/assets/images/placehold/60x60.gif" alt="avatar" />
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="media-heading">@Model.ClientReviews[index+1].ClientName</h5>
+                                    <p>@Model.ClientReviews[index+1].ClientTitle</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div><!--reviews-->
             </div><!--carousel-->
 
@@ -137,6 +113,6 @@
                     </div>
                 </div><!--row-->
             </div><!--brands-->
-        </div><!--container-->
+        </div><!--container-->,
     </section>
 }

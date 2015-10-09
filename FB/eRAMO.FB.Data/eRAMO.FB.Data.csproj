@@ -61,7 +61,13 @@
     <Compile Include="Certificate.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClientReview.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ICertificate.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IClientReview.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="IdentityClasses.cs" />

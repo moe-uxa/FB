@@ -10,5 +10,6 @@ namespace eRAMO.FB.Web.Models
     public class HomeModel
     {
         public HeaderModel Header { get; set; }
+        public TestimonialModel Testimonial { get; set; }
     }
 }

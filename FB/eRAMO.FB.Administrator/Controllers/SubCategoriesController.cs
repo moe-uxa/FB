@@ -27,7 +27,7 @@ namespace eRAMO.FB.Administrator.Controllers
                 return HttpNotFound();
             }
 
-            var list = ctx.SubCategories.GetAll<SubCategoriesModel>().Where(c => c.ReadingID == id.Value);
+            var list = ctx.SubCategorys.GetAll<SubCategoriesModel>().Where(c => c.ReadingID == id.Value);
             return View(list);
         }
 
@@ -59,7 +59,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.SubCategories.Add(model);
+                    ctx.SubCategorys.Add(model);
                     ctx.Save();
 
                     return RedirectToAction("Index", new { id = model.ReadingID });
@@ -79,7 +79,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.SubCategories.GetById<SubCategoriesModel>(id.Value);
+            var model = ctx.SubCategorys.GetById<SubCategoriesModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -87,7 +87,7 @@ namespace eRAMO.FB.Administrator.Controllers
             return View(model);
         }
 
-        // POST: SubCategories/Edit/5
+        // POST: SubCategorys/Edit/5
         [HttpPost]
         public ActionResult Edit(SubCategoriesModel model)
         {
@@ -95,7 +95,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.SubCategories.Update(model);
+                    ctx.SubCategorys.Update(model);
                     ctx.Save();
                     return RedirectToAction("Index", new { id = model.ReadingID });
                 }
@@ -118,13 +118,13 @@ namespace eRAMO.FB.Administrator.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var model = ctx.SubCategories.GetById<SubCategoriesModel>(id.Value);
+                var model = ctx.SubCategorys.GetById<SubCategoriesModel>(id.Value);
                 if (model == null)
                 {
                     return HttpNotFound();
                 }
 
-                ctx.SubCategories.Delete(id.Value);
+                ctx.SubCategorys.Delete(id.Value);
                 ctx.Save();
                 return RedirectToAction("Index", new { id = model.ReadingID });
             }

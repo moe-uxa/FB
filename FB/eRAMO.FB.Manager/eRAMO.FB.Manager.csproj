@@ -68,7 +68,13 @@
     <Compile Include="UnitOfWork\CertificateRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork\ClientReviewRepository.cs">
+      <DependentUpon>RepositoryGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitOfWork\ICertificateRepository.cs">
+      <DependentUpon>RepositoryGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitOfWork\IClientReviewRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitOfWork\ILevelRepository.cs">

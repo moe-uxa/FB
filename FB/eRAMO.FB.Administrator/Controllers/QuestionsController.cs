@@ -275,7 +275,7 @@ namespace eRAMO.FB.Administrator.Controllers
             }
             int id = 0;
             bool isValid = Int32.TryParse(ReadingID, out id);
-            var subReadings = ctx.SubCategories.GetAll().Where(c => c.ReadingID == id);
+            var subReadings = ctx.SubCategorys.GetAll().Where(c => c.ReadingID == id);
             var result = (from s in subReadings
                           select new
                           {

@@ -168,6 +168,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Home\HeaderModel.cs" />
+    <Compile Include="Models\Home\TestimonialModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -302,6 +303,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Photos\photo1.jpg" />
+    <Content Include="Photos\photo2.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="assets\fonts\font-awesome-4.2.0\fonts\fontawesome-webfont.eot" />

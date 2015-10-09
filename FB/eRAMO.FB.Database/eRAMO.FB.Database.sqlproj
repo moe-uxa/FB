@@ -93,5 +93,6 @@
     <Build Include="admin\Tables\User_Claim.sql" />
     <Build Include="admin\Tables\User.sql" />
     <Build Include="Security\admin.sql" />
+    <Build Include="dbo\Tables\ClientReview.sql" />
   </ItemGroup>
 </Project>

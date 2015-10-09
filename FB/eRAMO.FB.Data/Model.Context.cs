@@ -7,14 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using eRAMO.FB.Data.Identity;
+
 namespace eRAMO.FB.Data
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using eRAMO.FB.Data.Identity;
-    using System.Data.Entity.ModelConfiguration.Conventions;
     
     public partial class FBEntities : IdentityDbContext<User, UserRole, int, User_Login, User_UserRole, User_Claim>
     {
@@ -26,18 +26,18 @@ namespace eRAMO.FB.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
+    
+            
             modelBuilder.Entity<User>().ToTable("idt.User").Property(p => p.Id).HasColumnName("UserID");
-
+    
             modelBuilder.Entity<User_UserRole>().ToTable("idt.User_UserRole").Property(p => p.RoleId).HasColumnName("UserRoleID");
             modelBuilder.Entity<User_UserRole>().ToTable("idt.User_UserRole").Property(p => p.UserId).HasColumnName("UserID");
-
+    
             modelBuilder.Entity<User_Login>().ToTable("idt.User_Login").Property(p => p.UserId).HasColumnName("UserID");
-
+    
             modelBuilder.Entity<User_Claim>().ToTable("idt.User_Claim").Property(p => p.Id).HasColumnName("User_ClaimID");
             modelBuilder.Entity<User_Claim>().ToTable("idt.User_Claim").Property(p => p.UserId).HasColumnName("UserID");
-
+    
             modelBuilder.Entity<UserRole>().ToTable("idt.UserRole").Property(p => p.Id).HasColumnName("UserRoleID");
         }
     
@@ -56,5 +56,6 @@ namespace eRAMO.FB.Data
         public virtual DbSet<StudySession> StudySessions { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
+        public virtual DbSet<ClientReview> ClientReviews { get; set; }
     }
 }

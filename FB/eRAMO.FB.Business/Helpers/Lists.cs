@@ -63,7 +63,7 @@ namespace eRAMO.FB.Business
 
         public static IEnumerable<SelectListItem> GetSubCategories()
         {
-            return GetSelectList(ctx.SubCategories.GetAll().ToDictionary(c => c.SubCategoryID, c => c.Name));
+            return GetSelectList(ctx.SubCategorys.GetAll().ToDictionary(c => c.SubCategoryID, c => c.Name));
         }
 
         public static IEnumerable<SelectListItem> GetQuestionInformations()
