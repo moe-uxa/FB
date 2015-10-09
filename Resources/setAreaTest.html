@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>GoogleTest</title>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        var path = [];
+        var center1 = new google.maps.LatLng(52.395715, 4.888916);
+        var center2 = new google.maps.LatLng(58.983991, 5.734863);
+        var center3 = new google.maps.LatLng(51.508742, -0.120850);
+
+        function initi() {
+            var Prop = {
+                center: center1,
+                zoom: 5,
+                mapTypeId: google.maps.MapTypeId.TERRAIN,
+                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+            };
+            var marker = new google.maps.Marker({
+                position: center1,
+                animation: google.maps.Animation.BOUNCE,
+               
+            });
+            var PolyLineTest = new google.maps.Polyline({
+                path: [center1, center2, center3],
+                strokeColor: '#0000',
+                strokeWeight:6
+
+            });
+            var PolygonTest = new google.maps.Polygon({
+                path: [center1, center2, center3],
+                strokeColor: '#0000',
+                strokeWeight: 6,
+                fillColor: '#EB2E2E'
+            });
+            var CircleTest = new google.maps.Circle({
+                center: center1,
+                radius: 200000,
+                strokeColor: '#0000',
+                strokeWeight: 6,
+                fillColor: '#EB2E2E'
+            });
+            var infoWind = new google.maps.InfoWindow({
+                content:"Hi My Name is Ahmed "
+            });
+            var map = new google.maps.Map(document.getElementById("Map"), Prop);
+           
+            //PolygonTest.setMap(map);
+            //PolyLineTest.setMap(map);
+            CircleTest.setMap(map);
+            //infoWind.open(map, marker);
+            google.maps.event.addListener(marker, 'click', function () {
+                map.setZoom(8);
+            });
+            google.maps.event.addListener(map, 'click', function (evt) {
+                //infoWind.open(map,marker);
+                var xmarker = new google.maps.Marker({
+                    position: evt.latLng,
+                    animation: google.maps.Animation.BOUNCE,
+                });
+                //marker.setPosition(evt.latLng);
+                //console.log(evt.latLng);
+                path.push(evt.latLng);
+                xmarker.setMap(map);
+                if (path.length>0) {
+                    PolygonTest.setPath(path);
+                    PolygonTest.setMap(map);
+                }
+				
+				console.log(path);
+            });
+        }
+       
+        google.maps.event.addDomListener(window, 'load', initi);
+        function AddMarker() {
+
+        }
+    </script>
+</head>
+<body>
+    <div id="Map" style="width:800px;height:800px;">
+
+    </div>
+    <div>
+        <input type="button" id="Mark" onclick="AddMarker()" />
+    </div>
+</body>
+</html>
