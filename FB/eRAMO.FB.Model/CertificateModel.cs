@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using eRAMO.FB.Data;
 using System.ComponentModel.DataAnnotations;
+using eRAMO.FB.Data.Model;
 
 namespace eRAMO.FB.Model
 {

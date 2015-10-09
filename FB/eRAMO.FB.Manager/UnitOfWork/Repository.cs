@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 
 public abstract class Repository<TModel,TEntity> : IRepository<TModel, TEntity> where TModel : class

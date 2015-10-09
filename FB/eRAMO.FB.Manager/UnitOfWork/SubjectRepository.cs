@@ -1,9 +1,10 @@
                 
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 using System.Collections.Generic;
 using System.Linq;
         
-public class SubjectRepository : Repository<eRAMO.FB.Data.Subject, eRAMO.FB.Data.ISubject>, ISubjectRepository
+public class SubjectRepository : Repository<eRAMO.FB.Data.Model.Subject, eRAMO.FB.Data.Model.ISubject>, ISubjectRepository
 {
     private FBEntities _context;
 

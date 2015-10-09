@@ -1,9 +1,10 @@
                 
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 using System.Collections.Generic;
 using System.Linq;
         
-public class QuestionOptionRepository : Repository<eRAMO.FB.Data.QuestionOption, eRAMO.FB.Data.IQuestionOption>, IQuestionOptionRepository
+public class QuestionOptionRepository : Repository<eRAMO.FB.Data.Model.QuestionOption, eRAMO.FB.Data.Model.IQuestionOption>, IQuestionOptionRepository
 {
     private FBEntities _context;
 

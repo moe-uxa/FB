@@ -1,9 +1,10 @@
                 
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 using System.Collections.Generic;
 using System.Linq;
         
-public class ParentTypeRepository : Repository<eRAMO.FB.Data.ParentType, eRAMO.FB.Data.IParentType>, IParentTypeRepository
+public class ParentTypeRepository : Repository<eRAMO.FB.Data.Model.ParentType, eRAMO.FB.Data.Model.IParentType>, IParentTypeRepository
 {
     private FBEntities _context;
 

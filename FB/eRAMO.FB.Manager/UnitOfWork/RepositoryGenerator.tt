@@ -12,7 +12,8 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Reflection" #>
 <#  //Set these options
-    string targetNamespace = "eRAMO.FB.Data";
+    string targetNamespace = "eRAMO.FB.Data.Model";
+    string contextNamespace = "eRAMO.FB.Data";
     string efContext = "FBEntities"; //If Context is not in the same namespace rename this to the name of the context
 	string businessNamespace = "eRAMO.FB.Manager";
 
@@ -33,7 +34,7 @@
         classNames.Remove(efContext);
     }
 
-    GenerateRepositoryFromPoco(project, targetNamespace, classNames, efContext);
+    GenerateRepositoryFromPoco(project, targetNamespace, classNames, efContext, contextNamespace);
 #>
 using System;
 
@@ -45,7 +46,7 @@ public interface IUnitOfWork : IDisposable
         var properClassName = GetProperClassName(className);
         var repositoryInterfaceName = "I" + properClassName + "Repository";
     #>
-<#= repositoryInterfaceName + " " + className+"s" #> { get; }
+<#= repositoryInterfaceName + " " + className #> { get; }
     <#
     }
     #>
@@ -54,6 +55,7 @@ void Save();
 <# CreateFile("IUnitofWork.cs"); #>
 using System;
 using <#= targetNamespace #>;
+using <#= contextNamespace #>;
 
 namespace <#= businessNamespace #>
 {
@@ -77,7 +79,7 @@ namespace <#= businessNamespace #>
 			var properClassName = GetProperClassName(className);
 			var repositoryInterfaceName =  "I" + properClassName + "Repository";
 		#>
-	public <#= repositoryInterfaceName + " " + className+"s"#>
+	public <#= repositoryInterfaceName + " " + className#>
 		{
 			get { return new <#= properClassName + "Repository" #>(_context); }
 		}
@@ -115,6 +117,7 @@ using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
 using <#= targetNamespace #>;
+using <#= contextNamespace #>;
 
 public abstract class Repository<TModel,TEntity> : IRepository<TModel, TEntity> where TModel : class
 {
@@ -235,7 +238,7 @@ public interface IRepository<M, T>
 }
 <# CreateFile("IRepository.cs"); #>
 <#+
-    public void GenerateRepositoryFromPoco(Project project, string targetNamespace, List<string> classNames, string efContext)
+    public void GenerateRepositoryFromPoco(Project project, string targetNamespace, List<string> classNames, string efContext, string contextNamespace)
     {
         foreach(string className in classNames)
         {
@@ -243,6 +246,7 @@ public interface IRepository<M, T>
             var repositoryName = properClassName + "Repository";
             #>    
 using <#= targetNamespace #>;
+using <#= contextNamespace #>;
 using System.Collections.Generic;
 using System.Linq;
         
@@ -259,6 +263,7 @@ public class <#= repositoryName #> : Repository<<#= targetNamespace #>.<#= class
 }
 <#+  CreateFile(repositoryName + ".cs"); #>
 using <#= targetNamespace #>;
+using <#= contextNamespace #>;
 
 public interface I<#= properClassName #>Repository : IRepository<<#= targetNamespace #>.<#= className #>, <#= targetNamespace #>.I<#= className #>>
 {

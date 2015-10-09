@@ -21,13 +21,13 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Levels.GetById<LevelsModel>(id.Value);
+            var model = ctx.Level.GetById<LevelsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
             }
 
-            var list = ctx.Subjects.GetAll<SubjectsModel>().Where(c => c.LevelID == id.Value);
+            var list = ctx.Subject.GetAll<SubjectsModel>().Where(c => c.LevelID == id.Value);
             return View(list);
         }
 
@@ -38,7 +38,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Levels.GetById<LevelsModel>(id.Value);
+            var model = ctx.Level.GetById<LevelsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Subjects.Add(model);
+                    ctx.Subject.Add(model);
                     ctx.Save();
 
                     return RedirectToAction("Index", new { id = model.LevelID });
@@ -79,7 +79,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Subjects.GetById<SubjectsModel>(id.Value);
+            var model = ctx.Subject.GetById<SubjectsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -95,7 +95,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Subjects.Update(model);
+                    ctx.Subject.Update(model);
                     ctx.Save();
                     return RedirectToAction("Index", new { id = model.LevelID });
                 }
@@ -118,13 +118,13 @@ namespace eRAMO.FB.Administrator.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var model = ctx.Subjects.GetById<SubjectsModel>(id.Value);
+                var model = ctx.Subject.GetById<SubjectsModel>(id.Value);
                 if (model == null)
                 {
                     return HttpNotFound();
                 }
 
-                ctx.Subjects.Delete(id.Value);
+                ctx.Subject.Delete(id.Value);
                 ctx.Save();
                 return RedirectToAction("Index", new { id = model.LevelID });
             }

@@ -15,7 +15,7 @@ namespace eRAMO.FB.Web.Models.Home
 
         public List<ClientReviewsModel> GetClientReviews()
         {
-            ClientReviews = _ctx.ClientReviews.GetAll<ClientReviewsModel>().ToList();
+            ClientReviews = _ctx.ClientReview.GetAll<ClientReviewsModel>().ToList();
             return ClientReviews;
         }
     }

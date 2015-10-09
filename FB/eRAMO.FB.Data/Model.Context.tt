@@ -44,6 +44,9 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using eRAMO.FB.Data.Identity;
+using eRAMO.FB.Data.Model;
 <#
 if (container.FunctionImports.Any())
 {
@@ -84,6 +87,7 @@ foreach (var entitySet in container.BaseEntitySets.OfType<EntitySet>())
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
         
         modelBuilder.Entity<User>().ToTable("idt.User").Property(p => p.Id).HasColumnName("UserID");

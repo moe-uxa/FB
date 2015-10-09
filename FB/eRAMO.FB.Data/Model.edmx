@@ -26,6 +26,7 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="Review" Type="nvarchar" MaxLength="500" />
           <Property Name="ClientName" Type="nvarchar" MaxLength="50" />
           <Property Name="ClientTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientPhoto" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Level">
           <Key>
@@ -95,6 +96,22 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ShareHolder">
+          <Key>
+            <PropertyRef Name="ShareHolderID" />
+          </Key>
+          <Property Name="ShareHolderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PhotoUrl" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FacebookUrl" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TwitterUrl" Type="nvarchar" MaxLength="4000" />
+          <Property Name="GooglePlusUrl" Type="nvarchar" MaxLength="4000" />
+          <Property Name="LinkedInUrl" Type="nvarchar" MaxLength="4000" />
+          <Property Name="IsCEO" Type="bit" />
+          <Property Name="Rank" Type="int" />
         </EntityType>
         <EntityType Name="StudySession">
           <Key>
@@ -255,6 +272,7 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <EntitySet Name="QuestionOption" EntityType="Self.QuestionOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionPool" EntityType="Self.QuestionPool" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reading" EntityType="Self.Reading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShareHolder" EntityType="Self.ShareHolder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudySession" EntityType="Self.StudySession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
@@ -263,7 +281,8 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
     [ClientReview].[ClientReviewID] AS [ClientReviewID], 
     [ClientReview].[Review] AS [Review], 
     [ClientReview].[ClientName] AS [ClientName], 
-    [ClientReview].[ClientTitle] AS [ClientTitle]
+    [ClientReview].[ClientTitle] AS [ClientTitle], 
+    [ClientReview].[ClientPhoto] AS [ClientPhoto]
     FROM [dbo].[ClientReview] AS [ClientReview]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Level_Certificate" Association="Self.FK_Level_Certificate">
@@ -320,6 +339,7 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <EntitySet Name="QuestionOptions" EntityType="FBModel.QuestionOption" />
           <EntitySet Name="QuestionPools" EntityType="FBModel.QuestionPool" />
           <EntitySet Name="Readings" EntityType="FBModel.Reading" />
+          <EntitySet Name="ShareHolders" EntityType="FBModel.ShareHolder" />
           <EntitySet Name="StudySessions" EntityType="FBModel.StudySession" />
           <EntitySet Name="SubCategories" EntityType="FBModel.SubCategory" />
           <EntitySet Name="Subjects" EntityType="FBModel.Subject" />
@@ -459,6 +479,22 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="StudySession" Relationship="FBModel.FK_Reading_StudySession" FromRole="Reading" ToRole="StudySession" />
           <NavigationProperty Name="SubCategories" Relationship="FBModel.FK_SubCategory_Reading" FromRole="Reading" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="ShareHolder">
+          <Key>
+            <PropertyRef Name="ShareHolderID" />
+          </Key>
+          <Property Name="ShareHolderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrl" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FacebookUrl" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TwitterUrl" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="GooglePlusUrl" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedInUrl" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="IsCEO" Type="Boolean" />
+          <Property Name="Rank" Type="Int32" />
         </EntityType>
         <EntityType Name="StudySession">
           <Key>
@@ -623,6 +659,7 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="Review" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ClientTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -718,6 +755,23 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ShareHolders">
+            <EntityTypeMapping TypeName="FBModel.ShareHolder">
+              <MappingFragment StoreEntitySet="ShareHolder">
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="IsCEO" ColumnName="IsCEO" />
+                <ScalarProperty Name="LinkedInUrl" ColumnName="LinkedInUrl" />
+                <ScalarProperty Name="GooglePlusUrl" ColumnName="GooglePlusUrl" />
+                <ScalarProperty Name="TwitterUrl" ColumnName="TwitterUrl" />
+                <ScalarProperty Name="FacebookUrl" ColumnName="FacebookUrl" />
+                <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShareHolderID" ColumnName="ShareHolderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="StudySessions">
             <EntityTypeMapping TypeName="FBModel.StudySession">
               <MappingFragment StoreEntitySet="StudySession">
@@ -754,6 +808,7 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <EntitySetMapping Name="ClientReviews">
             <EntityTypeMapping TypeName="FBModel.ClientReview">
               <MappingFragment StoreEntitySet="ClientReview">
+                <ScalarProperty Name="ClientPhoto" ColumnName="ClientPhoto" />
                 <ScalarProperty Name="ClientTitle" ColumnName="ClientTitle" />
                 <ScalarProperty Name="ClientName" ColumnName="ClientName" />
                 <ScalarProperty Name="Review" ColumnName="Review" />

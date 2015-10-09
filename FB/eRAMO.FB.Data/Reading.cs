@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eRAMO.FB.Data
+namespace eRAMO.FB.Data.Model
 {
     using System;
     using System.Collections.Generic;
@@ -19,16 +19,11 @@ namespace eRAMO.FB.Data
             this.SubCategories = new HashSet<SubCategory>();
         }
     
-     
         [System.ComponentModel.DataAnnotations.Key]
         public int ReadingID { get; set; }
-     
         public Nullable<int> StudySessionID { get; set; }
-     
         public string Name { get; set; }
-     
         public string Description { get; set; }
-     
         public string Notes { get; set; }
     
         public virtual StudySession StudySession { get; set; }

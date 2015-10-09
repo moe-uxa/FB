@@ -34,46 +34,46 @@ namespace eRAMO.FB.Business
 
         public static IEnumerable<SelectListItem> GetCertificates()
         {
-            return GetSelectList(ctx.Certificates.GetAll().ToDictionary(c => c.CertificateID, c => c.Name));
+            return GetSelectList(ctx.Certificate.GetAll().ToDictionary(c => c.CertificateID, c => c.Name));
         }
 
         public static IEnumerable<SelectListItem> GetLevels()
         {
-            return GetSelectList(ctx.Levels.GetAll().ToDictionary(c => c.LevelID, c => c.Name));
+            return GetSelectList(ctx.Level.GetAll().ToDictionary(c => c.LevelID, c => c.Name));
         }
 
 
         public static IEnumerable<SelectListItem> GetSubjects()
         {
-            return GetSelectList(ctx.Subjects.GetAll().ToDictionary(c => c.SubjectID, c => c.Name));
+            return GetSelectList(ctx.Subject.GetAll().ToDictionary(c => c.SubjectID, c => c.Name));
         }
 
 
         public static IEnumerable<SelectListItem> GetStudySessions()
         {
-            return GetSelectList(ctx.StudySessions.GetAll().ToDictionary(c => c.StudySessionID, c => c.Name));
+            return GetSelectList(ctx.StudySession.GetAll().ToDictionary(c => c.StudySessionID, c => c.Name));
         }
 
 
         public static IEnumerable<SelectListItem> GetReadings()
         {
-            return GetSelectList(ctx.Readings.GetAll().ToDictionary(c => c.ReadingID, c => c.Name));
+            return GetSelectList(ctx.Reading.GetAll().ToDictionary(c => c.ReadingID, c => c.Name));
         }
 
 
         public static IEnumerable<SelectListItem> GetSubCategories()
         {
-            return GetSelectList(ctx.SubCategorys.GetAll().ToDictionary(c => c.SubCategoryID, c => c.Name));
+            return GetSelectList(ctx.SubCategory.GetAll().ToDictionary(c => c.SubCategoryID, c => c.Name));
         }
 
         public static IEnumerable<SelectListItem> GetQuestionInformations()
         {
-            return GetSelectList(ctx.QuestionInforamtions.GetAll().ToDictionary(c => c.QuestionInformationID, c => ScrubHtml(c.Text.Substring(0, c.Text.Length > 50 ? 50 : c.Text.Length))));
+            return GetSelectList(ctx.QuestionInforamtion.GetAll().ToDictionary(c => c.QuestionInformationID, c => ScrubHtml(c.Text.Substring(0, c.Text.Length > 50 ? 50 : c.Text.Length))));
         }
 
         public static IEnumerable<SelectListItem> GetQuestionPools()
         {
-            return GetSelectList(ctx.QuestionPools.GetAll().ToDictionary(c => c.QuestionPoolID, c => c.Name));
+            return GetSelectList(ctx.QuestionPool.GetAll().ToDictionary(c => c.QuestionPoolID, c => c.Name));
         }
 
 

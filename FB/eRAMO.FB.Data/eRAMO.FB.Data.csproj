@@ -92,6 +92,9 @@
     <Compile Include="IReading.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="IShareHolder.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="IStudySession.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -136,6 +139,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Reading.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShareHolder.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="StudySession.cs">

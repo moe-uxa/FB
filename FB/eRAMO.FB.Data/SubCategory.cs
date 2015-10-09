@@ -7,23 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eRAMO.FB.Data
+namespace eRAMO.FB.Data.Model
 {
     using System;
     using System.Collections.Generic;
     
     public partial class SubCategory : ISubCategory 
     {
-     
         [System.ComponentModel.DataAnnotations.Key]
         public int SubCategoryID { get; set; }
-     
         public Nullable<int> ReadingID { get; set; }
-     
         public string Name { get; set; }
-     
         public string Description { get; set; }
-     
         public string Notes { get; set; }
     
         public virtual Reading Reading { get; set; }

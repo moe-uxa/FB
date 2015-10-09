@@ -7,21 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eRAMO.FB.Data
+namespace eRAMO.FB.Data.Model
 {
     using System;
     using System.Collections.Generic;
     
     public partial class ClientReview : IClientReview 
     {
-     
         [System.ComponentModel.DataAnnotations.Key]
         public int ClientReviewID { get; set; }
-     
         public string Review { get; set; }
-     
         public string ClientName { get; set; }
-     
         public string ClientTitle { get; set; }
+        public string ClientPhoto { get; set; }
     }
 }

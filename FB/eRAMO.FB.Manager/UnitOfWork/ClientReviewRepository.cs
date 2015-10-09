@@ -1,10 +1,11 @@
 
     
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 using System.Collections.Generic;
 using System.Linq;
         
-public class ClientReviewRepository : Repository<eRAMO.FB.Data.ClientReview, eRAMO.FB.Data.IClientReview>, IClientReviewRepository
+public class ClientReviewRepository : Repository<eRAMO.FB.Data.Model.ClientReview, eRAMO.FB.Data.Model.IClientReview>, IClientReviewRepository
 {
     private FBEntities _context;
 

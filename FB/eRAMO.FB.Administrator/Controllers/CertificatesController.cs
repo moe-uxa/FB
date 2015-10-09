@@ -17,7 +17,7 @@ namespace eRAMO.FB.Administrator.Controllers
         // GET: Certificates
         public ActionResult Index()
         {
-            var list = ctx.Certificates.GetAll<CertificatesModel>();
+            var list = ctx.Certificate.GetAll<CertificatesModel>();
             return View(list);
         }
 
@@ -35,7 +35,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Certificates.Add(model);
+                    ctx.Certificate.Add(model);
                     ctx.Save();
 
                     return RedirectToAction("Index");
@@ -55,7 +55,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Certificates.GetById<CertificatesModel>(id.Value);
+            var model = ctx.Certificate.GetById<CertificatesModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -71,7 +71,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Certificates.Update(model);
+                    ctx.Certificate.Update(model);
                     ctx.Save();
                     return RedirectToAction("Index");
                 }
@@ -94,13 +94,13 @@ namespace eRAMO.FB.Administrator.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var model = ctx.Certificates.GetById<CertificatesModel>(id.Value);
+                var model = ctx.Certificate.GetById<CertificatesModel>(id.Value);
                 if (model == null)
                 {
                     return HttpNotFound();
                 }
 
-                ctx.Certificates.Delete(id.Value);
+                ctx.Certificate.Delete(id.Value);
                 ctx.Save();
                 return RedirectToAction("Index");
             }

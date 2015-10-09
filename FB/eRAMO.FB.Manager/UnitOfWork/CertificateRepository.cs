@@ -1,9 +1,10 @@
                 
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 using System.Collections.Generic;
 using System.Linq;
         
-public class CertificateRepository : Repository<eRAMO.FB.Data.Certificate, eRAMO.FB.Data.ICertificate>, ICertificateRepository
+public class CertificateRepository : Repository<eRAMO.FB.Data.Model.Certificate, eRAMO.FB.Data.Model.ICertificate>, ICertificateRepository
 {
     private FBEntities _context;
 

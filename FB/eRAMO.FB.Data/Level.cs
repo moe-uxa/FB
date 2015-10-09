@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eRAMO.FB.Data
+namespace eRAMO.FB.Data.Model
 {
     using System;
     using System.Collections.Generic;
@@ -19,16 +19,11 @@ namespace eRAMO.FB.Data
             this.Subjects = new HashSet<Subject>();
         }
     
-     
         [System.ComponentModel.DataAnnotations.Key]
         public int LevelID { get; set; }
-     
         public Nullable<int> CertificateID { get; set; }
-     
         public string Name { get; set; }
-     
         public string Description { get; set; }
-     
         public string Notes { get; set; }
     
         public virtual Certificate Certificate { get; set; }

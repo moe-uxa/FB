@@ -1,4 +1,5 @@
 using System;
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 
 namespace eRAMO.FB.Manager
@@ -18,62 +19,67 @@ namespace eRAMO.FB.Manager
 			_context = new FBEntities();
 		}
 	
-			public IClientReviewRepository ClientReviews
+			public IClientReviewRepository ClientReview
 		{
 			get { return new ClientReviewRepository(_context); }
 		}
 
-			public IStudySessionRepository StudySessions
+			public IShareHolderRepository ShareHolder
+		{
+			get { return new ShareHolderRepository(_context); }
+		}
+
+			public IStudySessionRepository StudySession
 		{
 			get { return new StudySessionRepository(_context); }
 		}
 
-			public IReadingRepository Readings
+			public IReadingRepository Reading
 		{
 			get { return new ReadingRepository(_context); }
 		}
 
-			public ISubCategoryRepository SubCategorys
+			public ISubCategoryRepository SubCategory
 		{
 			get { return new SubCategoryRepository(_context); }
 		}
 
-			public IQuestionOptionRepository QuestionOptions
+			public IQuestionOptionRepository QuestionOption
 		{
 			get { return new QuestionOptionRepository(_context); }
 		}
 
-			public IQuestionRepository Questions
+			public IQuestionRepository Question
 		{
 			get { return new QuestionRepository(_context); }
 		}
 
-			public ILevelRepository Levels
+			public ILevelRepository Level
 		{
 			get { return new LevelRepository(_context); }
 		}
 
-			public ISubjectRepository Subjects
+			public ISubjectRepository Subject
 		{
 			get { return new SubjectRepository(_context); }
 		}
 
-			public IQuestionPoolRepository QuestionPools
+			public IQuestionPoolRepository QuestionPool
 		{
 			get { return new QuestionPoolRepository(_context); }
 		}
 
-			public ICertificateRepository Certificates
+			public ICertificateRepository Certificate
 		{
 			get { return new CertificateRepository(_context); }
 		}
 
-			public IQuestionInforamtionRepository QuestionInforamtions
+			public IQuestionInforamtionRepository QuestionInforamtion
 		{
 			get { return new QuestionInforamtionRepository(_context); }
 		}
 
-			public IParentTypeRepository ParentTypes
+			public IParentTypeRepository ParentType
 		{
 			get { return new ParentTypeRepository(_context); }
 		}

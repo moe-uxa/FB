@@ -12,13 +12,19 @@ namespace eRAMO.FB.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public interface IClientReview
+    public interface IShareHolder
     {
-        int ClientReviewID { get; set; }
-        string Review { get; set; }
-        string ClientName { get; set; }
-        string ClientTitle { get; set; }
-        string ClientPhoto { get; set; }
+        int ShareHolderID { get; set; }
+        string Name { get; set; }
+        string Title { get; set; }
+        string Summary { get; set; }
+        string PhotoUrl { get; set; }
+        string FacebookUrl { get; set; }
+        string TwitterUrl { get; set; }
+        string GooglePlusUrl { get; set; }
+        string LinkedInUrl { get; set; }
+        Nullable<bool> IsCEO { get; set; }
+        Nullable<int> Rank { get; set; }
     
     }
 }

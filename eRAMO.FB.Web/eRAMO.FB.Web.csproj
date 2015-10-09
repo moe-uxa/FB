@@ -355,6 +355,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\Partials\_Blog.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -398,7 +401,6 @@
     <Content Include="Views\Home\Partials\_Offers.cshtml" />
     <Content Include="Views\Home\Partials\_Gallery.cshtml" />
     <Content Include="Views\Home\Partials\_Testimonials.cshtml" />
-    <Content Include="Views\Home\Partials\_Blog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
