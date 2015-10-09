@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eRAMO.FB.Resources", "FB\eR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eRAMO.FB.Administrator", "FB\eRAMO.FB.Administrator\eRAMO.FB.Administrator.csproj", "{319E3FFA-DB43-4370-A8D3-49471B0A9BF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eRAMO.FB.Web", "eRAMO.FB.Web\eRAMO.FB.Web.csproj", "{5CA2275F-2A15-41A2-AF69-FB8273ABADE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{319E3FFA-DB43-4370-A8D3-49471B0A9BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{319E3FFA-DB43-4370-A8D3-49471B0A9BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{319E3FFA-DB43-4370-A8D3-49471B0A9BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA2275F-2A15-41A2-AF69-FB8273ABADE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA2275F-2A15-41A2-AF69-FB8273ABADE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA2275F-2A15-41A2-AF69-FB8273ABADE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA2275F-2A15-41A2-AF69-FB8273ABADE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

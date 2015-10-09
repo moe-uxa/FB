@@ -1,0 +1,366 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+
+    <title>CFA Course in Egypt | Financial Brains</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/assets/images/favicon.png" rel="icon">
+    <link rel="stylesheet" type="text/css" href="/assets/css/master.css">
+    <meta name="copyright" content="#" />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+</head>
+<body id="home" data-offset="80" data-target=".navbar" data-spy="scroll">
+
+    <div id="page-preloader"><span class="spinner"></span></div>
+    <!-- Navigation -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+    <header class="header">
+        <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container relative-nav-container">
+                <a class="toggle-button visible-xs-block" data-toggle="collapse" data-target="#navbar-collapse">
+                    <i class="fa fa-navicon"></i>
+                </a>
+                <a class="navbar-brand scroll" href="index.html">
+                    <img class="normal-logo hidden-xs" src="/assets/images/logo.png" alt="logo" />
+                    <img class="inverse-logo hidden-xs" src="/assets/images/logo-w.png" alt="logo" />
+                    <img class="visible-xs-block" src="/assets/images/logo-sign2.png" width="40" height="44" alt="logo" />
+                </a>
+                <ul class="nav navbar-nav navbar-right nav-icons wrap-user-control">
+                    <li><a id="search-open" href="#fakelink"><i class="fa fa-search"></i></a></li>
+                    <li class="open-signup">
+                        <a href="#fakelink"><i class="fa fa-user"></i></a>
+                        <div class="wrap-login-signup">
+                            <div role="tabpanel">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs-alt nav-tabs-one" role="tablist">
+                                    <li role="presentation" class="active"><a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">Sign Up</a></li>
+                                    <li role="presentation"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Log In</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active text-center" id="signup">
+                                        <div class="signup-content">
+                                            <h5>Register Customer</h5>
+                                            <a href="#" class="signup-facebook">
+                                                <i class="fa fa-facebook-square">&nbsp;&nbsp;</i>Sign in with Facebook
+                                            </a>
+                                            <span class="or-sep">or</span>
+                                            <form class="form">
+                                                <div class="form-group">
+                                                    <input placeholder="Enter your e-mail" type="text" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="submit-button form-control" value="Create new account" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="login">
+
+                                        <div class="signup-content">
+                                            <h5>Your Account</h5>
+                                            <form class="form">
+                                                <div class="form-group">
+                                                    <input placeholder="Login" type="text" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input placeholder="Password" type="text" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="submit-button form-control" value="Login" />
+                                                </div>
+                                            </form>
+                                            <span class="forgot">Forgot <a href="#">password or login</a>?</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="navbar-collapse collapse floated" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-with-inside clearfix navbar-right with-border">
+                        <li class=" ">
+                            <a href="index.html">Home</a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="#">About</a>
+
+                            <div class=" wrap-inside-nav">
+
+                                <div class="inside-col">
+
+                                    <ul class="inside-nav">
+
+                                        <li><a href="about.html">About Us</a></li>
+
+                                        <li><a href="CEOs.html">CEOs</a></li>
+
+
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        </li>
+
+                        <li>
+
+                            <a href="courses.html">Courses</a>
+
+                            <div class="wrap-inside-nav">
+
+                                <div class=" inside-col">
+
+                                    <ul class="inside-nav">
+
+                                        <li><a href="cfa.html">CFA</a></li>
+
+                                        <li><a href="cma.html">CMA</a></li>
+                                        <li><a href="modeling.html">Financial Modeling</a></li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        </li>
+
+
+                        <li>
+
+                            <a href="gallery.html">Gallery</a>
+
+
+                        </li>
+
+                        <li>
+
+                            <a href="#">Blog</a>
+
+
+                        </li>
+
+                        <li>
+                            <a href="#">Contacts</a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="navbar-search">
+                <div class="container">
+                    <form role="search">
+                        <div class="input-group">
+                            <input type="text" placeholder="Type your search..." class="form-control" autocomplete="off">
+                            <span class="input-group-btn">
+                                <button type="reset" class="btn search-close" id="search-close">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header><!--/.header -->
+
+    @RenderBody()
+
+    <!-- Footer - Tabs -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+    <footer class="home-footer dark-map" id="contact">
+        <div class="container">
+            <!-- Nav tabs -->
+            <ul class="nav  nav-tabs-alt nav-tabs-two nav-tab-inverse" role="tablist">
+                <li role="presentation" class="active"><a href="#contact-info" aria-controls="contact-info" role="tab" data-toggle="tab">Contact info</a></li>
+                <li role="presentation"><a href="#service-inquiry" aria-controls="service-inquiry" role="tab" data-toggle="tab">Service Inquiry</a></li>
+                <li role="presentation"><a href="#on-map" aria-controls="on-map" role="tab" data-toggle="tab">View on Map</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+                <!-- Contact Info -->
+                <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+                <div role="tabpanel" class="tab-pane active" id="contact-info">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="footer-header">
+                                <h2>Contact info</h2>
+                                <p class="large">Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam </p>
+                            </div>
+                        </div>
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <article class="contact-item">
+                                <div class="dotted-line hidden-sm hidden-xs"></div>
+                                <div class="striped-icon-xlarge">
+                                    <span aria-hidden="true" class="icon-pointer"></span>
+                                </div>
+                                <h5>Address</h5>
+                                <p>Maadi - Maadi - Cairo</p>
+                            </article>
+                        </div>
+                        <div class="col-md-4">
+                            <article class="contact-item">
+                                <div class="dotted-line hidden-sm hidden-xs"></div>
+                                <div class="striped-icon-xlarge">
+                                    <span aria-hidden="true" class="icon-call-end"></span>
+                                </div>
+                                <h5>Phones</h5>
+                                <p>+12345 6789,  +7 123 45 6 78</p>
+                            </article>
+                        </div>
+                        <div class="col-md-4">
+                            <article class="contact-item">
+                                <div class="striped-icon-xlarge">
+                                    <span aria-hidden="true" class="icon-envelope"></span>
+                                </div>
+                                <h5>E-mail</h5>
+                                <p>info@financial-brains.org,  support@financial-brains.org</p>
+                            </article>
+                        </div>
+                    </div>
+                </div><!--tabpanel-->
+                <!-- Service Inquiry -->
+                <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+                <div role="tabpanel" class="tab-pane" id="service-inquiry">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="footer-header">
+                                <h2>Service Inquiry</h2>
+                            </div>
+                        </div>
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 contact-form">
+                            <div id="response"></div>
+                            <form method="post" action="sendEmail.php" name="contact-form" id="contact-form">
+                                <div><input type="text" placeholder="Subject" value="" name="subject" id="subject" class="form-control"></div>
+                                <div><input type="text" placeholder="Your name" value="" name="name" id="name" class="form-control"></div>
+                                <div><input type="email" placeholder="Your email" value="" name="email" id="email" class="form-control"></div>
+                                <div><textarea id="message" class="form-control" rows="3" name="message" placeholder="Your message"></textarea></div>
+                                <div><input class="contact_button button btn btn-primary btn-block" type="submit" name="submit" id="submit" value="Send Message" /></div>
+                            </form>
+                        </div>
+                    </div>
+                </div><!--tabpanel-->
+                <!-- Map -->
+                <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+                <div role="tabpanel" class="tab-pane" id="on-map">
+                    <div id="mapCanvas"></div>
+                </div><!--tabpanel-->
+
+            </div><!--tab-content-->
+            <!-- Copyright -->
+            <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+            <div class="copyright-alt">
+                <ul class="copyright-links list-inline">
+                    <li><a href="#fakelink"><i class="fa fa-facebook fa-lg"></i></a></li>
+                    <li><a href="#fakelink"><i class="fa fa-twitter fa-lg"></i></a></li>
+
+                    <li><a href="#fakelink"><i class="fa fa-google-plus fa-lg"></i></a></li>
+                    <li><a href="#fakelink"><i class="fa fa-instagram fa-lg"></i></a></li>
+                </ul>
+                <p>&copy; 2015 Financial Brains – This site Developed By <a href="http://www.e-ramo.net" target="_blank">e-RAMO</a></p>
+            </div>
+        </div><!--container-->
+    </footer>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+    <!-- Include BOOTSTRAP plugins  -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Include plugins -->
+    <script src="/assets/js/jquery.mb.YTPlayer.js"></script>
+    <script src="/assets/js/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <script src="/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="/assets/js/jquery.ui.effect.min.js"></script>
+    <script src="/assets/js/contact.js"></script>
+    <script src="/assets/js/modernizr.js"></script>
+    <script src="/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/assets/js/fancybox/jquery.fancybox.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+        (function ($) {
+            $(document).ready(function () {
+                if (!Modernizr.touch) {
+                    $(".player").mb_YTPlayer();
+                } else {
+                    $('.video-bg ').css('display', 'block');
+                }
+            });
+        })(jQuery);
+    </script>
+    <script>
+        new WOW().init();
+    </script>
+    <!-- Google maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="/assets/js/map.js"></script>
+    <!-- Include local script calls -->
+    <script src="/assets/js/jquery.easypiechart.min.js"></script>
+    <script src="/assets/js/TweenMax.min.js"></script>
+    <script src="/assets/js/highcharts.js"></script>
+    <script src="/assets/js/Chart.min.js"></script>
+    <script src="/assets/js/custom.js"></script>
+</body>
+
+
+@*<body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>*@
+</html>
