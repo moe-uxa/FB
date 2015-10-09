@@ -17,15 +17,15 @@
             </div><!--row-->
 
             <div id="testimonials-carousel">
-                <div class="reviews">
-                    @for (int index = 0; index < Model.ClientReviews.Count; index += 2)
-                    {
+                @for (int index = 0; index < Model.ClientReviews.Count; index += 2)
+                {
+                    <div class="reviews">
                         <div class="client left">
                             <p class="large comment">@Model.ClientReviews[index].Review</p>
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#fakelink">
-                                        <img class="avatar media-object " src="/assets/images/placehold/60x60.gif" alt="avatar" />
+                                        <img class="avatar media-object " src="../../../Photos/@Model.ClientReviews[index].ClientPhoto" alt="avatar" />
                                     </a>
                                 </div>
                                 <div class="media-body">
@@ -36,21 +36,21 @@
                         </div>
 
                         <div class="client right">
-                            <p class="large comment">@Model.ClientReviews[index+1].Review</p>
+                            <p class="large comment">@Model.ClientReviews[index + 1].Review</p>
                             <div class="media">
                                 <div class="media-left">
                                     <a href="#fakelink">
-                                        <img class="avatar media-object " src="/assets/images/placehold/60x60.gif" alt="avatar" />
+                                        <img class="avatar media-object " src="../../../Photos/@Model.ClientReviews[index+1].ClientPhoto" alt="avatar" />
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="media-heading">@Model.ClientReviews[index+1].ClientName</h5>
-                                    <p>@Model.ClientReviews[index+1].ClientTitle</p>
+                                    <h5 class="media-heading">@Model.ClientReviews[index + 1].ClientName</h5>
+                                    <p>@Model.ClientReviews[index + 1].ClientTitle</p>
                                 </div>
                             </div>
                         </div>
-                    }
-                </div><!--reviews-->
+                    </div><!--reviews-->
+                }
             </div><!--carousel-->
 
             <div class="brands">
