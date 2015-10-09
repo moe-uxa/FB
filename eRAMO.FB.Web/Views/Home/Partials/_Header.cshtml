@@ -1,0 +1,23 @@
+@model eRAMO.FB.Web.Models.Home.HeaderModel
+
+<section class="home-header dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-xs-10">
+                <h2 class="wow fadeInUp" data-wow-delay="1s" data-wow-duration="1.5s">CFA & CMA Courses in Egypt</h2>
+                <p class="large wow fadeInUp" data-wow-delay="1.8s" data-wow-duration="1.5s">Klam klam Klam klam Klam klam Klam klam Klam klam Klam klam Klam klam Klam klam Klam klam Klam klam Klam klam Klam klam Klam klam </p>
+                <!--				<a class="btn btn-primary btn-short">Get srarted now</a>
+                                                <a class="btn btn-warning btn-short">Discover More</a>				-->
+                <div class="row wow fadeInUp" data-wow-delay="2.6s" data-wow-duration="1.5s">
+                    @foreach (var item in Model.Certificates)
+                    {
+                        <div class="col-md-3">
+                            <a class="btn btn-primary btn-short" href="#">@item.Name</a>
+                        </div>
+                    }
+                   
+                </div>
+            </div>
+        </div><!--row-->
+    </div><!--container-->
+</section>

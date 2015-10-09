@@ -166,6 +166,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\Home\HeaderModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -385,10 +387,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Partials\_Header.cshtml" />
+    <Content Include="Views\Home\Partials\_About.cshtml" />
+    <Content Include="Views\Home\Partials\_Features.cshtml" />
+    <Content Include="Views\Home\Partials\_Steps.cshtml" />
+    <Content Include="Views\Home\Partials\_Analytics.cshtml" />
+    <Content Include="Views\Home\Partials\_Offers.cshtml" />
+    <Content Include="Views\Home\Partials\_Gallery.cshtml" />
+    <Content Include="Views\Home\Partials\_Testimonials.cshtml" />
+    <Content Include="Views\Home\Partials\_Blog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Home\HomePartials\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -396,6 +406,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FB\eRAMO.FB.Data\eRAMO.FB.Data.csproj">
+      <Project>{8f1be0a4-3ae3-4df3-a96c-ddb3d1b89eba}</Project>
+      <Name>eRAMO.FB.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FB\eRAMO.FB.Manager\eRAMO.FB.Manager.csproj">
+      <Project>{301ccb85-3f11-4414-b023-297184eaabe6}</Project>
+      <Name>eRAMO.FB.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FB\eRAMO.FB.Model\eRAMO.FB.Model.csproj">
+      <Project>{ca45b887-b3da-4c70-a9f4-00b4c0e06f88}</Project>
+      <Name>eRAMO.FB.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
