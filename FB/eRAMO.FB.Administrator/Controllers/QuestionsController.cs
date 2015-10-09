@@ -9,6 +9,7 @@ using eRAMO.FB.Business;
 using eRAMO.FB.Manager;
 using eRAMO.FB.Data;
 using System.IO;
+using eRAMO.FB.Data.Model;
 
 namespace eRAMO.FB.Administrator.Controllers
 {
@@ -20,7 +21,7 @@ namespace eRAMO.FB.Administrator.Controllers
         // GET: Questions
         public ActionResult Index()
         {
-            var list = ctx.Questions.GetAll<QuestionsModel>();
+            var list = ctx.Question.GetAll<QuestionsModel>();
             return View(list);
         }
 
@@ -70,7 +71,7 @@ namespace eRAMO.FB.Administrator.Controllers
                             CertificateID = model.CertificateID,
                             Text = model.QuestionInformation
                         };
-                        ctx.QuestionInforamtions.Add(newQuestionInforamtion);
+                        ctx.QuestionInforamtion.Add(newQuestionInforamtion);
 
                         newQuestion.QuestionInformationID = newQuestionInforamtion.QuestionInformationID;
                     }
@@ -87,7 +88,7 @@ namespace eRAMO.FB.Administrator.Controllers
                     newQuestion.QuestionPoolID = model.QuestionPoolID;
                     newQuestion.Notes = model.Notes;
 
-                    Question addedItem = ctx.Questions.Add(newQuestion);
+                    Question addedItem = ctx.Question.Add(newQuestion);
 
                     foreach (var item in model.QuestionOptions)
                     {
@@ -113,7 +114,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Questions.GetById<QuestionsModel>(id.Value);
+            var model = ctx.Question.GetById<QuestionsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -129,7 +130,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Questions.Update(model);
+                    ctx.Question.Update(model);
                     ctx.Save();
                     return RedirectToAction("Index");
                 }
@@ -152,13 +153,13 @@ namespace eRAMO.FB.Administrator.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var model = ctx.Questions.GetById<QuestionsModel>(id.Value);
+                var model = ctx.Question.GetById<QuestionsModel>(id.Value);
                 if (model == null)
                 {
                     return HttpNotFound();
                 }
 
-                ctx.Questions.Delete(id.Value);
+                ctx.Question.Delete(id.Value);
                 ctx.Save();
                 return RedirectToAction("Index");
             }
@@ -178,7 +179,7 @@ namespace eRAMO.FB.Administrator.Controllers
             }
             int id = 0;
             bool isValid = Int32.TryParse(CertificateID, out id);
-            var Levels = ctx.Levels.GetAll().Where(c => c.CertificateID == id);
+            var Levels = ctx.Level.GetAll().Where(c => c.CertificateID == id);
             var result = (from s in Levels
                           select new
                           {
@@ -202,7 +203,7 @@ namespace eRAMO.FB.Administrator.Controllers
             }
             int id = 0;
             bool isValid = Int32.TryParse(LevelID, out id);
-            var subLevels = ctx.Subjects.GetAll().Where(c => c.LevelID == id);
+            var subLevels = ctx.Subject.GetAll().Where(c => c.LevelID == id);
             var result = (from s in subLevels
                           select new
                           {
@@ -226,7 +227,7 @@ namespace eRAMO.FB.Administrator.Controllers
             }
             int id = 0;
             bool isValid = Int32.TryParse(SubjectID, out id);
-            var subSubjects = ctx.StudySessions.GetAll().Where(c => c.SubjectID == id);
+            var subSubjects = ctx.StudySession.GetAll().Where(c => c.SubjectID == id);
             var result = (from s in subSubjects
                           select new
                           {
@@ -251,7 +252,7 @@ namespace eRAMO.FB.Administrator.Controllers
             }
             int id = 0;
             bool isValid = Int32.TryParse(StudySessionID, out id);
-            var subStudySessions = ctx.Readings.GetAll().Where(c => c.StudySessionID == id);
+            var subStudySessions = ctx.Reading.GetAll().Where(c => c.StudySessionID == id);
             var result = (from s in subStudySessions
                           select new
                           {
@@ -275,7 +276,7 @@ namespace eRAMO.FB.Administrator.Controllers
             }
             int id = 0;
             bool isValid = Int32.TryParse(ReadingID, out id);
-            var subReadings = ctx.SubCategories.GetAll().Where(c => c.ReadingID == id);
+            var subReadings = ctx.SubCategory.GetAll().Where(c => c.ReadingID == id);
             var result = (from s in subReadings
                           select new
                           {
@@ -293,7 +294,7 @@ namespace eRAMO.FB.Administrator.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult GetQuestionInformationPiece(int QuestionInformationID)
         {
-            return Json(ctx.QuestionInforamtions.GetById(QuestionInformationID).Text, JsonRequestBehavior.AllowGet);
+            return Json(ctx.QuestionInforamtion.GetById(QuestionInformationID).Text, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult UploadImage()

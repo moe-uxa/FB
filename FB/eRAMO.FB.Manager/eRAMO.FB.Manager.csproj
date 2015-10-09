@@ -95,6 +95,9 @@
     <Compile Include="UnitOfWork\IRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork\IShareHolderRepository.cs">
+      <DependentUpon>RepositoryGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitOfWork\IStudySessionRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
@@ -102,6 +105,9 @@
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitOfWork\ISubjectRepository.cs">
+      <DependentUpon>RepositoryGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitOfWork\IsysdiagramRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitOfWork\IUnitofWork.cs">
@@ -136,6 +142,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork\ShareHolderRepository.cs">
+      <DependentUpon>RepositoryGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitOfWork\StudySessionRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
@@ -143,6 +152,9 @@
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitOfWork\SubjectRepository.cs">
+      <DependentUpon>RepositoryGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitOfWork\sysdiagramRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitOfWork\UnitofWork.cs">

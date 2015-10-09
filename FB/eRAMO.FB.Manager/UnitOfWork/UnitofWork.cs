@@ -1,4 +1,5 @@
 using System;
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 
 namespace eRAMO.FB.Manager
@@ -18,59 +19,69 @@ namespace eRAMO.FB.Manager
 			_context = new FBEntities();
 		}
 	
-			public IStudySessionRepository StudySessions
+			public IShareHolderRepository ShareHolder
 		{
-			get { return new StudySessionRepository(_context); }
+			get { return new ShareHolderRepository(_context); }
 		}
 
-			public IQuestionRepository Questions
+			public IsysdiagramRepository sysdiagram
 		{
-			get { return new QuestionRepository(_context); }
+			get { return new sysdiagramRepository(_context); }
 		}
 
-			public ISubjectRepository Subjects
-		{
-			get { return new SubjectRepository(_context); }
-		}
-
-			public ICertificateRepository Certificates
+			public ICertificateRepository Certificate
 		{
 			get { return new CertificateRepository(_context); }
 		}
 
-			public IParentTypeRepository ParentTypes
+			public ISubjectRepository Subject
 		{
-			get { return new ParentTypeRepository(_context); }
+			get { return new SubjectRepository(_context); }
 		}
 
-			public ILevelRepository Levels
-		{
-			get { return new LevelRepository(_context); }
-		}
-
-			public IQuestionOptionRepository QuestionOptions
-		{
-			get { return new QuestionOptionRepository(_context); }
-		}
-
-			public IReadingRepository Readings
-		{
-			get { return new ReadingRepository(_context); }
-		}
-
-			public IQuestionPoolRepository QuestionPools
+			public IQuestionPoolRepository QuestionPool
 		{
 			get { return new QuestionPoolRepository(_context); }
 		}
 
-			public IQuestionInforamtionRepository QuestionInforamtions
+			public ISubCategoryRepository SubCategory
+		{
+			get { return new SubCategoryRepository(_context); }
+		}
+
+			public ILevelRepository Level
+		{
+			get { return new LevelRepository(_context); }
+		}
+
+			public IQuestionInforamtionRepository QuestionInforamtion
 		{
 			get { return new QuestionInforamtionRepository(_context); }
 		}
 
-			public ISubCategoryRepository SubCategories
+			public IReadingRepository Reading
 		{
-			get { return new SubCategoryRepository(_context); }
+			get { return new ReadingRepository(_context); }
+		}
+
+			public IParentTypeRepository ParentType
+		{
+			get { return new ParentTypeRepository(_context); }
+		}
+
+			public IQuestionOptionRepository QuestionOption
+		{
+			get { return new QuestionOptionRepository(_context); }
+		}
+
+			public IStudySessionRepository StudySession
+		{
+			get { return new StudySessionRepository(_context); }
+		}
+
+			public IQuestionRepository Question
+		{
+			get { return new QuestionRepository(_context); }
 		}
 
 		

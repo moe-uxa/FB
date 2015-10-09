@@ -21,13 +21,13 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Readings.GetById<ReadingsModel>(id.Value);
+            var model = ctx.Reading.GetById<ReadingsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
             }
 
-            var list = ctx.SubCategories.GetAll<SubCategoriesModel>().Where(c => c.ReadingID == id.Value);
+            var list = ctx.SubCategory.GetAll<SubCategoriesModel>().Where(c => c.ReadingID == id.Value);
             return View(list);
         }
 
@@ -38,7 +38,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Readings.GetById<ReadingsModel>(id.Value);
+            var model = ctx.Reading.GetById<ReadingsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.SubCategories.Add(model);
+                    ctx.SubCategory.Add(model);
                     ctx.Save();
 
                     return RedirectToAction("Index", new { id = model.ReadingID });
@@ -79,7 +79,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.SubCategories.GetById<SubCategoriesModel>(id.Value);
+            var model = ctx.SubCategory.GetById<SubCategoriesModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -95,7 +95,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.SubCategories.Update(model);
+                    ctx.SubCategory.Update(model);
                     ctx.Save();
                     return RedirectToAction("Index", new { id = model.ReadingID });
                 }
@@ -118,13 +118,13 @@ namespace eRAMO.FB.Administrator.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var model = ctx.SubCategories.GetById<SubCategoriesModel>(id.Value);
+                var model = ctx.SubCategory.GetById<SubCategoriesModel>(id.Value);
                 if (model == null)
                 {
                     return HttpNotFound();
                 }
 
-                ctx.SubCategories.Delete(id.Value);
+                ctx.SubCategory.Delete(id.Value);
                 ctx.Save();
                 return RedirectToAction("Index", new { id = model.ReadingID });
             }

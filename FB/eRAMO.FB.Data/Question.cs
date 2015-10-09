@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eRAMO.FB.Data
+namespace eRAMO.FB.Data.Model
 {
     using System;
     using System.Collections.Generic;
@@ -19,26 +19,16 @@ namespace eRAMO.FB.Data
             this.QuestionOptions = new HashSet<QuestionOption>();
         }
     
-     
         [System.ComponentModel.DataAnnotations.Key]
         public int QuestionID { get; set; }
-     
         public Nullable<int> QuestionInformationID { get; set; }
-     
         public string Text { get; set; }
-     
         public string Justification { get; set; }
-     
         public Nullable<double> ExpectedDuration { get; set; }
-     
         public Nullable<int> Weight { get; set; }
-     
         public string Notes { get; set; }
-     
         public Nullable<int> ParentID { get; set; }
-     
         public Nullable<int> ParentTypeID { get; set; }
-     
         public Nullable<int> QuestionPoolID { get; set; }
     
         public virtual ParentType ParentType { get; set; }

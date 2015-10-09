@@ -2,16 +2,18 @@
 
 public interface IUnitOfWork : IDisposable
 {
-    IStudySessionRepository StudySessions { get; }
-    IQuestionRepository Questions { get; }
-    ISubjectRepository Subjects { get; }
-    ICertificateRepository Certificates { get; }
-    IParentTypeRepository ParentTypes { get; }
-    ILevelRepository Levels { get; }
-    IQuestionOptionRepository QuestionOptions { get; }
-    IReadingRepository Readings { get; }
-    IQuestionPoolRepository QuestionPools { get; }
-    IQuestionInforamtionRepository QuestionInforamtions { get; }
-    ISubCategoryRepository SubCategories { get; }
+    IShareHolderRepository ShareHolder { get; }
+    IsysdiagramRepository sysdiagram { get; }
+    ICertificateRepository Certificate { get; }
+    ISubjectRepository Subject { get; }
+    IQuestionPoolRepository QuestionPool { get; }
+    ISubCategoryRepository SubCategory { get; }
+    ILevelRepository Level { get; }
+    IQuestionInforamtionRepository QuestionInforamtion { get; }
+    IReadingRepository Reading { get; }
+    IParentTypeRepository ParentType { get; }
+    IQuestionOptionRepository QuestionOption { get; }
+    IStudySessionRepository StudySession { get; }
+    IQuestionRepository Question { get; }
     void Save();
 }

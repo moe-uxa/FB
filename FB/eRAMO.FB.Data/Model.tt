@@ -69,7 +69,7 @@
         {
             foreach (var edmProperty in simpleProperties)
             {
-#> 
+#>
 <#if (ef.IsKey(edmProperty))
 {#>    [System.ComponentModel.DataAnnotations.Key]
 <#}#>
@@ -272,7 +272,7 @@ public interface I<#=code.Escape(entity)#>
         if (!String.IsNullOrEmpty(codeNamespace))
         {
 #>
-namespace <#=            code.EscapeNamespace(codeNamespace)#>
+namespace <#=            code.EscapeNamespace(codeNamespace)#>.Model
 {
 <#+
             PushIndent("    ");

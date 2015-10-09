@@ -12,13 +12,19 @@ namespace eRAMO.FB.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public interface ISubject
+    public interface IShareHolder
     {
-        int SubjectID { get; set; }
-        Nullable<int> LevelID { get; set; }
+        int ShareHolderID { get; set; }
         string Name { get; set; }
-        string Description { get; set; }
-        string Notes { get; set; }
+        string Title { get; set; }
+        string Summary { get; set; }
+        string PhotoUrl { get; set; }
+        string FacebookUrl { get; set; }
+        string TwitterUrl { get; set; }
+        string GooglePlusUrl { get; set; }
+        string LinkedInUrl { get; set; }
+        Nullable<bool> IsCEO { get; set; }
+        Nullable<int> Rank { get; set; }
     
     }
 }

@@ -1,9 +1,10 @@
                 
+using eRAMO.FB.Data.Model;
 using eRAMO.FB.Data;
 using System.Collections.Generic;
 using System.Linq;
         
-public class SubCategoryRepository : Repository<eRAMO.FB.Data.SubCategory, eRAMO.FB.Data.ISubCategory>, ISubCategoryRepository
+public class SubCategoryRepository : Repository<eRAMO.FB.Data.Model.SubCategory, eRAMO.FB.Data.Model.ISubCategory>, ISubCategoryRepository
 {
     private FBEntities _context;
 

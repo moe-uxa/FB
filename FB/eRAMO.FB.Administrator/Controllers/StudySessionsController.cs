@@ -21,13 +21,13 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Subjects.GetById<SubjectsModel>(id.Value);
+            var model = ctx.Subject.GetById<SubjectsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
             }
 
-            var list = ctx.StudySessions.GetAll<StudySessionsModel>().Where(c => c.SubjectID == id.Value);
+            var list = ctx.StudySession.GetAll<StudySessionsModel>().Where(c => c.SubjectID == id.Value);
             return View(list);
         }
 
@@ -38,7 +38,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Subjects.GetById<SubjectsModel>(id.Value);
+            var model = ctx.Subject.GetById<SubjectsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.StudySessions.Add(model);
+                    ctx.StudySession.Add(model);
                     ctx.Save();
 
                     return RedirectToAction("Index", new { id = model.SubjectID });
@@ -79,7 +79,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.StudySessions.GetById<StudySessionsModel>(id.Value);
+            var model = ctx.StudySession.GetById<StudySessionsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -95,7 +95,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.StudySessions.Update(model);
+                    ctx.StudySession.Update(model);
                     ctx.Save();
                     return RedirectToAction("Index", new { id = model.SubjectID });
                 }
@@ -118,13 +118,13 @@ namespace eRAMO.FB.Administrator.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var model = ctx.StudySessions.GetById<StudySessionsModel>(id.Value);
+                var model = ctx.StudySession.GetById<StudySessionsModel>(id.Value);
                 if (model == null)
                 {
                     return HttpNotFound();
                 }
 
-                ctx.StudySessions.Delete(id.Value);
+                ctx.StudySession.Delete(id.Value);
                 ctx.Save();
                 return RedirectToAction("Index", new { id = model.SubjectID });
             }

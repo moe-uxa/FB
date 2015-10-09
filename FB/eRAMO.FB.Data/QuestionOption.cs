@@ -7,23 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace eRAMO.FB.Data
+namespace eRAMO.FB.Data.Model
 {
     using System;
     using System.Collections.Generic;
     
     public partial class QuestionOption : IQuestionOption 
     {
-     
         [System.ComponentModel.DataAnnotations.Key]
         public int QuestionOptionID { get; set; }
-     
         public Nullable<int> QuestionID { get; set; }
-     
         public string Text { get; set; }
-     
         public string Notes { get; set; }
-     
         public Nullable<bool> IsAnswer { get; set; }
     
         public virtual Question Question { get; set; }

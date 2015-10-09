@@ -21,13 +21,13 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Certificates.GetById<CertificatesModel>(id.Value);
+            var model = ctx.Certificate.GetById<CertificatesModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
             }
 
-            var list = ctx.Levels.GetAll<LevelsModel>().Where(c => c.CertificateID == id.Value);
+            var list = ctx.Level.GetAll<LevelsModel>().Where(c => c.CertificateID == id.Value);
             return View(list);
         }
 
@@ -38,7 +38,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Certificates.GetById<CertificatesModel>(id.Value);
+            var model = ctx.Certificate.GetById<CertificatesModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Levels.Add(model);
+                    ctx.Level.Add(model);
                     ctx.Save();
 
                     return RedirectToAction("Index", new { id = model.CertificateID });
@@ -79,7 +79,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Levels.GetById<LevelsModel>(id.Value);
+            var model = ctx.Level.GetById<LevelsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -95,7 +95,7 @@ namespace eRAMO.FB.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Levels.Update(model);
+                    ctx.Level.Update(model);
                     ctx.Save();
                     return RedirectToAction("Index", new { id = model.CertificateID });
                 }
@@ -118,13 +118,13 @@ namespace eRAMO.FB.Administrator.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var model = ctx.Levels.GetById<LevelsModel>(id.Value);
+                var model = ctx.Level.GetById<LevelsModel>(id.Value);
                 if (model == null)
                 {
                     return HttpNotFound();
                 }
 
-                ctx.Levels.Delete(id.Value);
+                ctx.Level.Delete(id.Value);
                 ctx.Save();
                 return RedirectToAction("Index", new { id = model.CertificateID });
             }

@@ -12,13 +12,13 @@ namespace eRAMO.FB.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public interface ISubject
+    public interface Isysdiagram
     {
-        int SubjectID { get; set; }
-        Nullable<int> LevelID { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
-        string Notes { get; set; }
+        string name { get; set; }
+        int principal_id { get; set; }
+        int diagram_id { get; set; }
+        Nullable<int> version { get; set; }
+        byte[] definition { get; set; }
     
     }
 }
