@@ -1,0 +1,249 @@
+﻿@model eRAMO.FB.Web.Models.CEOsModel
+@{
+    ViewBag.Title = "CEOs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+  <!-- Home - Header -->
+<!-- ++++++++++++++++++++++++++++++++++++++++ -->
+<section class="about-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeInUp" data-wow-duration="2s">
+                <h1 class="title">
+                    Financial Brains CEOs
+                </h1>
+                <div class="path">Home / CEOs</div>
+            </div>
+            <div class="bottom-line"></div>
+        </div><!--row-->
+    </div><!--container-->
+</section>
+
+<!-- About 2 - who we -->
+<!-- ++++++++++++++++++++++++++++++++++++++++ -->
+<section class="wrap-who-we">
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="2s">
+            <h4>Who we are</h4>
+            <p>@Model.CEOs[0].Description</p>
+            <img src="../../../../assets/images/signature.jpg" alt="" />
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="2s">
+            <img class="img-responsive" src="../../Photos/@Model.CEOs[0].imge" alt="" />
+        </div>
+    </div>
+</section>
+
+
+<!-- About 2 - Dream team-->
+<!-- ++++++++++++++++++++++++++++++++++++++++ -->
+<section class="wrap-dream-team">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <header class="section-header no-margin wow fadeInUp" data-wow-duration="2s">
+                    <p class="subhead">Financial Brains Team</p>
+                    <h2>Professional Work</h2>
+                    <p class="large">Here is some bio about our share holders in Financial Brains</p>
+                </header>
+            </div>
+        </div>
+        <div class="row list-dream-team">
+            @for (int i = 1; i < @Model.CEOs.Count; i++)
+
+            {
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="2s">
+                    <div class="team-item">
+                        <div class="image">
+                            <img src="../../Photos/@Model.CEOs[i].imge" alt="" class="img-responsive" />
+                            <div class="mask">
+                                <p>@Model.CEOs[i].Description</p>
+                                <ul class="copyright-links list-inline">
+                                    <li><a href="#fakelink"><i class="fa fa-facebook fa-lg"></i></a></li>
+                                    <li><a href="#fakelink"><i class="fa fa-twitter fa-lg"></i></a></li>
+
+                                    <li><a href="#fakelink"><i class="fa fa-google-plus fa-lg"></i></a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bottom-info">
+                            <div class="name">@Model.CEOs[i].Name</div>
+                            <div class="post">@Model.CEOs[i].Title</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+<!-- About 2 - Dream team-->
+<!-- ++++++++++++++++++++++++++++++++++++++++ -->
+<section class="wrap-in-work gallery" id="gallery">
+    <div class="top-block-icon">
+        <i class="icon-camera"></i>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <header class="section-header no-margin wow fadeInUp" data-wow-duration="2s">
+                    <h2>Our Gallery</h2>
+                    <p class="large">These our pics from Inside</p>
+                </header>
+            </div>
+        </div><!--row-->
+    </div><!--container-->
+
+    <div id="gallery-items" class="gallery-items wow fadeInUp" data-wow-duration="2s">
+        <figure class="gallery-item office">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item team">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item wide office double">
+            <img src="../../assets/images/placehold/384x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/384x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item wide team  double">
+            <img src="../../assets/images/placehold/384x384.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/384x384.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace office">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item wide workplace office double">
+            <img src="../../assets/images/placehold/384x384.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/384x384.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace office">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace  office">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace team">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item office">
+            <img src="../../assets/images/placehold/192x384.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x384.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item office">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item wide workplace double">
+            <img src="../../assets/images/placehold/384x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/384x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace team">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item team office">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+        <figure class="gallery-item workplace">
+            <img src="../../assets/images/placehold/192x192.gif" alt="gallery" />
+            <figcaption>
+                <a class="fancybox" href="../../assets/images/placehold/192x192.gif"><span aria-hidden="true" class="icon-plus"></span></a>
+                <a href="#fakelink"><span aria-hidden="true" class="icon-info"></span></a>
+            </figcaption>
+        </figure>
+    </div>
+</section>

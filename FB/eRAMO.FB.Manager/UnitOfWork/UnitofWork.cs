@@ -19,6 +19,16 @@ namespace eRAMO.FB.Manager
 			_context = new FBEntities();
 		}
 	
+			public IAboutHistoryRepository AboutHistory
+		{
+			get { return new AboutHistoryRepository(_context); }
+		}
+
+			public ICEORepository CEO
+		{
+			get { return new CEORepository(_context); }
+		}
+
 			public IOfferRepository Offer
 		{
 			get { return new OfferRepository(_context); }

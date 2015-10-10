@@ -2,6 +2,8 @@
 
 public interface IUnitOfWork : IDisposable
 {
+    IAboutHistoryRepository AboutHistory { get; }
+    ICEORepository CEO { get; }
     IOfferRepository Offer { get; }
     IPartnerRepository Partner { get; }
     INewsRepository News { get; }

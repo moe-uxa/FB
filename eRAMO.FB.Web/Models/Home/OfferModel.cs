@@ -19,7 +19,7 @@ namespace eRAMO.FB.Web.Models.Home
 
         public List<OffersModel> GetOffers()
         {
-            Offers = _ctx.Offer.GetAll<OffersModel>().ToList();
+            Offers = _ctx.Offer.GetAll<OffersModel>().Where(item=>item.IsActive==true).ToList();
             return Offers;
         }
     }

@@ -58,10 +58,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CEO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Certificate.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientReview.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IAboutHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICEO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ICertificate.cs">
