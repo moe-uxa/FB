@@ -15,7 +15,8 @@ namespace eRAMO.FB.Web.Models.Home
 
         public List<CertificatesModel> GetFeaturedCertificates()
         {
-            return ctx.Certificate.GetAll<CertificatesModel>().Where(c => c.IsFeatured.Value).Take(3).ToList();
+            Certificates= ctx.Certificate.GetAll<CertificatesModel>().Where(c => c.IsFeatured.Value).Take(3).ToList();
+            return Certificates;
         }
     }
 

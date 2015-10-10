@@ -60,6 +60,7 @@
     <Compile Include="ClientReviewsModel.cs" />
     <Compile Include="LevelsModel.cs" />
     <Compile Include="NewsModel.cs" />
+    <Compile Include="PartnersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomValidator\ValidateFileAttribute.cs" />
     <Compile Include="QuestionsModel.cs" />

@@ -16,8 +16,6 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsFeatured" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ClientReview">
           <Key>
             <PropertyRef Name="ClientReviewID" />
@@ -38,8 +36,6 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="News">
           <Key>
             <PropertyRef Name="NewsID" />
@@ -57,6 +53,14 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           </Key>
           <Property Name="ParentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerID" />
+          </Key>
+          <Property Name="PartnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imge" Type="nvarchar" MaxLength="50" />
+          <Property Name="Text" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -278,8 +282,11 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
         </Association>
         <EntityContainer Name="FBModelStoreContainer">
           <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientReview" EntityType="Self.ClientReview" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentType" EntityType="Self.ParentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionInforamtion" EntityType="Self.QuestionInforamtion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionOption" EntityType="Self.QuestionOption" Schema="dbo" store:Type="Tables" />
@@ -289,25 +296,6 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <EntitySet Name="StudySession" EntityType="Self.StudySession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ClientReview" EntityType="Self.ClientReview" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ClientReview].[ClientReviewID] AS [ClientReviewID], 
-    [ClientReview].[Review] AS [Review], 
-    [ClientReview].[ClientName] AS [ClientName], 
-    [ClientReview].[ClientTitle] AS [ClientTitle], 
-    [ClientReview].[ClientPhoto] AS [ClientPhoto]
-    FROM [dbo].[ClientReview] AS [ClientReview]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="News" EntityType="Self.News" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [News].[NewsID] AS [NewsID], 
-    [News].[Text] AS [Text], 
-    [News].[BannarPhoto] AS [BannarPhoto], 
-    [News].[Icon] AS [Icon], 
-    [News].[Title] AS [Title], 
-    [News].[date] AS [date]
-    FROM [dbo].[News] AS [News]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Level_Certificate" Association="Self.FK_Level_Certificate">
             <End Role="Certificate" EntitySet="Certificate" />
             <End Role="Level" EntitySet="Level" />
@@ -408,6 +396,7 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           </AssociationSet>
           <EntitySet Name="ClientReviews" EntityType="FBModel.ClientReview" />
           <EntitySet Name="News" EntityType="FBModel.News" />
+          <EntitySet Name="Partners" EntityType="FBModel.Partner" />
         </EntityContainer>
         <EntityType Name="Certificate">
           <Key>
@@ -696,6 +685,14 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerID" />
+          </Key>
+          <Property Name="PartnerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -860,6 +857,15 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
                 <ScalarProperty Name="BannarPhoto" ColumnName="BannarPhoto" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partners">
+            <EntityTypeMapping TypeName="FBModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Imge" ColumnName="Imge" />
+                <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

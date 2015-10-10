@@ -94,5 +94,8 @@
     <Build Include="admin\Tables\User.sql" />
     <Build Include="Security\admin.sql" />
     <Build Include="dbo\Tables\ShareHolder.sql" />
+    <Build Include="dbo\Tables\Partner.sql" />
+    <Build Include="dbo\Tables\News.sql" />
+    <Build Include="dbo\Tables\ClientReview_1.sql" />
   </ItemGroup>
 </Project>

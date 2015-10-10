@@ -53,9 +53,24 @@
                 }
             </div><!--carousel-->
 
+            <!--Partner-->
             <div class="brands">
                 <div class="row no-gutter">
-                    <div class="col-xs-6 col-sm-3  wow fadeInUp" data-wow-duration="2s">
+                    @foreach (var item in @Model.GetPartners())
+                    {
+                        <div class="col-xs-6 col-sm-3  wow fadeInUp" data-wow-duration="2s" style="margin: 5px;">
+                            <div class="brand-logo">
+                                <a class="brand-logo-wrap" href="#fakelink">
+                                    <img src="../../../Photos/@item.Imge" alt="brand" />
+                                </a>
+                            </div>
+                            <div class="text">
+                                @item.Text
+                            </div>
+                        </div>
+                    }
+                   
+                    @*<div class="col-xs-6 col-sm-3  wow fadeInUp" data-wow-duration="2s">
                         <div class="brand-logo">
                             <a class="brand-logo-wrap" href="#fakelink">
                                 <img src="/assets/images/placehold/130x80.gif" alt="brand" />
@@ -103,14 +118,7 @@
                                 <img src="/assets/images/placehold/130x80.gif" alt="brand" />
                             </a>
                         </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-3  wow fadeInUp" data-wow-duration="2s">
-                        <div class="brand-logo">
-                            <a class="brand-logo-wrap" href="#fakelink">
-                                <img src="/assets/images/placehold/130x80.gif" alt="brand" />
-                            </a>
-                        </div>
-                    </div>
+                    </div>*@
                 </div><!--row-->
             </div><!--brands-->
         </div><!--container-->,

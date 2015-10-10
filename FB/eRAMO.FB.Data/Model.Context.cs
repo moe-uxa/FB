@@ -61,5 +61,6 @@ namespace eRAMO.FB.Data
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<ClientReview> ClientReviews { get; set; }
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<Partner> Partners { get; set; }
     }
 }

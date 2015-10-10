@@ -10,9 +10,20 @@ namespace eRAMO.FB.Web.Models.Home
 {
     public class TestimonialModel
     {
-        public List<ClientReviewsModel> ClientReviews { get; set; }
-        readonly UnitOfWork _ctx = new UnitOfWork();
+        readonly UnitOfWork _ctx;
 
+        public TestimonialModel()
+        {
+            _ctx = new UnitOfWork();
+        }
+        public List<ClientReviewsModel> ClientReviews { get; set; }
+        public List<PartnersModel> Partners { get; set; }
+
+        public List<PartnersModel> GetPartners()
+        {
+            Partners = _ctx.Partner.GetAll<PartnersModel>().ToList();
+            return Partners;
+        }
         public List<ClientReviewsModel> GetClientReviews()
         {
             ClientReviews = _ctx.ClientReview.GetAll<ClientReviewsModel>().ToList();

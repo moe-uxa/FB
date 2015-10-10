@@ -304,6 +304,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Photos\384x384.gif" />
     <Content Include="Photos\photo1.jpg" />
     <Content Include="Photos\photo2.jpg" />
     <Content Include="Scripts\bootstrap.js" />

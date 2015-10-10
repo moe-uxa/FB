@@ -2,6 +2,7 @@
 
 public interface IUnitOfWork : IDisposable
 {
+    IPartnerRepository Partner { get; }
     INewsRepository News { get; }
     IClientReviewRepository ClientReview { get; }
     IShareHolderRepository ShareHolder { get; }
