@@ -80,6 +80,9 @@
     <Compile Include="UnitOfWork\ILevelRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork\INewsRepository.cs">
+      <DependentUpon>RepositoryGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitOfWork\IParentTypeRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
@@ -117,6 +120,9 @@
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitOfWork\LevelRepository.cs">
+      <DependentUpon>RepositoryGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitOfWork\NewsRepository.cs">
       <DependentUpon>RepositoryGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="UnitOfWork\ParentTypeRepository.cs">

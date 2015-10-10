@@ -1,4 +1,5 @@
-﻿<section class="blog" id="blog">
+﻿@model eRAMO.FB.Web.Models.Home.BlogsModel
+<section class="blog" id="blog">
     <a class="striped-icon divider scroll" href="#blog">
         <i class="fa fa-chevron-down"></i>
     </a>
@@ -12,28 +13,44 @@
                 </header>
             </div>
         </div><!--row-->
-        <div class="row">
+        @for (int index = 0; index < @Model.News.Count(); index++)
+        {
+            if (index % 3 == 0)
+            {
+                @:<div class="row">
+            }
             <div class="col-md-4  wow fadeInUp" data-wow-duration="2s">
                 <div class="post">
                     <div class="post-heading">
                         <a class="post-image" href="#fakelink">
-                            <img src="/assets/images/placehold/360x230.gif" alt="post" />
+                            <img src="../../../Photos/@Model.News[index].BannarPhoto" alt="post" />
                         </a>
                         <a class="post-avatar" href="#fakelink">
-                            <img class="" src="/assets/images/placehold/80x80.gif" alt="avatar" />
+                            <img class="" src="../../../Photos/@Model.News[index].Icon" alt="avatar" />
                         </a>
                     </div>
                     <div class="post-body">
                         <ul class="list-inline">
-                            <li><i class="fa fa-user"></i>Doaa </li>
-                            <li><i class="fa fa-calendar"></i>12 Sep 20</li>
+                            @*<li><i class="fa fa-user"></i>Doaa </li>*@
+                            <li>
+                                <i class="fa fa-calendar"></i>@if (Model.News[index].date != null)
+                                                              {
+                                                                  @Model.News[index].date.Value.ToShortDateString()
+                                                              }
+                            </li>
                         </ul>
-                        <a href="#"><h5>CFA Course</h5></a>
-                        <p>Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam </p>
+                        <a href="#"><h5>@Model.News[index].Title</h5></a>
+                        <p>@Model.News[index].Text</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4  wow fadeInUp" data-wow-duration="2s">
+            if (index+1 % 3 == 0)
+            {
+                @:</div>
+        <!--row-->
+            }
+        }
+        @*<div class="col-md-4  wow fadeInUp" data-wow-duration="2s">
                 <div class="post">
                     <div class="post-heading">
                         <a class="post-image" href="#fakelink">
@@ -72,9 +89,8 @@
                         <p> Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam Klaam </p>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
-        </div><!--row-->
 
 
     </div><!--container-->

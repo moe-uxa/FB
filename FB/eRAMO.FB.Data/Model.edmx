@@ -38,6 +38,19 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="500" />
+          <Property Name="BannarPhoto" Type="nvarchar" MaxLength="50" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
         <EntityType Name="ParentType">
           <Key>
             <PropertyRef Name="ParentTypeID" />
@@ -285,6 +298,16 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
     [ClientReview].[ClientPhoto] AS [ClientPhoto]
     FROM [dbo].[ClientReview] AS [ClientReview]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="News" EntityType="Self.News" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [News].[NewsID] AS [NewsID], 
+    [News].[Text] AS [Text], 
+    [News].[BannarPhoto] AS [BannarPhoto], 
+    [News].[Icon] AS [Icon], 
+    [News].[Title] AS [Title], 
+    [News].[date] AS [date]
+    FROM [dbo].[News] AS [News]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Level_Certificate" Association="Self.FK_Level_Certificate">
             <End Role="Certificate" EntitySet="Certificate" />
             <End Role="Level" EntitySet="Level" />
@@ -384,6 +407,7 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
             <End Role="StudySession" EntitySet="StudySessions" />
           </AssociationSet>
           <EntitySet Name="ClientReviews" EntityType="FBModel.ClientReview" />
+          <EntitySet Name="News" EntityType="FBModel.News" />
         </EntityContainer>
         <EntityType Name="Certificate">
           <Key>
@@ -661,6 +685,17 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="ClientTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ClientPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BannarPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -813,6 +848,18 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
                 <ScalarProperty Name="ClientName" ColumnName="ClientName" />
                 <ScalarProperty Name="Review" ColumnName="Review" />
                 <ScalarProperty Name="ClientReviewID" ColumnName="ClientReviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="FBModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="BannarPhoto" ColumnName="BannarPhoto" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

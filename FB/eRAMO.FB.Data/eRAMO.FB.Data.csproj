@@ -74,6 +74,9 @@
     <Compile Include="ILevel.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="INews.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="IParentType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -121,6 +124,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="News.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ParentType.cs">
       <DependentUpon>Model.tt</DependentUpon>

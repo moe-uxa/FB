@@ -167,6 +167,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\Home\BlogsModel.cs" />
     <Compile Include="Models\Home\HeaderModel.cs" />
     <Compile Include="Models\Home\TestimonialModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />

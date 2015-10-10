@@ -19,11 +19,13 @@ namespace eRAMO.FB.Web.Controllers
 
             HeaderModel headerModel = new HeaderModel();
             var TestimonialModel = new TestimonialModel();
+            var blog = new BlogsModel();
             TestimonialModel.GetClientReviews();
             headerModel.Certificates = headerModel.GetFeaturedCertificates();
             model.Testimonial = TestimonialModel;
             model.Header = headerModel;
-
+            model.Blogs=new BlogsModel();
+            model.Blogs.GetNews();
             return View(model);
         }
 
