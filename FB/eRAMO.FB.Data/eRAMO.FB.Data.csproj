@@ -77,6 +77,9 @@
     <Compile Include="INews.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="IOffer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="IParentType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -129,6 +132,9 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="News.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Offer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ParentType.cs">

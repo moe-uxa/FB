@@ -97,5 +97,6 @@
     <Build Include="dbo\Tables\Partner.sql" />
     <Build Include="dbo\Tables\News.sql" />
     <Build Include="dbo\Tables\ClientReview_1.sql" />
+    <Build Include="dbo\Tables\Offer.sql" />
   </ItemGroup>
 </Project>

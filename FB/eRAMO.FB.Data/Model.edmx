@@ -47,6 +47,17 @@
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="date" Type="datetime" />
         </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="OffersID" />
+          </Key>
+          <Property Name="OffersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar" MaxLength="500" />
+          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Title" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="ParentType">
           <Key>
             <PropertyRef Name="ParentTypeID" />
@@ -60,7 +71,7 @@
           </Key>
           <Property Name="PartnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Imge" Type="nvarchar" MaxLength="50" />
-          <Property Name="Text" Type="nvarchar" MaxLength="50" />
+          <Property Name="Text" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -285,6 +296,7 @@
           <EntitySet Name="ClientReview" EntityType="Self.ClientReview" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer" EntityType="Self.Offer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentType" EntityType="Self.ParentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
@@ -397,6 +409,7 @@
           <EntitySet Name="ClientReviews" EntityType="FBModel.ClientReview" />
           <EntitySet Name="News" EntityType="FBModel.News" />
           <EntitySet Name="Partners" EntityType="FBModel.Partner" />
+          <EntitySet Name="Offers" EntityType="FBModel.Offer" />
         </EntityContainer>
         <EntityType Name="Certificate">
           <Key>
@@ -691,7 +704,18 @@
           </Key>
           <Property Name="PartnerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Imge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Text" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="OffersID" />
+          </Key>
+          <Property Name="OffersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -866,6 +890,18 @@
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Imge" ColumnName="Imge" />
                 <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="FBModel.Offer">
+              <MappingFragment StoreEntitySet="Offer">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="OffersID" ColumnName="OffersID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

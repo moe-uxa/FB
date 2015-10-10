@@ -1,4 +1,5 @@
-﻿<section class="wrap-laptop" id="laptop">
+﻿@model eRAMO.FB.Web.Models.Home.OfferModel
+<section class="wrap-laptop" id="laptop">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -9,21 +10,24 @@
                 </header>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-
-                <div class="laptop-item wow fadeInUp" data-wow-duration="2s">
-                    <div class="striped-icon-large">
-                        <span aria-hidden="true" class="icon-check"></span>
+        @foreach (var item in Model.GetOffers())
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="laptop-item wow fadeInUp" data-wow-duration="2s">
+                        <div class="striped-icon-large">
+                            <span aria-hidden="true" class="icon-check"></span>
+                        </div>
+                        <h5>@item.Title</h5>
+                        <p>@item.Detail</p>
                     </div>
-                    <h5>Offer Name</h5>
-                    <p>Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details Offer Details </p>
-                </div>
 
+                </div>
+                <div class="col-md-8 wow fadeInUp" data-wow-duration="2s">
+                    <img class="img-responsive" src="../../../Photos/@item.image" alt="" />
+                </div>
             </div>
-            <div class="col-md-8 wow fadeInUp" data-wow-duration="2s">
-                <img class="img-responsive" src="/assets/images/placehold/880x500.gif" alt="" />
-            </div>
-        </div>
+            <br/>
+        }
     </div>
 </section>

@@ -169,6 +169,7 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Home\BlogsModel.cs" />
     <Compile Include="Models\Home\HeaderModel.cs" />
+    <Compile Include="Models\Home\OfferModel.cs" />
     <Compile Include="Models\Home\TestimonialModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
