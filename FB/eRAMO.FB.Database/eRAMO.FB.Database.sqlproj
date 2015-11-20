@@ -100,5 +100,6 @@
     <Build Include="dbo\Tables\Offer.sql" />
     <Build Include="dbo\Tables\CEO.sql" />
     <Build Include="dbo\Tables\AboutHistory.sql" />
+    <Build Include="dbo\Tables\Instructor.sql" />
   </ItemGroup>
 </Project>

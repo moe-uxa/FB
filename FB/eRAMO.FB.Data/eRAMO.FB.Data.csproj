@@ -83,10 +83,16 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="IdentityClasses.cs" />
+    <Compile Include="IInstructor.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ILevel.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="INews.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Instructor.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="IOffer.cs">

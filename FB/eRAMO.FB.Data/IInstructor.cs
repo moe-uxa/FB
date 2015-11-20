@@ -12,19 +12,13 @@ namespace eRAMO.FB.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class QuestionInforamtion : IQuestionInforamtion 
+    public interface IInstructor
     {
-        public QuestionInforamtion() 
-        {
-            this.Questions = new HashSet<Question>();
-        }
+        int InstructorsID { get; set; }
+        string Name { get; set; }
+        string Position { get; set; }
+        string PhotoUrl { get; set; }
+        string Summary { get; set; }
     
-        [System.ComponentModel.DataAnnotations.Key]
-        public int QuestionInformationID { get; set; }
-        public Nullable<int> CertificateID { get; set; }
-        public string Text { get; set; }
-    
-        public virtual ICollection<Question> Questions { get; set; }
-        public virtual Certificate Certificate { get; set; }
     }
 }

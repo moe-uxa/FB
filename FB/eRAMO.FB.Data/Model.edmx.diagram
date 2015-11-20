@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fa386deafaf14ad58e12cc9f740edef3" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="FBModel.Certificate" Width="1.5" PointX="0.75" PointY="3.25" />
         <EntityTypeShape EntityType="FBModel.Level" Width="1.5" PointX="3" PointY="2" />
         <EntityTypeShape EntityType="FBModel.ParentType" Width="1.5" PointX="3" PointY="10.75" />
         <EntityTypeShape EntityType="FBModel.Question" Width="1.5" PointX="5.25" PointY="5.25" />
@@ -17,8 +16,6 @@
         <EntityTypeShape EntityType="FBModel.StudySession" Width="1.5" PointX="7.5" PointY="2" />
         <EntityTypeShape EntityType="FBModel.SubCategory" Width="1.5" PointX="12" PointY="2.125" />
         <EntityTypeShape EntityType="FBModel.Subject" Width="1.5" PointX="5.25" PointY="2" />
-        <AssociationConnector Association="FBModel.FK_Level_Certificate" />
-        <AssociationConnector Association="FBModel.FK_QuestionInforamtion_Certificate" />
         <AssociationConnector Association="FBModel.FK_Subject_Level" />
         <AssociationConnector Association="FBModel.FK_Question_ParentType" />
         <AssociationConnector Association="FBModel.FK_Question_QuestionInforamtion" />
@@ -33,6 +30,10 @@
         <EntityTypeShape EntityType="FBModel.Offer" Width="1.5" PointX="11.375" PointY="9.75" />
         <EntityTypeShape EntityType="FBModel.CEO" Width="1.5" PointX="12.375" PointY="5.75" />
         <EntityTypeShape EntityType="FBModel.AboutHistory" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="FBModel.Certificate" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="FBModel.Instructor" Width="1.5" PointX="7.375" PointY="12.75" />
+        <AssociationConnector Association="FBModel.FK_Level_Certificate" />
+        <AssociationConnector Association="FBModel.FK_QuestionInforamtion_Certificate" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

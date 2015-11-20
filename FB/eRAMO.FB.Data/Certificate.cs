@@ -27,6 +27,13 @@ namespace eRAMO.FB.Data.Model
         public string Notes { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsFeatured { get; set; }
+        public string ProgramOverview { get; set; }
+        public string Objective { get; set; }
+        public string ProgramTopics { get; set; }
+        public string Charterholders { get; set; }
+        public string Candidates { get; set; }
+        public string Duration { get; set; }
+        public string Time { get; set; }
     
         public virtual ICollection<Level> Levels { get; set; }
         public virtual ICollection<QuestionInforamtion> QuestionInforamtions { get; set; }

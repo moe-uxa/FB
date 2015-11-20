@@ -19,14 +19,9 @@ namespace eRAMO.FB.Manager
 			_context = new FBEntities();
 		}
 	
-			public IAboutHistoryRepository AboutHistory
+			public IInstructorRepository Instructor
 		{
-			get { return new AboutHistoryRepository(_context); }
-		}
-
-			public ICEORepository CEO
-		{
-			get { return new CEORepository(_context); }
+			get { return new InstructorRepository(_context); }
 		}
 
 			public IOfferRepository Offer
@@ -34,9 +29,9 @@ namespace eRAMO.FB.Manager
 			get { return new OfferRepository(_context); }
 		}
 
-			public IPartnerRepository Partner
+			public ISubjectRepository Subject
 		{
-			get { return new PartnerRepository(_context); }
+			get { return new SubjectRepository(_context); }
 		}
 
 			public INewsRepository News
@@ -44,39 +39,14 @@ namespace eRAMO.FB.Manager
 			get { return new NewsRepository(_context); }
 		}
 
-			public IClientReviewRepository ClientReview
-		{
-			get { return new ClientReviewRepository(_context); }
-		}
-
-			public IShareHolderRepository ShareHolder
-		{
-			get { return new ShareHolderRepository(_context); }
-		}
-
-			public IStudySessionRepository StudySession
-		{
-			get { return new StudySessionRepository(_context); }
-		}
-
 			public IReadingRepository Reading
 		{
 			get { return new ReadingRepository(_context); }
 		}
 
-			public ISubCategoryRepository SubCategory
+			public IAboutHistoryRepository AboutHistory
 		{
-			get { return new SubCategoryRepository(_context); }
-		}
-
-			public IQuestionOptionRepository QuestionOption
-		{
-			get { return new QuestionOptionRepository(_context); }
-		}
-
-			public IQuestionRepository Question
-		{
-			get { return new QuestionRepository(_context); }
+			get { return new AboutHistoryRepository(_context); }
 		}
 
 			public ILevelRepository Level
@@ -84,14 +54,14 @@ namespace eRAMO.FB.Manager
 			get { return new LevelRepository(_context); }
 		}
 
-			public ISubjectRepository Subject
+			public ICEORepository CEO
 		{
-			get { return new SubjectRepository(_context); }
+			get { return new CEORepository(_context); }
 		}
 
-			public IQuestionPoolRepository QuestionPool
+			public IPartnerRepository Partner
 		{
-			get { return new QuestionPoolRepository(_context); }
+			get { return new PartnerRepository(_context); }
 		}
 
 			public ICertificateRepository Certificate
@@ -99,14 +69,49 @@ namespace eRAMO.FB.Manager
 			get { return new CertificateRepository(_context); }
 		}
 
+			public IQuestionRepository Question
+		{
+			get { return new QuestionRepository(_context); }
+		}
+
 			public IQuestionInforamtionRepository QuestionInforamtion
 		{
 			get { return new QuestionInforamtionRepository(_context); }
 		}
 
+			public ISubCategoryRepository SubCategory
+		{
+			get { return new SubCategoryRepository(_context); }
+		}
+
 			public IParentTypeRepository ParentType
 		{
 			get { return new ParentTypeRepository(_context); }
+		}
+
+			public IClientReviewRepository ClientReview
+		{
+			get { return new ClientReviewRepository(_context); }
+		}
+
+			public IQuestionOptionRepository QuestionOption
+		{
+			get { return new QuestionOptionRepository(_context); }
+		}
+
+			public IQuestionPoolRepository QuestionPool
+		{
+			get { return new QuestionPoolRepository(_context); }
+		}
+
+			public IStudySessionRepository StudySession
+		{
+			get { return new StudySessionRepository(_context); }
+		}
+
+			public IShareHolderRepository ShareHolder
+		{
+			get { return new ShareHolderRepository(_context); }
 		}
 
 		

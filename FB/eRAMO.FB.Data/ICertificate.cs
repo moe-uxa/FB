@@ -20,6 +20,13 @@ namespace eRAMO.FB.Data.Model
         string Notes { get; set; }
         Nullable<bool> IsActive { get; set; }
         Nullable<bool> IsFeatured { get; set; }
+        string ProgramOverview { get; set; }
+        string Objective { get; set; }
+        string ProgramTopics { get; set; }
+        string Charterholders { get; set; }
+        string Candidates { get; set; }
+        string Duration { get; set; }
+        string Time { get; set; }
     
     }
 }
