@@ -499,6 +499,8 @@
     <Content Include="Content\creativeDreamJqueryFiler\assets\fonts\jquery.filer-icons\jquery-filer.eot" />
     <Content Include="Content\creativeDreamJqueryFiler\assets\fonts\jquery.filer-icons\jquery-filer.ttf" />
     <Content Include="Content\creativeDreamJqueryFiler\assets\fonts\jquery.filer-icons\jquery-filer.woff" />
+    <Content Include="Content\html5imageupload_assets\css\html5imageupload.css" />
+    <Content Include="Content\html5imageupload_assets\images\default-avatar.png" />
     <Content Include="Content\less\mixins.less" />
     <Content Include="Content\less\sb-admin-2.less" />
     <Content Include="Content\less\variables.less" />
@@ -1494,8 +1496,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
-    <Content Include="Views\Certificates\Create.cshtml" />
-    <Content Include="Views\Certificates\Edit.cshtml" />
     <Content Include="Views\Certificates\Index.cshtml" />
     <Content Include="Views\Levels\Index.cshtml" />
     <Content Include="Views\Levels\Create.cshtml" />
@@ -1527,6 +1527,10 @@
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Shared\EditorTemplates\_QuestionOptions.cshtml" />
+    <Content Include="Views\Certificates\Create.cshtml" />
+    <Content Include="Views\Certificates\Edit.cshtml" />
+    <Content Include="Views\Instructors\Index.cshtml" />
+    <Content Include="Views\Instructors\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1968,7 +1972,6 @@
     <Content Include="Content\dist\css\timeline.css" />
     <Content Include="Content\dist\js\sb-admin-2.js" />
     <Content Include="Content\html5imageupload_assets\css\demo.html5imageupload.css" />
-    <Content Include="Content\html5imageupload_assets\css\html5imageupload.css" />
     <Content Include="Content\html5imageupload_assets\images\original.jpg" />
     <Content Include="Content\html5imageupload_assets\images\preview.jpg" />
     <Content Include="Content\html5imageupload_assets\js\html5imageupload.js" />
@@ -1998,6 +2001,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CertificatesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstructorsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\SubCategoriesController.cs" />
     <Compile Include="Controllers\ReadingsController.cs" />

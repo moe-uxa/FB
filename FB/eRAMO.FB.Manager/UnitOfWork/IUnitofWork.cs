@@ -2,24 +2,24 @@
 
 public interface IUnitOfWork : IDisposable
 {
-    IInstructorRepository Instructor { get; }
-    IOfferRepository Offer { get; }
-    ISubjectRepository Subject { get; }
-    INewsRepository News { get; }
-    IReadingRepository Reading { get; }
-    IAboutHistoryRepository AboutHistory { get; }
-    ILevelRepository Level { get; }
     ICEORepository CEO { get; }
+    IOfferRepository Offer { get; }
+    IInstructorRepository Instructor { get; }
     IPartnerRepository Partner { get; }
-    ICertificateRepository Certificate { get; }
+    IAboutHistoryRepository AboutHistory { get; }
+    IStudySessionRepository StudySession { get; }
     IQuestionRepository Question { get; }
+    ISubjectRepository Subject { get; }
+    IParentTypeRepository ParentType { get; }
+    ILevelRepository Level { get; }
+    ICertificateRepository Certificate { get; }
+    IQuestionOptionRepository QuestionOption { get; }
+    INewsRepository News { get; }
+    IShareHolderRepository ShareHolder { get; }
+    IReadingRepository Reading { get; }
+    IQuestionPoolRepository QuestionPool { get; }
     IQuestionInforamtionRepository QuestionInforamtion { get; }
     ISubCategoryRepository SubCategory { get; }
-    IParentTypeRepository ParentType { get; }
     IClientReviewRepository ClientReview { get; }
-    IQuestionOptionRepository QuestionOption { get; }
-    IQuestionPoolRepository QuestionPool { get; }
-    IStudySessionRepository StudySession { get; }
-    IShareHolderRepository ShareHolder { get; }
     void Save();
 }

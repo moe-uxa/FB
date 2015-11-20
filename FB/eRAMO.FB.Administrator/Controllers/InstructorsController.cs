@@ -11,54 +11,64 @@ using eRAMO.FB.Business.Helpers;
 
 namespace eRAMO.FB.Administrator.Controllers
 {
-    public class CertificatesController : Controller
+    public class InstructorsController : Controller
     {
         UnitOfWork ctx = new UnitOfWork();
 
-        // GET: Certificates
+        // GET: Instructors
         public ActionResult Index()
         {
-            var list = ctx.Certificate.GetAll<CertificatesModel>();
+            var list = ctx.Instructor.GetAll<InstructorsModel>();
             return View(list);
         }
 
-        // GET: Certificates/Create
+        // GET: Instructors/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Certificates/Create
+        // POST: Instructors/Create
         [HttpPost, ValidateInput(false)]
-        public ActionResult Create(CertificatesModel model)
+        public ActionResult Create(InstructorsModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    //try
+                    //{
+                    byte[] image = Html5ImageUploaderHelper.GetImageFromUploader(model.avatar_values); ;
+                    string imagePath = "/Images/Instructors/";
+                    model.PhotoUrl = Html5ImageUploaderHelper.SaveBase64ImageToFile(image, imagePath, Guid.NewGuid().ToString());
+                    //}
+                    //catch
+                    //{
+                    //    model.PhotoUrl = "/Content/html5imageupload_assets/images/default-avatar.png";
+                    //}
 
-
-                    ctx.Certificate.Add(model);
+                    ctx.Instructor.Add(model);
                     ctx.Save();
 
                     return RedirectToAction("Index");
                 }
                 return View();
             }
-            catch (Exception ex)
+            catch
             {
-                return View(ex);
+                throw;
+                return View();
             }
         }
 
-        // GET: Certificates/Edit/5
+        // GET: Instructors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = ctx.Certificate.GetById<CertificatesModel>(id.Value);
+            var model = ctx.Instructor.GetById<InstructorsModel>(id.Value);
             if (model == null)
             {
                 return HttpNotFound();
@@ -66,15 +76,15 @@ namespace eRAMO.FB.Administrator.Controllers
             return View(model);
         }
 
-        // POST: Certificates/Edit/5
-        [HttpPost, ValidateInput(false)]
-        public ActionResult Edit(CertificatesModel model)
+        // POST: Instructors/Edit/5
+        [HttpPost]
+        public ActionResult Edit(InstructorsModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    ctx.Certificate.Update(model);
+                    ctx.Instructor.Update(model);
                     ctx.Save();
                     return RedirectToAction("Index");
                 }
@@ -87,7 +97,7 @@ namespace eRAMO.FB.Administrator.Controllers
             }
         }
 
-        // POST: Certificates/Delete/5
+        // POST: Instructors/Delete/5
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -97,13 +107,13 @@ namespace eRAMO.FB.Administrator.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var model = ctx.Certificate.GetById<CertificatesModel>(id.Value);
+                var model = ctx.Instructor.GetById<InstructorsModel>(id.Value);
                 if (model == null)
                 {
                     return HttpNotFound();
                 }
 
-                ctx.Certificate.Delete(id.Value);
+                ctx.Instructor.Delete(id.Value);
                 ctx.Save();
                 return RedirectToAction("Index");
             }
