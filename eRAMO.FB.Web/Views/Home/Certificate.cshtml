@@ -1,0 +1,60 @@
+﻿@model eRAMO.FB.Web.Models.CertificateModel
+@{
+    ViewBag.Title = "Certificate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="home-header dark">
+    <div style="margin-left: 8%;">
+        <div class=" col-sm-6 col-xs-10">
+        <h2>
+            @Model.Name
+        </h2>
+            <p class="large">
+                <i class="fa fa-clock-o"></i> &nbsp; @Model.Duration
+                <br />
+                <i class="fa fa-calendar"></i> &nbsp; @Model.Time
+            </p>
+    </div>
+</div>
+</section>
+<section class="gallery">
+    <div class="about-product" style="margin-left: 8%;">
+        <div class="section-header">
+            <h2>@Model.Name</h2>
+        </div>
+        <h5>Program Overview:</h5>
+        <div style="font-size: larger;">
+            <p>
+                @Model.ProgramOverview
+            </p>
+        </div>
+
+
+        <h5>
+            Objective:
+        </h5>
+        <p>
+            @Model.Objective
+        </p>
+
+        <h5>
+            Candidates:
+        </h5>
+        <p>
+            @Model.Candidates
+        </p>
+
+        <h5>
+            Duration:
+        </h5>
+        <p>
+            @Model.Duration
+        </p>
+        <h5>
+            Time:
+        </h5>
+        <p>
+            @Model.Time
+        </p>
+    </div>
+</section>

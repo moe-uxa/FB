@@ -86,7 +86,6 @@
     <Build Include="dbo\Tables\Question.sql" />
     <Build Include="dbo\Tables\ParentType.sql" />
     <Build Include="dbo\Tables\Level.sql" />
-    <Build Include="dbo\Tables\Certificate.sql" />
     <Build Include="admin\Tables\UserRole.sql" />
     <Build Include="admin\Tables\User_UserRole.sql" />
     <Build Include="admin\Tables\User_Login.sql" />
@@ -101,5 +100,7 @@
     <Build Include="dbo\Tables\CEO.sql" />
     <Build Include="dbo\Tables\AboutHistory.sql" />
     <Build Include="dbo\Tables\Instructor.sql" />
+    <Build Include="dbo\Tables\Certificate_Instructor.sql" />
+    <Build Include="dbo\Tables\Certificate.sql" />
   </ItemGroup>
 </Project>

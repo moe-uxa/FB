@@ -14,11 +14,18 @@ namespace eRAMO.FB.Data.Model
     
     public partial class Instructor : IInstructor 
     {
+        public Instructor() 
+        {
+            this.Certificates = new HashSet<Certificate>();
+        }
+    
         [System.ComponentModel.DataAnnotations.Key]
         public int InstructorsID { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
         public string PhotoUrl { get; set; }
         public string Summary { get; set; }
+    
+        public virtual ICollection<Certificate> Certificates { get; set; }
     }
 }

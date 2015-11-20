@@ -45,5 +45,12 @@ namespace eRAMO.FB.Web.Controllers
             var model = new CEOsModel();
             return View(model);
         }
+
+        public ActionResult Certificate(int Id)
+        {
+            var model = new CertificateModel();
+            model = model.GetCertificate(Id);
+            return View(model);
+        }
     }
 }

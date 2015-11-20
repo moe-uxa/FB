@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using eRAMO.FB.Web.Models
+@model eRAMO.FB.Web.Models.LayoutModel
+<!DOCTYPE html>
 <html>
 <head>
     @*<meta charset="utf-8" />
@@ -128,11 +130,19 @@
                                 <div class=" inside-col">
 
                                     <ul class="inside-nav">
+                                        @for (int i = 0; i < LayoutModel.Certificate.Count; i++)
+                                        {
+                                            <li>
+                                                <a href="#">
+                                                    @*@LayoutModel.Certificate[i].Value*@
+                                                @Html.ActionLink(LayoutModel.Certificate[i].Value, "Certificate", "Home", new { Id = LayoutModel.Certificate[i].Key }, null)
+                                            </a>
+                                        </li>
 
-                                        <li><a href="cfa.html">CFA</a></li>
+                                        }
 
-                                        <li><a href="cma.html">CMA</a></li>
-                                        <li><a href="modeling.html">Financial Modeling</a></li>
+                                        @*<li><a href="cma.html">CMA</a></li>
+                                            <li><a href="modeling.html">Financial Modeling</a></li>*@
 
                                     </ul>
 
@@ -181,7 +191,6 @@
             </div>
         </nav>
     </header><!--/.header -->
-
     @RenderBody()
 
     <!-- Footer - Tabs -->

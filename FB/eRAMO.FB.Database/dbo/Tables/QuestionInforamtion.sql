@@ -6,3 +6,5 @@
     CONSTRAINT [FK_QuestionInforamtion_Certificate] FOREIGN KEY ([CertificateID]) REFERENCES [dbo].[Certificate] ([CertificateID])
 );
 
+
+

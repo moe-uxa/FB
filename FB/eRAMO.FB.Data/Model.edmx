@@ -43,6 +43,14 @@
           <Property Name="Duration" Type="nvarchar(max)" />
           <Property Name="Time" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Certificate_Instructor">
+          <Key>
+            <PropertyRef Name="CertificateID" />
+            <PropertyRef Name="InstructorsID" />
+          </Key>
+          <Property Name="CertificateID" Type="int" Nullable="false" />
+          <Property Name="InstructorsID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ClientReview">
           <Key>
             <PropertyRef Name="ClientReviewID" />
@@ -208,6 +216,30 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK_Certificate_Instructor_Certificate">
+          <End Role="Certificate" Type="Self.Certificate" Multiplicity="1" />
+          <End Role="Certificate_Instructor" Type="Self.Certificate_Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateID" />
+            </Principal>
+            <Dependent Role="Certificate_Instructor">
+              <PropertyRef Name="CertificateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Certificate_Instructor_Instructor">
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+          <End Role="Certificate_Instructor" Type="Self.Certificate_Instructor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instructor">
+              <PropertyRef Name="InstructorsID" />
+            </Principal>
+            <Dependent Role="Certificate_Instructor">
+              <PropertyRef Name="InstructorsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Level_Certificate">
           <End Role="Certificate" Type="Self.Certificate" Multiplicity="0..1" />
           <End Role="Level" Type="Self.Level" Multiplicity="*" />
@@ -332,6 +364,7 @@
           <EntitySet Name="AboutHistory" EntityType="Self.AboutHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CEO" EntityType="Self.CEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Certificate_Instructor" EntityType="Self.Certificate_Instructor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientReview" EntityType="Self.ClientReview" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
@@ -348,6 +381,14 @@
           <EntitySet Name="StudySession" EntityType="Self.StudySession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Certificate_Instructor_Certificate" Association="Self.FK_Certificate_Instructor_Certificate">
+            <End Role="Certificate" EntitySet="Certificate" />
+            <End Role="Certificate_Instructor" EntitySet="Certificate_Instructor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Certificate_Instructor_Instructor" Association="Self.FK_Certificate_Instructor_Instructor">
+            <End Role="Instructor" EntitySet="Instructor" />
+            <End Role="Certificate_Instructor" EntitySet="Certificate_Instructor" />
+          </AssociationSet>
           <AssociationSet Name="FK_Level_Certificate" Association="Self.FK_Level_Certificate">
             <End Role="Certificate" EntitySet="Certificate" />
             <End Role="Level" EntitySet="Level" />
@@ -453,7 +494,11 @@
             <End Role="Certificate" EntitySet="Certificates" />
             <End Role="QuestionInforamtion" EntitySet="QuestionInforamtions" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="Certificate_Instructor" Association="FBModel.Certificate_Instructor">
+            <End Role="Certificate" EntitySet="Certificates" />
+            <End Role="Instructor" EntitySet="Instructors" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Level">
           <Key>
             <PropertyRef Name="LevelID" />
@@ -762,6 +807,7 @@
           <Property Name="Time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Levels" Relationship="FBModel.FK_Level_Certificate" FromRole="Certificate" ToRole="Level" />
           <NavigationProperty Name="QuestionInforamtions" Relationship="FBModel.FK_QuestionInforamtion_Certificate" FromRole="Certificate" ToRole="QuestionInforamtion" />
+          <NavigationProperty Name="Instructors" Relationship="FBModel.Certificate_Instructor" FromRole="Certificate" ToRole="Instructor" />
         </EntityType>
         <EntityType Name="Instructor">
           <Key>
@@ -772,6 +818,7 @@
           <Property Name="Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="PhotoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Certificates" Relationship="FBModel.Certificate_Instructor" FromRole="Instructor" ToRole="Certificate" />
         </EntityType>
         <Association Name="FK_Level_Certificate">
           <End Type="FBModel.Certificate" Role="Certificate" Multiplicity="0..1" />
@@ -796,6 +843,10 @@
               <PropertyRef Name="CertificateID" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="Certificate_Instructor">
+          <End Type="FBModel.Certificate" Role="Certificate" Multiplicity="*" />
+          <End Type="FBModel.Instructor" Role="Instructor" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1025,7 +1076,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <AssociationSetMapping Name="Certificate_Instructor" TypeName="FBModel.Certificate_Instructor" StoreEntitySet="Certificate_Instructor">
+            <EndProperty Name="Instructor">
+              <ScalarProperty Name="InstructorsID" ColumnName="InstructorsID" />
+            </EndProperty>
+            <EndProperty Name="Certificate">
+              <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

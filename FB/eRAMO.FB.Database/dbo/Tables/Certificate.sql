@@ -15,5 +15,3 @@
     CONSTRAINT [PK_Certificate] PRIMARY KEY CLUSTERED ([CertificateID] ASC)
 );
 
-
-

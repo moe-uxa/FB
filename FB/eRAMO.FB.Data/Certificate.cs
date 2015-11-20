@@ -18,6 +18,7 @@ namespace eRAMO.FB.Data.Model
         {
             this.Levels = new HashSet<Level>();
             this.QuestionInforamtions = new HashSet<QuestionInforamtion>();
+            this.Instructors = new HashSet<Instructor>();
         }
     
         [System.ComponentModel.DataAnnotations.Key]
@@ -37,5 +38,6 @@ namespace eRAMO.FB.Data.Model
     
         public virtual ICollection<Level> Levels { get; set; }
         public virtual ICollection<QuestionInforamtion> QuestionInforamtions { get; set; }
+        public virtual ICollection<Instructor> Instructors { get; set; }
     }
 }
