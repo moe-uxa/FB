@@ -23,5 +23,12 @@ namespace eRAMO.FB.Model
         public bool? IsActive { get; set; }
 
         public bool? IsFeatured { get; set; }
+        public string ProgramOverview { get; set; }
+        public string Objective { get; set; }
+        public string ProgramTopics { get; set; }
+        public string Charterholders { get; set; }
+        public string Candidates { get; set; }
+        public string Duration { get; set; }
+        public string Time { get; set; }
     }
 }

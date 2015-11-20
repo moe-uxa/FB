@@ -47,7 +47,6 @@ namespace eRAMO.FB.Data
         {
             return new FBEntities();
         }
-        public virtual DbSet<Certificate> Certificates { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
         public virtual DbSet<ParentType> ParentTypes { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
@@ -61,5 +60,11 @@ namespace eRAMO.FB.Data
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<ClientReview> ClientReviews { get; set; }
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<Partner> Partners { get; set; }
+        public virtual DbSet<Offer> Offers { get; set; }
+        public virtual DbSet<CEO> CEOs { get; set; }
+        public virtual DbSet<AboutHistory> AboutHistories { get; set; }
+        public virtual DbSet<Certificate> Certificates { get; set; }
+        public virtual DbSet<Instructor> Instructors { get; set; }
     }
 }

@@ -58,10 +58,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CEO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Certificate.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientReview.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IAboutHistory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ICEO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ICertificate.cs">
@@ -71,13 +83,25 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="IdentityClasses.cs" />
+    <Compile Include="IInstructor.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ILevel.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="INews.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Instructor.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IOffer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="IParentType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPartner.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="IQuestion.cs">
@@ -128,7 +152,13 @@
     <Compile Include="News.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Offer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="ParentType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Partner.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

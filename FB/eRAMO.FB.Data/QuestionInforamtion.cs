@@ -24,7 +24,7 @@ namespace eRAMO.FB.Data.Model
         public Nullable<int> CertificateID { get; set; }
         public string Text { get; set; }
     
-        public virtual Certificate Certificate { get; set; }
         public virtual ICollection<Question> Questions { get; set; }
+        public virtual Certificate Certificate { get; set; }
     }
 }

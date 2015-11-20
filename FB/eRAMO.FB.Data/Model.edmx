@@ -5,6 +5,26 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AboutHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="CEO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="imge" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Certificate">
           <Key>
             <PropertyRef Name="CertificateID" />
@@ -15,9 +35,14 @@
           <Property Name="Notes" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsFeatured" Type="bit" />
+          <Property Name="ProgramOverview" Type="nvarchar(max)" />
+          <Property Name="Objective" Type="nvarchar(max)" />
+          <Property Name="ProgramTopics" Type="nvarchar(max)" />
+          <Property Name="Charterholders" Type="nvarchar(max)" />
+          <Property Name="Candidates" Type="nvarchar(max)" />
+          <Property Name="Duration" Type="nvarchar(max)" />
+          <Property Name="Time" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ClientReview">
           <Key>
             <PropertyRef Name="ClientReviewID" />
@@ -27,6 +52,16 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="ClientName" Type="nvarchar" MaxLength="50" />
           <Property Name="ClientTitle" Type="nvarchar" MaxLength="50" />
           <Property Name="ClientPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="InstructorsID" />
+          </Key>
+          <Property Name="InstructorsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Position" Type="nvarchar" MaxLength="150" />
+          <Property Name="PhotoUrl" Type="nvarchar(max)" />
+          <Property Name="Summary" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Level">
           <Key>
@@ -38,8 +73,6 @@ warning 6002: The table/view 'FinancialBrains.dbo.ClientReview' does not have a 
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Notes" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="News">
           <Key>
             <PropertyRef Name="NewsID" />
@@ -51,12 +84,31 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="date" Type="datetime" />
         </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="OffersID" />
+          </Key>
+          <Property Name="OffersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar" MaxLength="500" />
+          <Property Name="image" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Title" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="ParentType">
           <Key>
             <PropertyRef Name="ParentTypeID" />
           </Key>
           <Property Name="ParentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerID" />
+          </Key>
+          <Property Name="PartnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imge" Type="nvarchar" MaxLength="50" />
+          <Property Name="Text" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -277,9 +329,16 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FBModelStoreContainer">
+          <EntitySet Name="AboutHistory" EntityType="Self.AboutHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CEO" EntityType="Self.CEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientReview" EntityType="Self.ClientReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offer" EntityType="Self.Offer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentType" EntityType="Self.ParentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionInforamtion" EntityType="Self.QuestionInforamtion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionOption" EntityType="Self.QuestionOption" Schema="dbo" store:Type="Tables" />
@@ -289,25 +348,6 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <EntitySet Name="StudySession" EntityType="Self.StudySession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ClientReview" EntityType="Self.ClientReview" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ClientReview].[ClientReviewID] AS [ClientReviewID], 
-    [ClientReview].[Review] AS [Review], 
-    [ClientReview].[ClientName] AS [ClientName], 
-    [ClientReview].[ClientTitle] AS [ClientTitle], 
-    [ClientReview].[ClientPhoto] AS [ClientPhoto]
-    FROM [dbo].[ClientReview] AS [ClientReview]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="News" EntityType="Self.News" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [News].[NewsID] AS [NewsID], 
-    [News].[Text] AS [Text], 
-    [News].[BannarPhoto] AS [BannarPhoto], 
-    [News].[Icon] AS [Icon], 
-    [News].[Title] AS [Title], 
-    [News].[date] AS [date]
-    FROM [dbo].[News] AS [News]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Level_Certificate" Association="Self.FK_Level_Certificate">
             <End Role="Certificate" EntitySet="Certificate" />
             <End Role="Level" EntitySet="Level" />
@@ -354,7 +394,6 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
     <edmx:ConceptualModels>
       <Schema Namespace="FBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="FBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Certificates" EntityType="FBModel.Certificate" />
           <EntitySet Name="Levels" EntityType="FBModel.Level" />
           <EntitySet Name="ParentTypes" EntityType="FBModel.ParentType" />
           <EntitySet Name="Questions" EntityType="FBModel.Question" />
@@ -366,14 +405,6 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <EntitySet Name="StudySessions" EntityType="FBModel.StudySession" />
           <EntitySet Name="SubCategories" EntityType="FBModel.SubCategory" />
           <EntitySet Name="Subjects" EntityType="FBModel.Subject" />
-          <AssociationSet Name="FK_Level_Certificate" Association="FBModel.FK_Level_Certificate">
-            <End Role="Certificate" EntitySet="Certificates" />
-            <End Role="Level" EntitySet="Levels" />
-          </AssociationSet>
-          <AssociationSet Name="FK_QuestionInforamtion_Certificate" Association="FBModel.FK_QuestionInforamtion_Certificate">
-            <End Role="Certificate" EntitySet="Certificates" />
-            <End Role="QuestionInforamtion" EntitySet="QuestionInforamtions" />
-          </AssociationSet>
           <AssociationSet Name="FK_Subject_Level" Association="FBModel.FK_Subject_Level">
             <End Role="Level" EntitySet="Levels" />
             <End Role="Subject" EntitySet="Subjects" />
@@ -408,20 +439,21 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           </AssociationSet>
           <EntitySet Name="ClientReviews" EntityType="FBModel.ClientReview" />
           <EntitySet Name="News" EntityType="FBModel.News" />
+          <EntitySet Name="Partners" EntityType="FBModel.Partner" />
+          <EntitySet Name="Offers" EntityType="FBModel.Offer" />
+          <EntitySet Name="CEOs" EntityType="FBModel.CEO" />
+          <EntitySet Name="AboutHistories" EntityType="FBModel.AboutHistory" />
+          <EntitySet Name="Certificates" EntityType="FBModel.Certificate" />
+          <EntitySet Name="Instructors" EntityType="FBModel.Instructor" />
+          <AssociationSet Name="FK_Level_Certificate" Association="FBModel.FK_Level_Certificate">
+            <End Role="Certificate" EntitySet="Certificates" />
+            <End Role="Level" EntitySet="Levels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionInforamtion_Certificate" Association="FBModel.FK_QuestionInforamtion_Certificate">
+            <End Role="Certificate" EntitySet="Certificates" />
+            <End Role="QuestionInforamtion" EntitySet="QuestionInforamtions" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Certificate">
-          <Key>
-            <PropertyRef Name="CertificateID" />
-          </Key>
-          <Property Name="CertificateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="IsFeatured" Type="Boolean" />
-          <NavigationProperty Name="Levels" Relationship="FBModel.FK_Level_Certificate" FromRole="Certificate" ToRole="Level" />
-          <NavigationProperty Name="QuestionInforamtions" Relationship="FBModel.FK_QuestionInforamtion_Certificate" FromRole="Certificate" ToRole="QuestionInforamtion" />
-        </EntityType>
         <EntityType Name="Level">
           <Key>
             <PropertyRef Name="LevelID" />
@@ -431,8 +463,8 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Certificate" Relationship="FBModel.FK_Level_Certificate" FromRole="Level" ToRole="Certificate" />
           <NavigationProperty Name="Subjects" Relationship="FBModel.FK_Subject_Level" FromRole="Level" ToRole="Subject" />
+          <NavigationProperty Name="Certificate" Relationship="FBModel.FK_Level_Certificate" FromRole="Level" ToRole="Certificate" />
         </EntityType>
         <EntityType Name="ParentType">
           <Key>
@@ -468,8 +500,8 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <Property Name="QuestionInformationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CertificateID" Type="Int32" />
           <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Certificate" Relationship="FBModel.FK_QuestionInforamtion_Certificate" FromRole="QuestionInforamtion" ToRole="Certificate" />
           <NavigationProperty Name="Questions" Relationship="FBModel.FK_Question_QuestionInforamtion" FromRole="QuestionInforamtion" ToRole="Question" />
+          <NavigationProperty Name="Certificate" Relationship="FBModel.FK_QuestionInforamtion_Certificate" FromRole="QuestionInforamtion" ToRole="Certificate" />
         </EntityType>
         <EntityType Name="QuestionOption">
           <Key>
@@ -555,30 +587,6 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <NavigationProperty Name="Level" Relationship="FBModel.FK_Subject_Level" FromRole="Subject" ToRole="Level" />
           <NavigationProperty Name="StudySessions" Relationship="FBModel.FK_StudySession_Subject" FromRole="Subject" ToRole="StudySession" />
         </EntityType>
-        <Association Name="FK_Level_Certificate">
-          <End Type="FBModel.Certificate" Role="Certificate" Multiplicity="0..1" />
-          <End Type="FBModel.Level" Role="Level" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Certificate">
-              <PropertyRef Name="CertificateID" />
-            </Principal>
-            <Dependent Role="Level">
-              <PropertyRef Name="CertificateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_QuestionInforamtion_Certificate">
-          <End Type="FBModel.Certificate" Role="Certificate" Multiplicity="0..1" />
-          <End Type="FBModel.QuestionInforamtion" Role="QuestionInforamtion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Certificate">
-              <PropertyRef Name="CertificateID" />
-            </Principal>
-            <Dependent Role="QuestionInforamtion">
-              <PropertyRef Name="CertificateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Subject_Level">
           <End Type="FBModel.Level" Role="Level" Multiplicity="0..1" />
           <End Type="FBModel.Subject" Role="Subject" Multiplicity="*" />
@@ -696,24 +704,105 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerID" />
+          </Key>
+          <Property Name="PartnerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="OffersID" />
+          </Key>
+          <Property Name="OffersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CEO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="imge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AboutHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Certificate">
+          <Key>
+            <PropertyRef Name="CertificateID" />
+          </Key>
+          <Property Name="CertificateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsFeatured" Type="Boolean" />
+          <Property Name="ProgramOverview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProgramTopics" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Charterholders" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Candidates" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Levels" Relationship="FBModel.FK_Level_Certificate" FromRole="Certificate" ToRole="Level" />
+          <NavigationProperty Name="QuestionInforamtions" Relationship="FBModel.FK_QuestionInforamtion_Certificate" FromRole="Certificate" ToRole="QuestionInforamtion" />
+        </EntityType>
+        <EntityType Name="Instructor">
+          <Key>
+            <PropertyRef Name="InstructorsID" />
+          </Key>
+          <Property Name="InstructorsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Level_Certificate">
+          <End Type="FBModel.Certificate" Role="Certificate" Multiplicity="0..1" />
+          <End Type="FBModel.Level" Role="Level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateID" />
+            </Principal>
+            <Dependent Role="Level">
+              <PropertyRef Name="CertificateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionInforamtion_Certificate">
+          <End Type="FBModel.Certificate" Role="Certificate" Multiplicity="0..1" />
+          <End Type="FBModel.QuestionInforamtion" Role="QuestionInforamtion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Certificate">
+              <PropertyRef Name="CertificateID" />
+            </Principal>
+            <Dependent Role="QuestionInforamtion">
+              <PropertyRef Name="CertificateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="FBModelStoreContainer" CdmEntityContainer="FBEntities">
-          <EntitySetMapping Name="Certificates">
-            <EntityTypeMapping TypeName="FBModel.Certificate">
-              <MappingFragment StoreEntitySet="Certificate">
-                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Levels">
             <EntityTypeMapping TypeName="FBModel.Level">
               <MappingFragment StoreEntitySet="Level">
@@ -860,6 +949,79 @@ warning 6002: The table/view 'FinancialBrains.dbo.News' does not have a primary 
                 <ScalarProperty Name="BannarPhoto" ColumnName="BannarPhoto" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partners">
+            <EntityTypeMapping TypeName="FBModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Imge" ColumnName="Imge" />
+                <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="FBModel.Offer">
+              <MappingFragment StoreEntitySet="Offer">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="OffersID" ColumnName="OffersID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CEOs">
+            <EntityTypeMapping TypeName="FBModel.CEO">
+              <MappingFragment StoreEntitySet="CEO">
+                <ScalarProperty Name="imge" ColumnName="imge" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AboutHistories">
+            <EntityTypeMapping TypeName="FBModel.AboutHistory">
+              <MappingFragment StoreEntitySet="AboutHistory">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Certificates">
+            <EntityTypeMapping TypeName="FBModel.Certificate">
+              <MappingFragment StoreEntitySet="Certificate">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Candidates" ColumnName="Candidates" />
+                <ScalarProperty Name="Charterholders" ColumnName="Charterholders" />
+                <ScalarProperty Name="ProgramTopics" ColumnName="ProgramTopics" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="ProgramOverview" ColumnName="ProgramOverview" />
+                <ScalarProperty Name="IsFeatured" ColumnName="IsFeatured" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CertificateID" ColumnName="CertificateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instructors">
+            <EntityTypeMapping TypeName="FBModel.Instructor">
+              <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="PhotoUrl" ColumnName="PhotoUrl" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="InstructorsID" ColumnName="InstructorsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

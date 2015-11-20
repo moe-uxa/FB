@@ -26,7 +26,7 @@ namespace eRAMO.FB.Data.Model
         public string Description { get; set; }
         public string Notes { get; set; }
     
-        public virtual Certificate Certificate { get; set; }
         public virtual ICollection<Subject> Subjects { get; set; }
+        public virtual Certificate Certificate { get; set; }
     }
 }

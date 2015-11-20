@@ -55,11 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutHistoriesModel.cs" />
     <Compile Include="AdminUser.cs" />
+    <Compile Include="CEOsModel.cs" />
     <Compile Include="CertificateModel.cs" />
     <Compile Include="ClientReviewsModel.cs" />
     <Compile Include="LevelsModel.cs" />
     <Compile Include="NewsModel.cs" />
+    <Compile Include="OffersModel.cs" />
+    <Compile Include="PartnersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomValidator\ValidateFileAttribute.cs" />
     <Compile Include="QuestionsModel.cs" />

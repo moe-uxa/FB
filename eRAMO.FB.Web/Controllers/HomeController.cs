@@ -1,4 +1,5 @@
 ﻿using eRAMO.FB.Manager;
+using eRAMO.FB.Model;
 using eRAMO.FB.Web.Models;
 using eRAMO.FB.Web.Models.Home;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CEOsModel = eRAMO.FB.Web.Models.CEOsModel;
 
 namespace eRAMO.FB.Web.Controllers
 {
@@ -15,25 +17,20 @@ namespace eRAMO.FB.Web.Controllers
    
         public ActionResult Index()
         {
-            HomeModel model = new HomeModel();
+            var model = new HomeModel();
 
-            HeaderModel headerModel = new HeaderModel();
-            var TestimonialModel = new TestimonialModel();
-            var blog = new BlogsModel();
-            TestimonialModel.GetClientReviews();
-            headerModel.Certificates = headerModel.GetFeaturedCertificates();
-            model.Testimonial = TestimonialModel;
-            model.Header = headerModel;
-            model.Blogs=new BlogsModel();
+            model.Testimonial.GetClientReviews();
+            model.Header.GetFeaturedCertificates();
             model.Blogs.GetNews();
             return View(model);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            var ctx = new UnitOfWork();
+            var historyList = ctx.AboutHistory.GetAll<AboutHistoriesModel>();
 
-            return View();
+            return View(historyList);
         }
 
         public ActionResult Contact()
@@ -41,6 +38,12 @@ namespace eRAMO.FB.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult CEOs()
+        {
+            var model = new CEOsModel();
+            return View(model);
         }
     }
 }

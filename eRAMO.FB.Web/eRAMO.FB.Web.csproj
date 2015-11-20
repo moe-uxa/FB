@@ -166,9 +166,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CEOsModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Home\BlogsModel.cs" />
     <Compile Include="Models\Home\HeaderModel.cs" />
+    <Compile Include="Models\Home\OfferModel.cs" />
     <Compile Include="Models\Home\TestimonialModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -304,6 +306,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Photos\384x384.gif" />
     <Content Include="Photos\photo1.jpg" />
     <Content Include="Photos\photo2.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -402,9 +405,11 @@
     <Content Include="Views\Home\Partials\_Offers.cshtml" />
     <Content Include="Views\Home\Partials\_Gallery.cshtml" />
     <Content Include="Views\Home\Partials\_Testimonials.cshtml" />
+    <Content Include="Views\Home\CEOs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CEOs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
