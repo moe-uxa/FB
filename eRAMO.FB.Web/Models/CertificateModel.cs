@@ -6,7 +6,7 @@ using eRAMO.FB.Manager;
 
 namespace eRAMO.FB.Web.Models
 {
-    public class CertificateModel:LayoutModel
+    public class CertificateModel : LayoutModel
     {
         public int CertificateId { get; set; }
         public string Name { get; set; }
@@ -20,6 +20,8 @@ namespace eRAMO.FB.Web.Models
         public string Candidates { get; set; }
         public string Duration { get; set; }
         public string Time { get; set; }
+
+        public List<InstructorModel> Instructors { get; set; }
 
         public CertificateModel()
         {
@@ -43,6 +45,21 @@ namespace eRAMO.FB.Web.Models
                         Time = item.Time
                     }).FirstOrDefault();
             return result;
+        }
+
+        public List<InstructorModel> GetAllInstructors(int id)
+        {
+            var ctx = new UnitOfWork();
+            var ss= ctx.Certificate.GetAll<Model.CertificatesModel>()
+                    .Where(certificate => certificate.CertificateID == id).Select(itm => itm.Instructors).FirstOrDefault().Select(item => new InstructorModel()
+            {
+                Name = item.Name,
+                PhotoUrl = item.PhotoUrl,
+                Position = item.Position,
+                Summary = item.Summary
+            }).ToList();
+
+           return ss;
         }
     }
 }
