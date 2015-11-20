@@ -1,9 +1,9 @@
 /*
  * HTML 5 Image upload script
  * by STBeets
- * bought on CodeCanyon: http://codecanyon.net/item/html-5-upload-image-ratio-with-drag-and-drop/8712634?ref=stbeets
+ * bought on CodeCanyon: http://codecanyon.net/item/html-5-upload-image-ratio-with-drag-and-drop/8712634
  * 
- * Version: 1.4.3
+ * Version: 1.4.2
  * 
  */
 
@@ -24,18 +24,14 @@
 		
 		//buttons
 		this.button				= {}
-		this.button.edit		= '<div class="btn btn-info btn-edit" title="' + (this.options.editTitle || 'Edit') + '"><i class="glyphicon glyphicon-pencil"></i></div>'
+		this.button.edit		= '<div class="btn btn-info btn-edit"><i class="glyphicon glyphicon-pencil"></i></div>'
 		this.button.saving		= '<div class="btn btn-warning saving">' + (this.options.saveLabel || 'Saving...') + ' <i class="glyphicon glyphicon-time"></i></div>';
-		this.button.zoomin		= '<div class="btn btn-default btn-zoom-in" title="' + (this.options.zoominTitle || 'Zoom in') + '"><i class="glyphicon glyphicon-resize-full"></i></div>';
-		this.button.zoomout		= '<div class="btn btn-default btn-zoom-out" title="' + (this.options.zoomoutTitle || 'Zoom out') + '"><i class="glyphicon glyphicon-resize-small"></i></div>';
-		this.button.zoomreset	= '<div class="btn btn-default btn-zoom-reset" title="' + (this.options.zoomresetTitle || 'Fullsize') + '"><i class="glyphicon glyphicon-fullscreen"></i></div>';
-//		this.button.rotatecw	= '<div class="btn btn-default btn-rotate-cw" title="' + (this.options.cwTitle || 'Rotate clockwise') + '"><i class="glyphicon glyphicon-share"></i></div>';
-//		this.button.rotateccw	= '<div class="btn btn-default btn-rotate-ccw" title="' + (this.options.ccwTitle || 'Rotate counter clockwise') + '"><i class="glyphicon glyphicon-share icon-flipped"></i></div>';
-		this.button.cancel		= '<div class="btn btn-danger btn-cancel" title="' + (this.options.cancelTitle || 'Cancel') + '"><i class="glyphicon glyphicon-remove"></i></div>';
-		this.button.done		= '<div class="btn btn-success btn-ok" title="' + (this.options.okTitle || 'Ok') + '"><i class="glyphicon glyphicon-ok"></i></div>';
-		this.button.del			= '<div class="btn btn-danger btn-del" title="' + (this.options.delTitle || 'Delete') + '"><i class="glyphicon glyphicon-trash"></i></div>';
-		
-		this.button.download	= '<a class="btn btn-warning download"><i class="glyphicon glyphicon-download"></i> ' + (this.options.downloadLabel || 'Download') + '</a>';
+		this.button.zoomin		= '<div class="btn btn-default btn-zoom-in"><i class="glyphicon glyphicon-resize-full"></i></div>';
+		this.button.zoomout		= '<div class="btn btn-default btn-zoom-out"><i class="glyphicon glyphicon-resize-small"></i></div>';
+		this.button.zoomreset	= '<div class="btn btn-default btn-zoom-reset"><i class="glyphicon glyphicon-fullscreen"></i></div>';
+		this.button.cancel		= '<div class="btn btn-danger btn-cancel"><i class="glyphicon glyphicon-remove"></i></div>';
+		this.button.done		= '<div class="btn btn-success btn-ok"><i class="glyphicon glyphicon-ok"></i></div>';
+		this.button.del			= '<div class="btn btn-danger btn-del"><i class="glyphicon glyphicon-trash"></i></div>';
 		
 		//this.imageExtensions	= {png: 'png', bmp: 'bmp', gif: 'gif', jpg: ['jpg','jpeg'], tiff: 'tiff'};
 		this.imageMimes 		= { png: 'image/png', bmp: 'image/bmp', gif: 'image/gif', jpg: 'image/jpeg', jpeg: 'image/jpeg', tiff: 'image/tiff' };  
@@ -53,20 +49,11 @@
 		removeurl:			null,
 		data:				{},
 		canvas:				true,
-		canvasImageOnly:	false,
 		ajax:				true,
 		resize: 			false,
 		dimensionsonly:		false,
 		editstart:			false,
 		saveOriginal:		false,
-		save:				true,
-		download:			false,
-		
-		smaller: 			false,
-		smallerWidth:		false,
-		smallerHeight:		false,
-		background:			null,
-		
 		
 		onAfterZoomImage:	null,
 		onAfterInitImage:	null,
@@ -107,26 +94,14 @@
 				$(element).empty().attr('class','').addClass('alert alert-danger').html('HTML5 Upload Image: Image width is not set and can not be calculated...');
 				return false;
 			} 
-			/*if (!empty(options.height) && !empty(options.width) && !empty($(element).innerHeight() && !empty($(element).innerWidth()))) {
+			if (!empty(options.height) && !empty(options.width) && !empty($(element).innerHeight() && !empty($(element).innerWidth()))) {
 				//all sizes are filled in
-				console.log(options.width)
-				console.log(options.height)
-				console.log(options.width / options.height)
-				
-				console.log($(element).outerWidth())
-				console.log($(element).outerHeight())
-				
-				console.log($(element).outerWidth() / $(element).outerHeight())
-				
 				if ((options.width / options.height) != ($(element).outerWidth() / $(element).outerHeight())) {
 					$(element).empty().attr('class','').addClass('alert alert-danger').html('HTML5 Upload Image: The ratio of all sizes (CSS and image) are not the same...');
 					return false;
 				}
-			}*/
+			}
 			
-			//copy styles
-			$(element).data('style',$(element).attr('style'));
-			$(element).data('class',$(element).attr('class'));
 			
 			//////////////
 			//check sizes
@@ -185,22 +160,11 @@
 				$(element).data('name',options.image).append($('<img />').addClass('preview').attr('src',options.image));
 				
 				var tools			= $('<div class="preview tools"></div>');
-				var edit			= $('' + this.button.edit + '');
 				var del				= $('' + this.button.del + '');
-				/*$(edit).unbind('click').click(function(e) {
-					e.preventDefault();
-					$(element).children().show();
-					$(element).find('.final').remove();
-					$(input).data('valid',false);
-				})*/
-				$(del).unbind('click').click(function(e) {
+				$(del).click(function(e) {
 					e.preventDefault();
 					_self.reset();
 				})
-				
-				/*if (options.buttonEdit != false) {
-					$(tools).append(edit)
-				}*/
 				
 				if (options.buttonDel != false) {
 					$(tools).append(del)
@@ -219,7 +183,7 @@
 			var input			= _self.input;
 			
 			//bind the events
-			$(element).unbind('dragover drop mouseout').on({
+			$(element).unbind('dragover').unbind('drop').unbind('mouseout').on({
 				dragover: function(event){
 					_self.handleDrag(event)
 				},
@@ -227,11 +191,7 @@
 					_self.handleFile(event, $(this))
 				},
 				mouseout: function() {
-					$(document).unbind('mouseup touchend').on('mouseup touchend', function(e) {
-						e.preventDefault()
-						_self.imageUnhandle();//
-					})
-					
+					_self.imageUnhandle();//
 				}
 			});
 			
@@ -308,10 +268,6 @@
     			
     			//resize image
     			if (options.originalsize == false) {
-    				
-    				//need to add the option is smaller = true, dont resize
-    				//also if the image == 100% the size of the element, dont add extra space
-    				
     				useWidth		= $(element).outerWidth() + 40;
     				useHeight		= useWidth / ratio;
     				
@@ -319,24 +275,19 @@
     					useHeight	= $(element).outerHeight() + 40;
     					useWidth	= useHeight * ratio;
     				}
-    			} else if (useWidth < $(element).outerWidth() || useHeight < $(element).outerHeight()) {
     				
-    				if (options.smaller == true) {
-    					//do nothing
+    			} else if (useWidth < $(element).outerWidth() || useHeight < $(element).outerHeight()) {
+    				if (ratio < elementRatio) {
+    					useWidth	= $(element).outerWidth();
+    					useHeight	= useWidth / ratio;
     				} else {
-	    				if (ratio < elementRatio) {
-	    					useWidth	= $(element).outerWidth();
-	    					useHeight	= useWidth / ratio;
-	    				} else {
-	    					useHeight	= $(element).outerHeight();
-	    					useWidth	= useHeight * ratio;
-	    				}
+    					useHeight	= $(element).outerHeight();
+    					useWidth	= useHeight * ratio;
     				}
     			}
     			
     			var left			= parseFloat(($(element).outerWidth() - useWidth) / 2)// * -1;
     			var top				= parseFloat(($(element).outerHeight() - useHeight) / 2)// * -1;
-    			
     			
     			imgElement.css({left: left, top: top, width: useWidth, height: useHeight })
     			
@@ -372,7 +323,6 @@
 			var _self			= this;
 			var element			= this.element;
 			var image			= this.image;
-			var options			= this.options;
 			
 			var height			= image.outerHeight(),
 			width				= image.outerWidth(),
@@ -380,12 +330,9 @@
 			cursor_y			= image.offset().top + height - event.pageY,
 			cursor_x			= image.offset().left + width - event.pageX;
 			
-			$(document).on({
+			image.on({
 				
-				'dragstart mousemove touchmove': function(e) {
-					
-					$('body').css({cursor:'move'});
-					
+				'mousemove touchmove': function(e) {
 					e.stopImmediatePropagation()
 					e.preventDefault();
 					
@@ -395,28 +342,25 @@
 					imgLeft 		= event.pageX + cursor_x - width;
 					var hasBorder	=  ($(element).outerWidth() != $(element).innerWidth());
 					
-					if (options.smaller == false) {
-					
-						if(parseInt(imgTop - $(element).offset().top) > 0) { 
-							imgTop		= $(element).offset().top + ((hasBorder) ? 1 : 0);
-						} else if (imgTop + height < $(element).offset().top + $(element).outerHeight()) {
-					    	imgTop		= $(element).offset().top + $(element).outerHeight() - height + ((hasBorder) ? 1 : 0);
-					    }
-						     
-					    if (parseInt(imgLeft - $(element).offset().left) > 0) {
-					    	imgLeft		= $(element).offset().left + ((hasBorder) ? 1 : 0);;
-					    } else if (imgLeft + width < $(element).offset().left + $(element).outerWidth()) {
-					    	imgLeft = $(element).offset().left + $(element).outerWidth() - width + ((hasBorder) ? 1 : 0);;
-					    }
-					}
-					
+					if(parseInt(imgTop - $(element).offset().top) > 0) { 
+						imgTop		= $(element).offset().top + ((hasBorder) ? 1 : 0);
+					} else if (imgTop + height < $(element).offset().top + $(element).outerHeight()) {
+				    	imgTop		= $(element).offset().top + $(element).outerHeight() - height + ((hasBorder) ? 1 : 0);
+				    }
+					     
+				    if (parseInt(imgLeft - $(element).offset().left) > 0) {
+				    	imgLeft		= $(element).offset().left + ((hasBorder) ? 1 : 0);;
+				    } else if (imgLeft + width < $(element).offset().left + $(element).outerWidth()) {
+				    	imgLeft = $(element).offset().left + $(element).outerWidth() - width + ((hasBorder) ? 1 : 0);;
+				    }
+				    
 				    image.offset({
 						top:	imgTop,
 						left:	imgLeft
 					})
 					_self._ghost();
 				},
-				'dragend mouseup touchend': function() {
+				'mouseup touchend': function() {
 					_self.imageUnhandle();
 				}
 			})
@@ -426,15 +370,13 @@
 			var _self			= this;
 			var image			= _self.image;
 			
-			$(document).unbind('mousemove touchmove');
-			$('body').css({cursor:''});
+			$(image).unbind('mousemove touchmove');
 			if (_self.options.onAfterMoveImage) _self.options.onAfterMoveImage.call(_self,_self);
 		},
 		imageZoom :function(x){
 			var _self 				= this;
 			var element				= _self.element;
 			var image				= _self.image;
-			var options				= _self.options;
 			
 			if (empty(image)) {
 				_self._clearTimers();
@@ -445,47 +387,33 @@
 			var newWidth 			= image.outerWidth() + x;
 			var newHeight 			= newWidth / ratio;
 			
-			if (options.smaller == false) {
-				
-				//smaller then element?
-				if (newWidth < $(element).outerWidth()) {
-					newWidth			= $(element).outerWidth();
-					newHeight			= newWidth / ratio;
-				}
-				if (newHeight < $(element).outerHeight()) {
-					newHeight			= $(element).outerHeight();
-					newWidth			= newHeight * ratio;
-				}
-			} else {
-				if (newWidth < 1 || newHeight < 1) {
-					if (newWidth > newHeight) {
-						newWidth		= 1;
-						newHeight		= newWidth / ratio;
-					} else {
-						newHeight		= 1
-						newWidth		= newHeight * ratio;
-					}
-				}
+			//smaller then element?
+			if (newWidth < $(element).outerWidth()) {
+				newWidth			= $(element).outerWidth();
+				newHeight			= newWidth / ratio;
+				x					= $(image).outerWidth() - newWidth;
+			}
+			if (newHeight < $(element).outerHeight()) {
+				newHeight			= $(element).outerHeight();
+				newWidth			= newHeight * ratio;
+				x					= $(image).outerWidth() - newWidth;
 			}
 			
-			var newTop 				= image.css('top').replace(/[^-\d\.]/g, '') - (newHeight - image.outerHeight()) / 2;
-			var newLeft 			= image.css('left').replace(/[^-\d\.]/g, '') - (newWidth - image.outerWidth()) / 2;
+			var newTop 				= Math.round(parseFloat(image.css('top')) - parseFloat(newHeight - image.outerHeight()) / 2);
+			var newLeft 			= parseInt(image.css('left')) - x / 2;
 			
-			
-			if (options.smaller == false) {
-			
-				if ($(element).offset().left - newLeft < $(element).offset().left) {
-					newLeft				= 0;
-				} else if ($(element).outerWidth() > newLeft + $(image).outerWidth() && x <= 0) {
-					newLeft				= $(element).outerWidth() - newWidth;
-				}
-				
-				if ($(element).offset().top - newTop < $(element).offset().top) {
-					newTop				= 0;
-				} else if ($(element).outerHeight() > newTop + $(image).outerHeight() && x <= 0) {
-					newTop				= $(element).outerHeight() - newHeight;
-				}
+			if ($(element).offset().left - newLeft < $(element).offset().left) {
+				newLeft				= 0;
+			} else if ($(element).outerWidth() > newLeft + $(image).outerWidth() && x <= 0) {
+				newLeft				= $(element).outerWidth() - newWidth;
 			}
+			
+			if ($(element).offset().top - newTop < $(element).offset().top) {
+				newTop				= 0;
+			} else if ($(element).outerHeight() > newTop + $(image).outerHeight() && x <= 0) {
+				newTop				= $(element).outerHeight() - newHeight;
+			}
+			
 			image.css({width: newWidth, height: newHeight, top: newTop, left: newLeft })
 			_self._ghost();
 			
@@ -504,36 +432,29 @@
 			
 			finalWidth				= options.width;
 			finalHeight				= options.height;
-			
-			finalTop				= parseInt(Math.round(parseInt($(image).css('top')) * factor))
-			finalLeft				= parseInt(Math.round(parseInt($(image).css('left')) * factor))
+			finalTop				= parseInt(Math.round(parseInt($(image).css('top')) * factor)) * -1
+			finalLeft				= parseInt(Math.round(parseInt($(image).css('left')) * factor)) * -1
 			imageWidth				= parseInt(Math.round($(image).width() * factor));
 			imageHeight				= parseInt(Math.round($(image).height() * factor));
 			imageOriginalWidth		= $(image).data('width');
 			imageOriginalHeight		= $(image).data('height');
 			
-			
-			
 			finalTop				= finalTop || 0;
 			finalLeft				= finalLeft || 0;
 			
 			var obj					= {name: $(image).attr('name'), imageOriginalWidth: imageOriginalWidth, imageOriginalHeight: imageOriginalHeight, imageWidth: imageWidth, imageHeight: imageHeight, width: finalWidth, height: finalHeight, left: finalLeft, top: finalTop}
-
 			$(element).find('.tools').children().toggle();
 			$(element).find('.tools').append($(_self.button.saving));
+			
 			
 			if (options.canvas == true) {
 				
 	            var canvas          = $('<canvas class="final" id="canvas_' + $(input).attr('name') + '" width="' + finalWidth + '" height="' + finalHeight + '" style="position:absolute; top: 0; bottom: 0; left: 0; right: 0; z-index:100; width: 100%; height: 100%;"></canvas>');
-	            
 	            $(element).append(canvas);
 	            
 	            var canvasContext   = $(canvas)[0].getContext('2d');
 	            var imageObj        = new Image();
 
-	            //canvasContext.fillStyle = "rgba(255, 255, 255, 0)";
-	            //canvasContext.clearRect(0,0,finalWidth,finalHeight);
-	            
 	            imageObj.onload = function() {
 	            	
 	            	
@@ -541,58 +462,18 @@
 	                var canvasTmpContext    = $(canvasTmp)[0].getContext('2d');
 	                var tmpImage			= $('<img src="" />');
 
-	                //canvasTmpContext.fillStyle = "rgba(255, 255, 255, 0)";
-	                //canvasTmpContext.clearRect(0,0,imageWidth,imageHeight);
 	                canvasTmpContext.drawImage(imageObj, 0, 0, imageWidth, imageHeight);
-	                //$(element).append(canvasTmp);
 	                var tmpObj				= new Image();
 	                tmpObj.onload = function() {
+	                	canvasContext.drawImage(tmpObj, finalLeft, finalTop, finalWidth, finalHeight, 0,0,finalWidth, finalHeight);
 	                	
-	                	if (options.canvasImageOnly == true) {
-	                		var _imageWidth		= imageWidth;
-	                		var _imageHeight	= imageHeight;
-	                		if (finalLeft < 0) {
-	                			_imageWidth		+= finalLeft;
-	                		} else if (finalLeft + imageWidth > finalWidth) {
-	                			_imageWidth		= finalWidth - finalLeft
-	                		}
-	                		if (finalTop  < 0) {
-	                			_imageHeight	+= finalTop;
-	                		} else if (finalTop + imageHeight > finalHeight) {
-	                			_imageHeight	= finalHeight - finalTop
-	                		}
+	                	if (options.ajax == true) {
 	                		
-	                		var canvasImageOnly			= $('<canvas width="' + _imageWidth + '" height="' + _imageHeight + '"></canvas>');
-	    	                var canvasImageOnlyContext  = $(canvasImageOnly)[0].getContext('2d');
-	    	                canvasImageOnlyContext.drawImage(tmpObj, ((finalLeft < 0) ? finalLeft : 0), ((finalTop < 0) ? finalTop : 0), imageWidth, imageHeight);
-	    	                
-	                	}
-		                	
-	                	if (imageWidth < finalWidth || imageHeight < finalHeight) {
-	                		canvasContext.drawImage(tmpObj, finalLeft, finalTop, imageWidth, imageHeight);
-	                	} else {
-	                	   	canvasContext.drawImage(tmpObj, finalLeft*-1, finalTop*-1, finalWidth, finalHeight, 0,0,finalWidth, finalHeight);
-	                	}
-	                	
-	                	
-	                	var dataUrl		= (options.canvasImageOnly == true) ? $(canvasImageOnly)[0].toDataURL(image.data('mime')) : $(canvas)[0].toDataURL(image.data('mime'))
-	                	
-	                			
-	                	if (options.save == false) {
-	                		
-	                		$(element).find('.tools .saving').remove();
-							$(element).find('.tools').children().toggle();
-	                		
-	                		if (_self.options.onSave) _self.options.onSave.call(_self,$.extend(obj, options.data, {data: dataUrl}));
-	        				_self.imageFinal();
-	                		
-	                	} else if (options.ajax == true) {
-	                		
-	                		_self._ajax($.extend({data: dataUrl}, obj));
+	                		_self._ajax($.extend({data: $(canvas)[0].toDataURL(image.data('mime'))}, obj));
 	                		
 	                	} else {
 	                		
-	                		var json		= JSON.stringify($.extend({data: dataUrl},obj));
+	                		var json		= JSON.stringify($.extend({data: $(canvas)[0].toDataURL(image.data('mime'))},obj));
 	        				$(input).after($('<input type="text" name="' + $(input).attr('name') + '_values" class="final" />').val(json));
 	        				
 	        				$(input).data('required',$(input).prop('required'));
@@ -650,13 +531,11 @@
 				url: options.url,
 				data: $.extend(obj, options.data),
 				success: function(response) {
-					
 					if (response.status == "success") {
 						var file		= response.url.split('?');
 						$(element).find('.tools .saving').remove();
 						$(element).find('.tools').children().toggle();
 						$(element).data('name',file[0])
-						$(element).data('filename',response.filename)
 						if (options.canvas != true) {
 							$(element).append($('<img src="' + file[0] + '" class="final" style="width: 100%" />'));
 						}
@@ -719,16 +598,6 @@
 			//append tools to element
 			$(element).append(tools);
 			$(element).unbind();
-			
-			//download
-			if (options.download == true) {
-				var download	= $('<div class="download final"/>');
-				$(download).append($(_self.button.download).attr('download',$(_self.image).attr('name')).click(function(e) {
-					$(this).attr('href',$(element).find('canvas.final')[0].toDataURL(_self.image.data('mime')));
-				}))
-				$(element).append(download);
-			}
-			
 			//set input to valid for form upload
 			$(input).unbind().data('valid',true);
 			
@@ -815,36 +684,11 @@
 			//console.log('resize plugin');
 			return true;
 		},
-/*		rotate: function(degrees) {
-			var _self			= this;
-			var element			= _self.element;
-			var image			= _self.image
-			
-			$(image).addClass('rotate_90');
-			var tmp				= $(image).data('width');
-			$(image).data('width',$(image).data('height'));
-			$(image).data('height',tmp);
-		},*/
 		reinit: function() {
-			
-			var _self			= this;
-			var element			= _self.element;
-			
 			this.resize();
 			this._bind();
 			
 			return true;
-		},
-		modal: function() {
-			var _self			= this;
-			var element			= _self.element;
-			
-			$(element).attr('style',$(element).data('style'));
-			$(element).attr('class',$(element).data('class'));
-			
-			_self._init();
-			
-			return this;
 		},
 		
 		_ghost: function() {
@@ -908,25 +752,6 @@
 					}
 				}));
 			}
-			
-/*			if (options.buttonRotateccw != false) {
-				$(tools).append($(_self.button.rotateccw).on({
-					'touchstart touchend click': function(e) { 
-						e.preventDefault();
-						_self.rotate(-90); 
-					}
-				}));
-			}
-			if (options.buttonRotatecw != false) {
-				$(tools).append($(_self.button.rotatecw).on({
-					'touchstart touchend click': function(e) { 
-						e.preventDefault();
-						_self.rotate(90); 
-					}
-				}));
-			}*/
-			
-			
 			//cancel button (removes the image and resets it to the original init event
 			if (options.buttonCancel != false) {
 				$(tools).append($(_self.button.cancel).on({

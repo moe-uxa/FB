@@ -4,8 +4,12 @@
     ViewBag.Title = "Create";
 }
 
+<script>
+    tinymce.init({
+        selector: 'textarea'
+    });
 
-
+</script>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">CertificatesModel</h1>
@@ -22,10 +26,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        @using (Html.BeginForm()) 
+                        @using (Html.BeginForm("Create", "Certificates", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             @Html.AntiForgeryToken()
-    
+
                             <div class="form-horizontal">
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
@@ -69,6 +73,72 @@
                                 </div>
 
                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.ProgramOverview, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.ProgramOverview, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ProgramOverview, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Objective, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Objective, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Objective, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ProgramTopics, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.ProgramTopics, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ProgramTopics, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Charterholders, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Charterholders, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Charterholders, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Candidates, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Candidates, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Candidates, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="col-sm-10 dropzone logouploader" data-canvas="true" data-width="250" data-height="250" data-ghost="false" data-ajax="false">
+                                                <input type="file" name="avatar" id="avatar" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <input type="submit" value="Create" class="btn btn-primary pull-right" />
                                     </div>
@@ -86,8 +156,7 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-                    
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-

@@ -30,7 +30,7 @@ html, body						{ font-family: arial; }
 
 .dropzone .progress				{ bottom: 10px; left: 10px; right: 10px; display: none;  }
 
-.dropzone .cropWrapper			{ overflow: hidden; position: absolute; top:0; bottom: 0; left: 0; right: 0; z-index: 10; background-color: #eeeeee;  text-align: left;}
+.dropzone .cropWrapper			{ overflow: hidden; position: absolute; top:0; bottom: 0; left: 0; right: 0; z-index: 10; background-color: #eeeeee}
 /*.dropzone canvas.final			{ background-color: #eeeeee;}*/
 
 .dropzone img					{ z-index: 5; position: relative; }
@@ -43,7 +43,4 @@ html, body						{ font-family: arial; }
 .dropzone .tools > *			{ margin: 0 0 0 5px; }
 
 .dropzone.smalltools .tools .btn	{ padding: 1px 4px; font-size: 12px; }
-
-.dropzone .download				{ position: absolute; bottom: 10px; left: 10px; z-index: 999; display: inline-block; }
-.dropzone .download > *			{ margin: 0 0 0 5px; }
 

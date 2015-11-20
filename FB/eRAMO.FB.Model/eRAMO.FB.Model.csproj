@@ -60,6 +60,7 @@
     <Compile Include="CEOsModel.cs" />
     <Compile Include="CertificateModel.cs" />
     <Compile Include="ClientReviewsModel.cs" />
+    <Compile Include="InstructorsModel.cs" />
     <Compile Include="LevelsModel.cs" />
     <Compile Include="NewsModel.cs" />
     <Compile Include="OffersModel.cs" />
