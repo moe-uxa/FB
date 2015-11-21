@@ -30,6 +30,6 @@ namespace eRAMO.FB.Model
         public string Candidates { get; set; }
         public string Duration { get; set; }
         public string Time { get; set; }
-        public List<InstructorsModel> Instructors { get; set; }
+        public List<InstructorsModel> InstructorCollection { get; set; }
     }
 }

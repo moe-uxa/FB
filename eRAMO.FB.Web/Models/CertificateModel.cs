@@ -50,16 +50,16 @@ namespace eRAMO.FB.Web.Models
         public List<InstructorModel> GetAllInstructors(int id)
         {
             var ctx = new UnitOfWork();
-            var ss= ctx.Certificate.GetAll<Model.CertificatesModel>()
-                    .Where(certificate => certificate.CertificateID == id).Select(itm => itm.Instructors).FirstOrDefault().Select(item => new InstructorModel()
-            {
-                Name = item.Name,
-                PhotoUrl = item.PhotoUrl,
-                Position = item.Position,
-                Summary = item.Summary
-            }).ToList();
+            Instructors = ctx.Certificate.GetAll<Model.CertificatesModel>()
+                   .Where(certificate => certificate.CertificateID == id).Select(itm => itm.InstructorCollection).FirstOrDefault().Select(item => new InstructorModel()
+           {
+               Name = item.Name,
+               PhotoUrl = item.PhotoUrl,
+               Position = item.Position,
+               Summary = item.Summary
+           }).ToList();
 
-           return ss;
+            return Instructors;
         }
     }
 }

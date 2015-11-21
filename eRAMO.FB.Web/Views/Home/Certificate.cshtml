@@ -6,16 +6,16 @@
 <section class="home-header dark">
     <div style="margin-left: 8%;">
         <div class=" col-sm-6 col-xs-10">
-        <h2>
-            @Model.Name
-        </h2>
+            <h2>
+                @Model.Name
+            </h2>
             <p class="large">
                 <i class="fa fa-clock-o"></i> &nbsp; @Model.Duration
                 <br />
                 <i class="fa fa-calendar"></i> &nbsp; @Model.Time
             </p>
+        </div>
     </div>
-</div>
 </section>
 <section class="gallery">
     <div class="about-product" style="margin-left: 8%;">
@@ -56,5 +56,35 @@
         <p>
             @Model.Time
         </p>
+    </div>
+</section>
+
+
+<section class="wrap-dream-team">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <header class="section-header no-margin wow fadeInUp" data-wow-duration="2s">
+                    <p class="subhead">Financial Brains Team</p>
+                    <h2>Professional Work</h2>
+                    <p class="large">Here is some bio about our share holders in Financial Brains</p>
+                </header>
+            </div>
+        </div>
+        <div class="row list-dream-team">
+            @for (int i = 1; i < @Model.Instructors.Count; i++)
+            {
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="2s">
+                    <div class="team-item">
+                        <div class="image">
+                            <img src="../../Photos/@Model.Instructors[i].PhotoUrl" alt="" class="img-responsive" />
+                        </div>
+                        <div class="bottom-info">
+                            <div class="name">@Model.Instructors[i].Name</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </section>

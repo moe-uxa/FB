@@ -50,6 +50,7 @@ namespace eRAMO.FB.Web.Controllers
         {
             var model = new CertificateModel();
             model = model.GetCertificate(Id);
+            model.GetAllInstructors(Id);
             return View(model);
         }
     }
