@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AboutHistoriesModel = eRAMO.FB.Web.Models.AboutHistoriesModel;
 using CEOsModel = eRAMO.FB.Web.Models.CEOsModel;
 
 namespace eRAMO.FB.Web.Controllers
@@ -27,10 +28,10 @@ namespace eRAMO.FB.Web.Controllers
 
         public ActionResult About()
         {
-            var ctx = new UnitOfWork();
-            var historyList = ctx.AboutHistory.GetAll<AboutHistoriesModel>();
+            var model = new AboutHistoriesModel();
+            
 
-            return View(historyList);
+            return View(model);
         }
 
         public ActionResult Contact()

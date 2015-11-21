@@ -1,4 +1,4 @@
-﻿@model List<eRAMO.FB.Model.AboutHistoriesModel>
+﻿@model  eRAMO.FB.Web.Models.AboutHistoriesModel
 @{
     ViewBag.Title = "About";
 }
@@ -115,14 +115,14 @@
         <div class="col-md-6">
             <div class="team-description wow fadeInUp" data-wow-duration="2s">
                 <h3>Who we are</h3>
-                <p>@Model[0].Description</p>
+                <p>@Model.AboutHistories[0].Description</p>
 
             </div>
         </div>
         <div class="col-md-6">
             <div class="team-description wow fadeInUp" data-wow-duration="2s">
                 <h3>What We Do</h3>
-                <p>@Model[1].Description<br /><br /><br /><br /><br /><br /><br /></p>
+                <p>@Model.AboutHistories[1].Description<br /><br /><br /><br /><br /><br /><br /></p>
 
             </div>
         </div>
@@ -140,7 +140,7 @@
                 </div>
             </div>
         </div>
-        @for (int i = 2; i < @Model.Count(); i++)
+        @for (int i = 2; i < @Model.AboutHistories.Count(); i++)
         {
             if (i % 2 == 0)
             {
@@ -149,15 +149,15 @@
                     <div class="col-md-6 col-sm-6 time-item wow fadeInUp" data-wow-duration="2s">
                         <div class="date">
                             @{
-                var date = Model[i].Date;
+                var date = Model.AboutHistories[i].Date;
                             }
                             @if (date != null)
                             {
                                 @date.Value.ToString("Y")
                             }
                         </div>
-                        <div class="title">@Model[i].Title</div>
-                        <div class="text">@Model[i].Description</div>
+                        <div class="title">@Model.AboutHistories[i].Title</div>
+                        <div class="text">@Model.AboutHistories[i].Description</div>
                     </div>
                 </div>
             }
@@ -169,22 +169,22 @@
                     <div class="col-md-6 col-sm-6 time-item wow fadeInUp" data-wow-duration="2s">
                         <div class="date">
                             @{
-                var dateTime = Model[i].Date;
+                var dateTime = Model.AboutHistories[i].Date;
                             }
                             @if (dateTime != null)
                             {
                                 @dateTime.Value.ToString("Y")
                             }
                         </div>
-                        <div class="title">@Model[i].Title</div>
-                        @if (!string.IsNullOrEmpty(Model[i].Image))
+                        <div class="title">@Model.AboutHistories[i].Title</div>
+                        @if (!string.IsNullOrEmpty(Model.AboutHistories[i].Image))
                         {
                             <div class="time-image">
-                                <img src="../../Photos/@Model[i].Image" alt="" />
+                                <img src="../../Photos/@Model.AboutHistories[i].Image" alt="" />
                             </div>
                         }
 
-                        <div class="text">@Model[i].Description</div>
+                        <div class="text">@Model.AboutHistories[i].Description</div>
                     </div>
                 </div>
             }

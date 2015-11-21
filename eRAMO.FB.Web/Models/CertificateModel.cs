@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AutoMapper;
 using eRAMO.FB.Manager;
+using eRAMO.FB.Data.Model;
 
 namespace eRAMO.FB.Web.Models
 {
@@ -50,16 +52,39 @@ namespace eRAMO.FB.Web.Models
         public List<InstructorModel> GetAllInstructors(int id)
         {
             var ctx = new UnitOfWork();
-            Instructors = ctx.Certificate.GetAll<Model.CertificatesModel>()
-                   .Where(certificate => certificate.CertificateID == id).Select(itm => itm.InstructorCollection).FirstOrDefault().Select(item => new InstructorModel()
-           {
-               Name = item.Name,
-               PhotoUrl = item.PhotoUrl,
-               Position = item.Position,
-               Summary = item.Summary
-           }).ToList();
+            //var items = ctx.Certificate.GetAll<Model.CertificatesModel>()
+            //    .Where(certificate => certificate.CertificateID == id)
+            //    .Select(itm => itm.InstructorCollection)
+            //    .FirstOrDefault();
+            //if (items != null)
+            //    Instructors = items.Select(item => new InstructorModel()
+            //    {
+            //        Name = item.Name,
+            //        PhotoUrl = item.PhotoUrl,
+            //        Position = item.Position,
+            //        Summary = item.Summary
+            //    }).ToList();
+            //else
+            //{
+            //    Instructors = new List<InstructorModel>();
+            //}
 
-            return Instructors;
+            var certificate = ctx.Certificate.GetById(id);
+             Instructors = Map<InstructorModel, Instructor>(certificate.Instructors.ToList()).ToList();
+             if (Instructors == null)
+                 Instructors = new List<InstructorModel>();
+
+
+
+             return Instructors;
+        }
+
+        private IEnumerable<Result> Map<Result, Source>(IEnumerable<Source> sourceList)
+        {
+            Mapper.CreateMap<Source, Result>();
+            IEnumerable<Result> mappedList = Mapper.Map<IEnumerable<Source>, IEnumerable<Result>>(sourceList);
+            Mapper.Reset();
+            return mappedList;
         }
     }
 }

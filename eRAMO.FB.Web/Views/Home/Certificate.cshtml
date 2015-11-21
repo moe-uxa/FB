@@ -62,17 +62,8 @@
 
 <section class="wrap-dream-team">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <header class="section-header no-margin wow fadeInUp" data-wow-duration="2s">
-                    <p class="subhead">Financial Brains Team</p>
-                    <h2>Professional Work</h2>
-                    <p class="large">Here is some bio about our share holders in Financial Brains</p>
-                </header>
-            </div>
-        </div>
         <div class="row list-dream-team">
-            @for (int i = 1; i < @Model.Instructors.Count; i++)
+            @for (int i = 0; i < @Model.Instructors.Count; i++)
             {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="2s">
                     <div class="team-item">
